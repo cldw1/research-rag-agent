@@ -4,11 +4,13 @@ import ast
 import json
 import math
 import re
+import subprocess
 from pathlib import Path
 
 import pytest
 
 from scripts.export_experiment_summary import summarize
+from scripts.check_github_safety import get_candidate_files
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,7 +48,9 @@ def test_export_refuses_inconsistent_historical_data():
 
 
 def test_markdown_local_links_exist():
-    files = [ROOT / "README.md", *ROOT.glob("docs/**/*.md")]
+    # Ignored local notes must not hide links that break in a fresh clone.
+    public_files = {path.resolve() for path in get_candidate_files()}
+    files = [path for path in public_files if path.suffix.lower() == ".md"]
     for path in files:
         content = path.read_text(encoding="utf-8")
         content = re.sub(r"```.*?```", "", content, flags=re.S)
@@ -54,7 +58,31 @@ def test_markdown_local_links_exist():
             if re.match(r"[a-zA-Z][\w+.-]*:|#", target):
                 continue
             target = target.split("#", 1)[0]
-            assert (path.parent / target).exists(), f"{path.name}: missing {target}"
+            resolved = (path.parent / target).resolve()
+            assert resolved.exists(), f"{path.name}: missing {target}"
+            assert resolved in public_files or (
+                resolved.is_dir() and any(resolved in item.parents for item in public_files)
+            ), f"{path.name}: target is not public: {target}"
+
+
+def test_personal_documents_stay_out_of_public_files():
+    private_paths = ["docs/resume_project.md", "docs/images/README.md", "docs/release_check.md"]
+    public_files = {path.relative_to(ROOT).as_posix() for path in get_candidate_files()}
+    assert not public_files.intersection(private_paths)
+    process = subprocess.run(
+        ["git", "check-ignore", "--no-index", "--", *private_paths], cwd=ROOT,
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    )
+    assert set(process.stdout.splitlines()) == set(private_paths)
+
+
+def test_six_real_screenshots_remain_public():
+    public_files = {path.resolve() for path in get_candidate_files()}
+    names = ["main.png", "pdf-qa.png", "hmc-hybrid-qa.png", "agent-tools.png", "citations.png", "section-aware.png"]
+    for name in names:
+        image = ROOT / "docs" / "images" / name
+        assert image.resolve() in public_files
+        assert image.read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
 
 
 def test_all_project_python_files_parse():

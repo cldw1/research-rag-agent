@@ -78,3 +78,19 @@ htmlcov/
 .aws/
 credentials.json
 token.json
+
+# ===== Local-only personal notes and internal documentation =====
+/docs/resume_project.md
+/docs/images/README.md
+/docs/release_check.md
+/private/
+/personal/
+/local-notes/
+*resume*.md
+*interview*.md
+*learning_report*
+*study_report*
+*学习报告*
+*面试笔记*
+*面试准备*
+*简历*

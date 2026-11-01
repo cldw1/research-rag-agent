@@ -9,7 +9,7 @@
 - **证据组织**：Anchor-First 优先保留检索片段；已验证 V3 的 Section-Aware 模式支持同章节跨页邻居扩展。
 - **可核验评估**：单篇 HMC 论文的 7 道章节级问题，Hit@5 为 6/7 → 7/7，人工证据充分率均为 6/7。**结果不能推广为通用问答性能提升。**
 
-[安装运行](#安装与启动) · [实验详情](docs/experiments.md) · [截图说明](docs/images/README.md) · [简历与面试说明](docs/resume_project.md)
+[安装运行](#安装与启动) · [实验详情](docs/experiments.md) · [功能截图](#功能截图)
 
 ## 功能与支持范围
 
@@ -251,8 +251,6 @@ python scripts/test_step70_smart_expander.py
 
 </details>
 
-截图来源、场景说明与后续更新方式见 [截图说明](docs/images/README.md)。
-
 ## 项目结构
 
 ```text
@@ -269,7 +267,7 @@ research-rag-agent/
 ├── scripts/                       # 数据准备、实验、演示与安全检查
 ├── tests/                         # 无付费 API 的回归测试
 ├── results/                       # 只发布章节映射与脱敏实验摘要
-└── docs/                          # 实验、简历说明与截图采集规范
+└── docs/                          # 公开实验说明与功能截图
 ```
 
 技术栈：Python、Streamlit、OpenAI SDK / DeepSeek、Sentence-Transformers / BGE、BM25、FAISS、NumPy、PyMuPDF、Hugging Face Datasets、pytest。
