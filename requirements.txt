@@ -1,0 +1,12 @@
+numpy
+pandas
+datasets
+pymupdf
+rank-bm25
+faiss-cpu
+pytest
+tqdm
+sentence-transformers
+streamlit
+python-dotenv
+openai

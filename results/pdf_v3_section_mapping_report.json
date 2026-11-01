@@ -1,0 +1,368 @@
+{
+  "filename": "HandbookChapter5.pdf",
+  "expected_headings": 50,
+  "matched_headings": 50,
+  "unmatched_headings": [],
+  "matched_events": [
+    {
+      "page": 1,
+      "line_index": 3,
+      "section": "5.1 Introduction"
+    },
+    {
+      "page": 2,
+      "line_index": 16,
+      "section": "5.2 Hamiltonian Dynamics"
+    },
+    {
+      "page": 2,
+      "line_index": 36,
+      "section": "5.2.1 Hamilton’s Equations"
+    },
+    {
+      "page": 2,
+      "line_index": 41,
+      "section": "5.2.1.1 Equations of Motion"
+    },
+    {
+      "page": 3,
+      "line_index": 28,
+      "section": "5.2.1.2 Potential and Kinetic Energy"
+    },
+    {
+      "page": 4,
+      "line_index": 27,
+      "section": "5.2.2 Properties of Hamiltonian Dynamics"
+    },
+    {
+      "page": 4,
+      "line_index": 31,
+      "section": "5.2.2.1 Reversibility"
+    },
+    {
+      "page": 4,
+      "line_index": 45,
+      "section": "5.2.2.2 Conservation of the Hamiltonian"
+    },
+    {
+      "page": 5,
+      "line_index": 9,
+      "section": "5.2.2.3 Volume Preservation"
+    },
+    {
+      "page": 7,
+      "line_index": 5,
+      "section": "5.2.2.4 Symplecticness"
+    },
+    {
+      "page": 7,
+      "line_index": 20,
+      "section": "5.2.3 Discretizing Hamilton’s Equations—The Leapfrog Method"
+    },
+    {
+      "page": 7,
+      "line_index": 38,
+      "section": "5.2.3.1 Euler’s Method"
+    },
+    {
+      "page": 9,
+      "line_index": 30,
+      "section": "5.2.3.3 The Leapfrog Method"
+    },
+    {
+      "page": 10,
+      "line_index": 11,
+      "section": "5.2.3.4 Local and Global Error of Discretization Methods"
+    },
+    {
+      "page": 10,
+      "line_index": 31,
+      "section": "5.3 MCMC from Hamiltonian Dynamics"
+    },
+    {
+      "page": 10,
+      "line_index": 38,
+      "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions"
+    },
+    {
+      "page": 11,
+      "line_index": 41,
+      "section": "5.3.2 The Hamiltonian Monte Carlo Algorithm"
+    },
+    {
+      "page": 12,
+      "line_index": 14,
+      "section": "5.3.2.1 The Two Steps of the HMC Algorithm"
+    },
+    {
+      "page": 14,
+      "line_index": 12,
+      "section": "5.3.2.2 Proof That HMC Leaves the Canonical Distribution Invariant"
+    },
+    {
+      "page": 15,
+      "line_index": 20,
+      "section": "5.3.2.3 Ergodicity of HMC"
+    },
+    {
+      "page": 15,
+      "line_index": 36,
+      "section": "5.3.3 Illustrations of HMC and Its Beneﬁts"
+    },
+    {
+      "page": 15,
+      "line_index": 42,
+      "section": "5.3.3.1 Trajectories for a Two-Dimensional Problem"
+    },
+    {
+      "page": 16,
+      "line_index": 67,
+      "section": "5.3.3.2 Sampling from a Two-Dimensional Distribution"
+    },
+    {
+      "page": 18,
+      "line_index": 6,
+      "section": "5.3.3.3 The Beneﬁt of Avoiding Random Walks"
+    },
+    {
+      "page": 18,
+      "line_index": 41,
+      "section": "5.3.3.4 Sampling from a 100-Dimensional Distribution"
+    },
+    {
+      "page": 21,
+      "line_index": 2,
+      "section": "5.4 HMC in Practice and Theory"
+    },
+    {
+      "page": 21,
+      "line_index": 10,
+      "section": "5.4.1 Effect of Linear Transformations"
+    },
+    {
+      "page": 22,
+      "line_index": 37,
+      "section": "5.4.2 Tuning HMC"
+    },
+    {
+      "page": 22,
+      "line_index": 45,
+      "section": "5.4.2.1 Preliminary Runs and Trace Plots"
+    },
+    {
+      "page": 25,
+      "line_index": 32,
+      "section": "5.4.2.4 Using Multiple Stepsizes"
+    },
+    {
+      "page": 26,
+      "line_index": 59,
+      "section": "5.4.3 Combining HMC with Other MCMC Updates"
+    },
+    {
+      "page": 27,
+      "line_index": 9,
+      "section": "5.4.4 Scaling with Dimensionality"
+    },
+    {
+      "page": 27,
+      "line_index": 19,
+      "section": "5.4.4.1 Creating Distributions of Increasing Dimensionality by Replication"
+    },
+    {
+      "page": 27,
+      "line_index": 39,
+      "section": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis"
+    },
+    {
+      "page": 29,
+      "line_index": 20,
+      "section": "5.4.4.3 Optimal Acceptance Rates"
+    },
+    {
+      "page": 30,
+      "line_index": 15,
+      "section": "5.4.4.4 Exploring the Distribution of Potential Energy"
+    },
+    {
+      "page": 30,
+      "line_index": 40,
+      "section": "5.4.5 HMC for Hierarchical Models"
+    },
+    {
+      "page": 32,
+      "line_index": 25,
+      "section": "5.5 Extensions of and Variations on HMC"
+    },
+    {
+      "page": 33,
+      "line_index": 17,
+      "section": "5.5.1.1 Splitting the Hamiltonian"
+    },
+    {
+      "page": 34,
+      "line_index": 34,
+      "section": "5.5.1.2 Splitting to Exploit Partial Analytical Solutions"
+    },
+    {
+      "page": 34,
+      "line_index": 61,
+      "section": "5.5.1.3 Splitting Potential Energies with Variable Computation Costs"
+    },
+    {
+      "page": 35,
+      "line_index": 30,
+      "section": "5.5.1.4 Splitting according to Data Subsets"
+    },
+    {
+      "page": 36,
+      "line_index": 2,
+      "section": "5.5.1.5 Handling Constraints"
+    },
+    {
+      "page": 36,
+      "line_index": 61,
+      "section": "5.5.2 Taking One Step at a Time—The Langevin Method"
+    },
+    {
+      "page": 38,
+      "line_index": 61,
+      "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks"
+    },
+    {
+      "page": 40,
+      "line_index": 26,
+      "section": "5.5.4 Acceptance Using Windows of States"
+    },
+    {
+      "page": 43,
+      "line_index": 18,
+      "section": "5.5.5 Using Approximations to Compute the Trajectory"
+    },
+    {
+      "page": 44,
+      "line_index": 13,
+      "section": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation"
+    },
+    {
+      "page": 45,
+      "line_index": 33,
+      "section": "5.5.7 Tempering during a Trajectory"
+    },
+    {
+      "page": 48,
+      "line_index": 22,
+      "section": "References"
+    }
+  ],
+  "chunk_count": 247,
+  "section_chunk_counts": {
+    "Page 1": 1,
+    "5.1 Introduction": 6,
+    "5.2 Hamiltonian Dynamics": 2,
+    "5.2.1 Hamilton’s Equations": 1,
+    "5.2.1.1 Equations of Motion": 2,
+    "5.2.1.2 Potential and Kinetic Energy": 4,
+    "5.2.2 Properties of Hamiltonian Dynamics": 1,
+    "5.2.2.1 Reversibility": 2,
+    "5.2.2.2 Conservation of the Hamiltonian": 2,
+    "5.2.2.3 Volume Preservation": 8,
+    "5.2.2.4 Symplecticness": 1,
+    "5.2.3 Discretizing Hamilton’s Equations—The Leapfrog Method": 1,
+    "5.2.3.1 Euler’s Method": 6,
+    "5.2.3.3 The Leapfrog Method": 4,
+    "5.2.3.4 Local and Global Error of Discretization Methods": 3,
+    "5.3 MCMC from Hamiltonian Dynamics": 1,
+    "5.3.1 Probability and the Hamiltonian: Canonical Distributions": 3,
+    "5.3.2 The Hamiltonian Monte Carlo Algorithm": 3,
+    "5.3.2.1 The Two Steps of the HMC Algorithm": 9,
+    "5.3.2.2 Proof That HMC Leaves the Canonical Distribution Invariant": 4,
+    "5.3.2.3 Ergodicity of HMC": 2,
+    "5.3.3 Illustrations of HMC and Its Beneﬁts": 1,
+    "5.3.3.1 Trajectories for a Two-Dimensional Problem": 5,
+    "5.3.3.2 Sampling from a Two-Dimensional Distribution": 5,
+    "5.3.3.3 The Beneﬁt of Avoiding Random Walks": 4,
+    "5.3.3.4 Sampling from a 100-Dimensional Distribution": 8,
+    "5.4 HMC in Practice and Theory": 1,
+    "5.4.1 Effect of Linear Transformations": 8,
+    "5.4.2 Tuning HMC": 1,
+    "5.4.2.1 Preliminary Runs and Trace Plots": 16,
+    "5.4.2.4 Using Multiple Stepsizes": 4,
+    "5.4.3 Combining HMC with Other MCMC Updates": 3,
+    "5.4.4 Scaling with Dimensionality": 1,
+    "5.4.4.1 Creating Distributions of Increasing Dimensionality by Replication": 3,
+    "5.4.4.2 Scaling of HMC and Random-Walk Metropolis": 8,
+    "5.4.4.3 Optimal Acceptance Rates": 5,
+    "5.4.4.4 Exploring the Distribution of Potential Energy": 3,
+    "5.4.5 HMC for Hierarchical Models": 10,
+    "5.5 Extensions of and Variations on HMC": 5,
+    "5.5.1.1 Splitting the Hamiltonian": 4,
+    "5.5.1.2 Splitting to Exploit Partial Analytical Solutions": 2,
+    "5.5.1.3 Splitting Potential Energies with Variable Computation Costs": 3,
+    "5.5.1.4 Splitting according to Data Subsets": 4,
+    "5.5.1.5 Handling Constraints": 5,
+    "5.5.2 Taking One Step at a Time—The Langevin Method": 8,
+    "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks": 9,
+    "5.5.4 Acceptance Using Windows of States": 16,
+    "5.5.5 Using Approximations to Compute the Trajectory": 6,
+    "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation": 8,
+    "5.5.7 Tempering during a Trajectory": 14,
+    "References": 11
+  },
+  "integrity_passed": true,
+  "problem_pages": [],
+  "preview_chunks": [
+    {
+      "chunk_id": "v3_test_v3_s008_p003_c000",
+      "paper_id": "v3_test",
+      "title": "HandbookChapter5",
+      "page_number": 9,
+      "section_name": "5.2.3.3 The Leapfrog Method",
+      "section_index": 8,
+      "paragraph_index": 3,
+      "piece_index": 0,
+      "text": "5.2.3.3 The Leapfrog Method Even better results can be obtained with the leapfrog method, which works as follows: (q(t)), (5.18) pi (t + ε/2) = pi(t) −(ε/2) ∂U ∂qi , (5.19) qi(t + ε) = qi(t) + ε pi(t + ε/2) mi (q(t + ε)). (5.20) pi(t + ε) = pi (t + ε/2) −(ε/2) ∂U ∂qi We start with a half step for the momentum variables, then do a full step for the position variables, using the new values of the momentum variables, and ﬁnally do another half step for the momentum variables, using the new values for the position variables. An analogous scheme can be used with any kinetic energy function, with ∂K/∂pi replacing pi/mi above. When we apply Equations 5.18 through 5.20 a second time to go from time t + ε to t + 2ε,",
+      "char_count": 716,
+      "is_reference": false
+    },
+    {
+      "chunk_id": "v3_test_v3_s021_p004_c000",
+      "paper_id": "v3_test",
+      "title": "HandbookChapter5",
+      "page_number": 22,
+      "section_name": "5.4.2 Tuning HMC",
+      "section_index": 21,
+      "paragraph_index": 4,
+      "piece_index": 0,
+      "text": "5.4.2 Tuning HMC One practical impediment to the use of Hamiltonian Monte Carlo is the need to select suitable values for the leapfrog stepsize, ε, and the number of leapfrog steps, L, which together determine the length of the trajectory in ﬁctitious time, εL. Most MCMC methods have parameters that need to be tuned, with the notable exception of Gibbs sampling when the conditional distributions are amenable to direct sampling. However, tuning HMC is more difﬁcult in some respects than tuning a simple Metropolis method.",
+      "char_count": 525,
+      "is_reference": false
+    },
+    {
+      "chunk_id": "v3_test_v3_s044_p004_c000",
+      "paper_id": "v3_test",
+      "title": "HandbookChapter5",
+      "page_number": 45,
+      "section_name": "5.5.7 Tempering during a Trajectory",
+      "section_index": 44,
+      "paragraph_index": 4,
+      "piece_index": 0,
+      "text": "5.5.7 Tempering during a Trajectory Standard HMC and the variations described so far have as much difﬁculty moving between modes that are separated by regions of low probability as other local MCMC methods, such as random-walk Metropolis and Gibbs sampling. Several general schemes have been devised for solving problems with such isolated modes that involve sampling from a series of distributions that are more diffuse than the distribution of interest. Such schemes include parallel tempering (Geyer, 1991; Earl and Deem, 2005), simulated tempering (Marinari and Parisi, 1992), tempered transitions (Neal, 1996b), and annealed importance sampling (Neal, 2001). Most commonly, these distributions are obtained by varying a “temperature”",
+      "char_count": 738,
+      "is_reference": false
+    },
+    {
+      "chunk_id": "v3_test_v3_s047_p003_c000",
+      "paper_id": "v3_test",
+      "title": "HandbookChapter5",
+      "page_number": 48,
+      "section_name": "References",
+      "section_index": 47,
+      "paragraph_index": 3,
+      "piece_index": 0,
+      "text": "References Alder, B. J. and Wainwright, T. E. 1959. Studies in molecular dynamics. I. General method. Journal of Chemical Physics, 31:459–466. Andrieu, C. and Thoms, J. 2008. A tutorial on adaptive MCMC. Statistics and Computing, 18:343–373. Arnold, V. I. 1989. Mathematical Methods of Classical Mechanics, 2nd edn. Springer, New York. Bennett, C. H. 1975. Mass tensor molecular dynamics. Journal of Computational Physics, 19:267–279. Caracciolo, S., Pelissetto, A., and Sokal, A. D. 1994. A general limitation on Monte Carlo algorithms of Metropolis type. Physical Review Letters, 72:179–182.Also available at http://arxiv.org/abs/hep- lat/9307021 Choo, K. 2000. Learning hyperparameters for neural network models using Hamiltonian",
+      "char_count": 732,
+      "is_reference": true
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+
+# ===== Python virtual environment =====
+.venv/
+venv/
+env/
+
+# ===== Python cache =====
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# ===== IDE =====
+.idea/
+.vscode/
+
+# ===== Secrets =====
+.env
+.env.*
+!.env.example
+
+.streamlit/secrets.toml
+
+# ===== Model caches =====
+models/embedding_cache/
+models/.cache/
+
+# ===== Local datasets and indexes =====
+data/
+
+# ===== PDF and archives =====
+*.pdf
+*.zip
+*.7z
+*.rar
+
+# ===== Local backups =====
+app_before_step69.py
+
+# ===== Local audit reports =====
+results/repository_audit.json
+results/project_readiness_report.json
+
+# ===== Pretrained model weights =====
+models/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# ===== Large model binaries =====
+*.onnx
+
+# ===== Experiment outputs =====
+/results/*
+
+# Verified V3 section mapping required at runtime
+!/results/pdf_v3_section_mapping_report.json
+
+# ===== Local reports =====
+/reports/
