@@ -32,6 +32,7 @@ from src.retrieval.validation_paper_scoped_retriever import (
 )
 
 from src.retrieval.uploaded_pdf_retriever import (
+    MAX_PDF_BYTES,
     UploadedPDFRetriever
 )
 
@@ -73,23 +74,22 @@ st.caption(
 # 3. DeepSeek 客户端
 # ==========================================
 
-api_key = os.getenv("DEEPSEEK_API_KEY")
+api_key = os.getenv("DEEPSEEK_API_KEY", "").strip()
+if api_key == "your_deepseek_api_key_here":
+    api_key = ""
 
-if not api_key:
-    st.error(
-        "没有找到 DEEPSEEK_API_KEY，"
-        "请检查项目根目录的 .env 文件。"
-    )
-    st.stop()
-
-if "deepseek_client" not in st.session_state:
+if api_key and "deepseek_client" not in st.session_state:
 
     st.session_state["deepseek_client"] = OpenAI(
         api_key=api_key,
-        base_url="https://api.deepseek.com"
+        base_url="https://api.deepseek.com",
+        timeout=60.0,
+        max_retries=1
     )
 
-client = st.session_state["deepseek_client"]
+client = st.session_state.get("deepseek_client") if api_key else None
+if client is None:
+    st.info("尚未配置 DEEPSEEK_API_KEY：可以建立 PDF 索引，问答前请在 .env 中配置并重启应用。")
 
 
 # ==========================================
@@ -217,7 +217,12 @@ is_pdf_mode = (
 
 if not is_pdf_mode:
 
-    active_retriever = load_validation_retriever()
+    try:
+        active_retriever = load_validation_retriever()
+    except (FileNotFoundError, ValueError, RuntimeError, OSError):
+        st.error("QASPER 索引或模型尚未准备好，或索引文件不一致。请按 README 构建，或在左侧切换到上传 PDF。")
+        st.code("python scripts/prepare_validation_sample.py\npython scripts/build_validation_faiss.py", language="bash")
+        st.stop()
 
     paper_ids = sorted(
         str(paper_id)
@@ -306,7 +311,14 @@ else:
 
         st.stop()
 
+    if uploaded_file.size > MAX_PDF_BYTES:
+        st.error("PDF 文件不能超过 20 MB，请上传较小的文件。")
+        st.stop()
+
     pdf_bytes = uploaded_file.getvalue()
+    if not pdf_bytes.startswith(b"%PDF"):
+        st.error("文件不是有效的 PDF 格式，请检查上传文件。")
+        st.stop()
 
     pdf_hash = hashlib.sha256(
         pdf_bytes
@@ -947,7 +959,9 @@ if not st.session_state[
 # ==========================================
 
 question = st.chat_input(
-    "请输入你想了解的论文问题..."
+    "请输入你想了解的论文问题...",
+    disabled=client is None,
+    max_chars=2000
 )
 
 

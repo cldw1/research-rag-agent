@@ -20,7 +20,6 @@ if str(PROJECT_ROOT) not in sys.path:
 # 2. 导入已有模块
 # ==========================================
 
-from src.retrieval.paper_scoped_retriever import PaperScopedRetriever
 from src.generation.context_builder import (
     build_context,
     build_qa_prompt,
@@ -73,6 +72,8 @@ def rag_answer(
     paper_id: str,
     top_k: int = 5,
 ):
+
+    from src.retrieval.paper_scoped_retriever import PaperScopedRetriever
 
     print("[1] 初始化论文检索器...")
 

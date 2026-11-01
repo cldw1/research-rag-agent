@@ -31,6 +31,7 @@ class PaperOutlineTool:
                 f"论文不存在或没有内容：{paper_id}"
             )
 
+        verified = bool(getattr(self.retriever, "has_verified_sections", False))
         section_map = defaultdict(
             lambda: {
                 "section_name": "",
@@ -40,8 +41,10 @@ class PaperOutlineTool:
 
         for chunk in chunks:
 
-            section_index = int(
-                chunk["section_index"]
+            # In verified V3 metadata section_index is a page offset, so
+            # multiple headings on one page must not overwrite each other.
+            section_index = (
+                chunk["section_name"] if verified else int(chunk["section_index"])
             )
 
             section = section_map[section_index]
@@ -54,12 +57,13 @@ class PaperOutlineTool:
 
         sections = []
 
-        for section_index in sorted(section_map):
+        ordered_keys = list(section_map) if verified else sorted(section_map)
+        for ordinal, section_index in enumerate(ordered_keys):
 
             info = section_map[section_index]
 
             sections.append({
-                "section_index": section_index,
+                "section_index": ordinal if verified else section_index,
                 "section_name": info["section_name"],
                 "chunk_count": info["chunk_count"]
             })

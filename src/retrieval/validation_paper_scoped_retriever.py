@@ -48,6 +48,14 @@ class ValidationPaperScopedRetriever:
 
         print("正在加载 Validation 检索数据...")
 
+        missing = [p.name for p in (INDEX_PATH, EMBEDDING_PATH, METADATA_PATH) if not p.is_file()]
+        if missing:
+            raise FileNotFoundError(
+                "缺少 QASPER Validation 索引文件：" + ", ".join(missing)
+                + "。请先运行 scripts/prepare_validation_sample.py，"
+                "再运行 scripts/build_validation_faiss.py。"
+            )
+
         # 读取验证集索引
         self.global_index = faiss.read_index(
             str(INDEX_PATH)
@@ -80,6 +88,9 @@ class ValidationPaperScopedRetriever:
         if not (
             self.global_index.ntotal == n
             and len(self.embeddings) == n
+            and self.embeddings.ndim == 2
+            and self.global_index.d == self.embeddings.shape[1]
+            and n > 0
         ):
             raise ValueError(
                 "Validation 向量和元数据数量不一致"

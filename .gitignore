@@ -57,6 +57,24 @@ models/
 
 # Verified V3 section mapping required at runtime
 !/results/pdf_v3_section_mapping_report.json
+!/results/hmc_v3_public_summary.json
 
 # ===== Local reports =====
 /reports/
+
+# ===== Local exports, credentials and caches =====
+research_agent_*.json
+*.log
+.cache/
+.ruff_cache/
+htmlcov/
+.coverage*
+*.pem
+*.key
+*.p12
+*.pfx
+*.npy
+*.faiss
+.aws/
+credentials.json
+token.json

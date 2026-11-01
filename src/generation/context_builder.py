@@ -10,14 +10,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.retrieval.paper_scoped_retriever import PaperScopedRetriever
-
-
 # ==========================================
 # 2. 构建带引用的上下文
 # ==========================================
 
 def build_context(results, max_chars=8000):
+
+    if max_chars <= 0:
+        raise ValueError("max_chars 必须大于 0")
 
     context_parts = []
 
@@ -58,7 +58,8 @@ def build_context(results, max_chars=8000):
         )
 
         # 控制上下文长度
-        if used_chars + len(block) > max_chars:
+        separator_chars = 2 if context_parts else 0
+        if used_chars + separator_chars + len(block) > max_chars:
             break
 
         context_parts.append(block)
@@ -73,7 +74,7 @@ def build_context(results, max_chars=8000):
 
         seen_chunk_ids.add(chunk_id)
 
-        used_chars += len(block)
+        used_chars += separator_chars + len(block)
 
     context = "\n\n".join(context_parts)
 
@@ -119,6 +120,8 @@ ANSWER:
 # ==========================================
 
 def main():
+
+    from src.retrieval.paper_scoped_retriever import PaperScopedRetriever
 
     print("=" * 65)
     print("科研 RAG Agent - 引用上下文构建实验")

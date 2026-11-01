@@ -112,7 +112,7 @@ def main():
                 f"文件较大：{size_mb:.2f} MB"
             ))
 
-        if path.suffix.lower() not in TEXT_EXTENSIONS:
+        if path.suffix.lower() not in TEXT_EXTENSIONS and name not in {".env.example", ".gitignore"}:
             continue
 
         if size_mb > 2:
@@ -175,7 +175,8 @@ def main():
         print("仍需人工检查，不能保证不存在其他秘密信息。")
 
     print("\n检查结束。")
+    return 1 if issues else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

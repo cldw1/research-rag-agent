@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "experiment": "V3 Holdout Section Retrieval Evaluation",
+  "filename": "HandbookChapter5.pdf",
+  "pdf_sha256": "9e886059d25db512b670fed4d064d52cd5af41a8510f4d6adfeffff87ec43e4b",
+  "chunk_count": 247,
+  "question_count": 7,
+  "evaluation_level": "section",
+  "top_k": 5,
+  "annotation_status": "Provisional - requires manual text verification",
+  "annotation_note": "Single-reviewer manual ratings; method display order was masked. Gold section labels remain provisional.",
+  "candidate_pool_note": "All indexed V3 chunks used as reranking candidates.",
+  "parameters": {
+    "section_bonus": 0.01,
+    "reference_penalty": 0.025,
+    "max_per_section": 2
+  },
+  "metrics": {
+    "hybrid": {
+      "hit_count": 6,
+      "hit_at_5": 0.8571428571428571,
+      "mrr_at_5": 0.7857142857142857,
+      "sufficient_count": 6,
+      "sufficient_rate": 0.8571428571428571,
+      "average_evidence_score": 1.8571428571428572
+    },
+    "section_aware": {
+      "hit_count": 7,
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9285714285714286,
+      "sufficient_count": 6,
+      "sufficient_rate": 0.8571428571428571,
+      "average_evidence_score": 1.8571428571428572
+    }
+  },
+  "records": [
+    {
+      "id": "H01",
+      "question": "How can a target probability density be represented using an energy function and a canonical distribution?",
+      "gold_section": "5.3.1",
+      "gold_section_title": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+      "hybrid": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s009_p006_c000",
+            "page": 10,
+            "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s010_p001_c000",
+            "page": 11,
+            "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+            "rrf_score": 0.03200204813108039,
+            "constrained_score": 0.03200204813108039
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s010_p000_c000",
+            "page": 11,
+            "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+            "rrf_score": 0.031054405392392875,
+            "constrained_score": 0.031054405392392875
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s020_p003_c000",
+            "page": 21,
+            "section": "5.4.1 Effect of Linear Transformations",
+            "rrf_score": 0.030776515151515152,
+            "constrained_score": 0.030776515151515152
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s009_p005_c000",
+            "page": 10,
+            "section": "5.3 MCMC from Hamiltonian Dynamics",
+            "rrf_score": 0.03076923076923077,
+            "constrained_score": 0.03076923076923077
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s009_p006_c000",
+            "page": 10,
+            "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.04278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s010_p001_c000",
+            "page": 11,
+            "section": "5.3.1 Probability and the Hamiltonian: Canonical Distributions",
+            "rrf_score": 0.03200204813108039,
+            "constrained_score": 0.04200204813108039
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s002_p001_c000",
+            "page": 3,
+            "section": "5.2.1.2 Potential and Kinetic Energy",
+            "rrf_score": 0.03007688828584351,
+            "constrained_score": 0.040076888285843514
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s013_p003_c000",
+            "page": 14,
+            "section": "5.3.2.2 Proof That HMC Leaves the Canonical Distribution Invariant",
+            "rrf_score": 0.028370221327967807,
+            "constrained_score": 0.03837022132796781
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s013_p004_c000",
+            "page": 14,
+            "section": "5.3.2.2 Proof That HMC Leaves the Canonical Distribution Invariant",
+            "rrf_score": 0.027526395173453996,
+            "constrained_score": 0.037526395173454
+          }
+        ]
+      }
+    },
+    {
+      "id": "H02",
+      "question": "What conditions must a continuous target density satisfy for the standard HMC sampler to be applied?",
+      "gold_section": "5.3.2",
+      "gold_section_title": "5.3.2 The Hamiltonian Monte Carlo Algorithm",
+      "hybrid": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s010_p002_c000",
+            "page": 11,
+            "section": "5.3.2 The Hamiltonian Monte Carlo Algorithm",
+            "rrf_score": 0.032018442622950824,
+            "constrained_score": 0.032018442622950824
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s025_p002_c000",
+            "page": 26,
+            "section": "5.4.3 Combining HMC with Other MCMC Updates",
+            "rrf_score": 0.030834914611005692,
+            "constrained_score": 0.030834914611005692
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p004_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.028594771241830064,
+            "constrained_score": 0.028594771241830064
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s018_p001_c000",
+            "page": 19,
+            "section": "5.3.3.4 Sampling from a 100-Dimensional Distribution",
+            "rrf_score": 0.027730294396961064,
+            "constrained_score": 0.027730294396961064
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s047_p000_c000",
+            "page": 48,
+            "section": "5.5.7 Tempering during a Trajectory",
+            "rrf_score": 0.02684684684684685,
+            "constrained_score": 0.02684684684684685
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s010_p002_c000",
+            "page": 11,
+            "section": "5.3.2 The Hamiltonian Monte Carlo Algorithm",
+            "rrf_score": 0.032018442622950824,
+            "constrained_score": 0.032018442622950824
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s025_p002_c000",
+            "page": 26,
+            "section": "5.4.3 Combining HMC with Other MCMC Updates",
+            "rrf_score": 0.030834914611005692,
+            "constrained_score": 0.030834914611005692
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p004_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.028594771241830064,
+            "constrained_score": 0.028594771241830064
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s018_p001_c000",
+            "page": 19,
+            "section": "5.3.3.4 Sampling from a 100-Dimensional Distribution",
+            "rrf_score": 0.027730294396961064,
+            "constrained_score": 0.027730294396961064
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s047_p000_c000",
+            "page": 48,
+            "section": "5.5.7 Tempering during a Trajectory",
+            "rrf_score": 0.02684684684684685,
+            "constrained_score": 0.02684684684684685
+          }
+        ]
+      }
+    },
+    {
+      "id": "H03",
+      "question": "What does the high-dimensional sampling example reveal about the performance of HMC?",
+      "gold_section": "5.3.3.4",
+      "gold_section_title": "5.3.3.4 Sampling from a 100-Dimensional Distribution",
+      "hybrid": {
+        "gold_rank": null,
+        "evidence_score": 1,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s031_p000_c000",
+            "page": 32,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.029906956136464335,
+            "constrained_score": 0.029906956136464335
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s020_p001_c000",
+            "page": 21,
+            "section": "5.4 HMC in Practice and Theory",
+            "rrf_score": 0.02946912242686891,
+            "constrained_score": 0.02946912242686891
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p001_c000",
+            "page": 27,
+            "section": "5.4.4 Scaling with Dimensionality",
+            "rrf_score": 0.02832415420928403,
+            "constrained_score": 0.02832415420928403
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p003_c000",
+            "page": 27,
+            "section": "5.4.4.1 Creating Distributions of Increasing Dimensionality by Replication",
+            "rrf_score": 0.028125,
+            "constrained_score": 0.028125
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s029_p004_c000",
+            "page": 30,
+            "section": "5.4.4.4 Exploring the Distribution of Potential Energy",
+            "rrf_score": 0.027650648360030512,
+            "constrained_score": 0.027650648360030512
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 2,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s015_p004_c000",
+            "page": 16,
+            "section": "5.3.3.2 Sampling from a Two-Dimensional Distribution",
+            "rrf_score": 0.02619736419157827,
+            "constrained_score": 0.03619736419157827
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s017_p005_c000",
+            "page": 18,
+            "section": "5.3.3.4 Sampling from a 100-Dimensional Distribution",
+            "rrf_score": 0.024493705528188286,
+            "constrained_score": 0.034493705528188284
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s015_p003_c000",
+            "page": 16,
+            "section": "5.3.3.1 Trajectories for a Two-Dimensional Problem",
+            "rrf_score": 0.022509578544061302,
+            "constrained_score": 0.0325095785440613
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s019_p001_c000",
+            "page": 20,
+            "section": "5.3.3.4 Sampling from a 100-Dimensional Distribution",
+            "rrf_score": 0.02141729174891433,
+            "constrained_score": 0.03141729174891433
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s031_p000_c000",
+            "page": 32,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.029906956136464335,
+            "constrained_score": 0.029906956136464335
+          }
+        ]
+      }
+    },
+    {
+      "id": "H04",
+      "question": "Why does HMC scale differently from random-walk Metropolis as the dimension increases?",
+      "gold_section": "5.4.4.2",
+      "gold_section_title": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis",
+      "hybrid": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p005_c000",
+            "page": 27,
+            "section": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s037_p001_c000",
+            "page": 38,
+            "section": "5.5.2 Taking One Step at a Time—The Langevin Method",
+            "rrf_score": 0.03200204813108039,
+            "constrained_score": 0.03200204813108039
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p001_c000",
+            "page": 27,
+            "section": "5.4.4 Scaling with Dimensionality",
+            "rrf_score": 0.0315136476426799,
+            "constrained_score": 0.0315136476426799
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s037_p002_c000",
+            "page": 38,
+            "section": "5.5.2 Taking One Step at a Time—The Langevin Method",
+            "rrf_score": 0.03125763125763126,
+            "constrained_score": 0.03125763125763126
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p003_c000",
+            "page": 27,
+            "section": "5.4.4.1 Creating Distributions of Increasing Dimensionality by Replication",
+            "rrf_score": 0.029138513513513514,
+            "constrained_score": 0.029138513513513514
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s026_p005_c000",
+            "page": 27,
+            "section": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.04278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s027_p001_c000",
+            "page": 28,
+            "section": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis",
+            "rrf_score": 0.027783137179239824,
+            "constrained_score": 0.037783137179239826
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p000_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.025779967159277502,
+            "constrained_score": 0.035779967159277504
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s017_p001_c000",
+            "page": 18,
+            "section": "5.3.3.3 The Beneﬁt of Avoiding Random Walks",
+            "rrf_score": 0.02565359477124183,
+            "constrained_score": 0.03565359477124183
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s017_p004_c000",
+            "page": 18,
+            "section": "5.3.3.3 The Beneﬁt of Avoiding Random Walks",
+            "rrf_score": 0.024868705591597158,
+            "constrained_score": 0.03486870559159716
+          }
+        ]
+      }
+    },
+    {
+      "id": "H05",
+      "question": "How can retaining part of the previous momentum help reduce random-walk behavior?",
+      "gold_section": "5.5.3",
+      "gold_section_title": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+      "hybrid": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s039_p002_c000",
+            "page": 40,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.03278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p003_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.031746031746031744,
+            "constrained_score": 0.031746031746031744
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s017_p001_c000",
+            "page": 18,
+            "section": "5.3.3.3 The Beneﬁt of Avoiding Random Walks",
+            "rrf_score": 0.031054405392392875,
+            "constrained_score": 0.031054405392392875
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p000_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.029857397504456328,
+            "constrained_score": 0.029857397504456328
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s045_p004_c000",
+            "page": 46,
+            "section": "5.5.7 Tempering during a Trajectory",
+            "rrf_score": 0.027425373134328357,
+            "constrained_score": 0.027425373134328357
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s039_p002_c000",
+            "page": 40,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.03278688524590164,
+            "constrained_score": 0.04278688524590164
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s038_p003_c000",
+            "page": 39,
+            "section": "5.5.3 Partial Momentum Refreshment: Another Way to Avoid Random Walks",
+            "rrf_score": 0.031746031746031744,
+            "constrained_score": 0.041746031746031746
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s017_p001_c000",
+            "page": 18,
+            "section": "5.3.3.3 The Beneﬁt of Avoiding Random Walks",
+            "rrf_score": 0.031054405392392875,
+            "constrained_score": 0.04105440539239288
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s027_p003_c000",
+            "page": 28,
+            "section": "5.4.4.2 Scaling of HMC and Random-Walk Metropolis",
+            "rrf_score": 0.02379324490633119,
+            "constrained_score": 0.03379324490633119
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s045_p004_c000",
+            "page": 46,
+            "section": "5.5.7 Tempering during a Trajectory",
+            "rrf_score": 0.027425373134328357,
+            "constrained_score": 0.027425373134328357
+          }
+        ]
+      }
+    },
+    {
+      "id": "H06",
+      "question": "How can HMC avoid wasting computation on a trajectory with a badly chosen stepsize?",
+      "gold_section": "5.5.6",
+      "gold_section_title": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation",
+      "hybrid": {
+        "gold_rank": 2,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s022_p002_c000",
+            "page": 23,
+            "section": "5.4.2.1 Preliminary Runs and Trace Plots",
+            "rrf_score": 0.03200204813108039,
+            "constrained_score": 0.03200204813108039
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s044_p000_c000",
+            "page": 45,
+            "section": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation",
+            "rrf_score": 0.03131881575727918,
+            "constrained_score": 0.03131881575727918
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s001_p001_c000",
+            "page": 2,
+            "section": "5.1 Introduction",
+            "rrf_score": 0.030017921146953404,
+            "constrained_score": 0.030017921146953404
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s030_p002_c000",
+            "page": 31,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.029910714285714284,
+            "constrained_score": 0.029910714285714284
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s043_p002_c000",
+            "page": 44,
+            "section": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation",
+            "rrf_score": 0.029906956136464335,
+            "constrained_score": 0.029906956136464335
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s044_p000_c000",
+            "page": 45,
+            "section": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation",
+            "rrf_score": 0.03131881575727918,
+            "constrained_score": 0.04131881575727918
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s043_p002_c000",
+            "page": 44,
+            "section": "5.5.6 Short-Cut Trajectories: Adapting the Stepsize without Adaptation",
+            "rrf_score": 0.029906956136464335,
+            "constrained_score": 0.03990695613646433
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s034_p001_c000",
+            "page": 35,
+            "section": "5.5.1.3 Splitting Potential Energies with Variable Computation Costs",
+            "rrf_score": 0.025,
+            "constrained_score": 0.035
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s046_p001_c000",
+            "page": 47,
+            "section": "5.5.7 Tempering during a Trajectory",
+            "rrf_score": 0.022357471121599803,
+            "constrained_score": 0.032357471121599805
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s022_p002_c000",
+            "page": 23,
+            "section": "5.4.2.1 Preliminary Runs and Trace Plots",
+            "rrf_score": 0.03200204813108039,
+            "constrained_score": 0.03200204813108039
+          }
+        ]
+      }
+    },
+    {
+      "id": "H07",
+      "question": "What difficulties arise when using HMC for hierarchical models and their hyperparameters?",
+      "gold_section": "5.4.5",
+      "gold_section_title": "5.4.5 HMC for Hierarchical Models",
+      "hybrid": {
+        "gold_rank": 1,
+        "evidence_score": 2,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s031_p002_c000",
+            "page": 32,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.032266458495966696,
+            "constrained_score": 0.032266458495966696
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s029_p005_c000",
+            "page": 30,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.03225806451612903,
+            "constrained_score": 0.03225806451612903
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s030_p000_c000",
+            "page": 31,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.031024531024531024,
+            "constrained_score": 0.031024531024531024
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s030_p001_c000",
+            "page": 31,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.031009615384615385,
+            "constrained_score": 0.031009615384615385
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s025_p002_c000",
+            "page": 26,
+            "section": "5.4.3 Combining HMC with Other MCMC Updates",
+            "rrf_score": 0.03055037313432836,
+            "constrained_score": 0.03055037313432836
+          }
+        ]
+      },
+      "section_aware": {
+        "gold_rank": 1,
+        "evidence_score": 1,
+        "top5": [
+          {
+            "rank": 1,
+            "chunk_id": "upload_9e886059d25d_v3_s031_p002_c000",
+            "page": 32,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.032266458495966696,
+            "constrained_score": 0.0422664584959667
+          },
+          {
+            "rank": 2,
+            "chunk_id": "upload_9e886059d25d_v3_s029_p005_c000",
+            "page": 30,
+            "section": "5.4.5 HMC for Hierarchical Models",
+            "rrf_score": 0.03225806451612903,
+            "constrained_score": 0.04225806451612903
+          },
+          {
+            "rank": 3,
+            "chunk_id": "upload_9e886059d25d_v3_s025_p002_c000",
+            "page": 26,
+            "section": "5.4.3 Combining HMC with Other MCMC Updates",
+            "rrf_score": 0.03055037313432836,
+            "constrained_score": 0.03055037313432836
+          },
+          {
+            "rank": 4,
+            "chunk_id": "upload_9e886059d25d_v3_s042_p000_c000",
+            "page": 43,
+            "section": "5.5.4 Acceptance Using Windows of States",
+            "rrf_score": 0.02028628306000569,
+            "constrained_score": 0.030286283060005692
+          },
+          {
+            "rank": 5,
+            "chunk_id": "upload_9e886059d25d_v3_s020_p001_c000",
+            "page": 21,
+            "section": "5.4 HMC in Practice and Theory",
+            "rrf_score": 0.028985507246376812,
+            "constrained_score": 0.028985507246376812
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Historical single-paper results; export recomputes metrics, not retrieval or answer generation.",
+  "source_reports": [
+    {
+      "filename": "pdf_v3_holdout_evaluation.json",
+      "sha256": "27f3915ef662c4e227e64b6b5cb3e01cac7e055bd2c9fc69518615e23ba6ed43"
+    },
+    {
+      "filename": "pdf_v3_evidence_audit.json",
+      "sha256": "c9352aa161887f193e3f6ac0f03f3de71eef37825e451fa780b5db62ce40ffb3"
+    }
+  ]
+}
