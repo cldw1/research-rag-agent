@@ -58,6 +58,9 @@ models/
 # Verified V3 section mapping required at runtime
 !/results/pdf_v3_section_mapping_report.json
 !/results/hmc_v3_public_summary.json
+!/results/qasper_test_summary.json
+!/results/qasper_test_per_question.csv
+!/results/qasper_test_bad_cases.json
 
 # ===== Local reports =====
 /reports/
@@ -79,6 +82,14 @@ htmlcov/
 credentials.json
 token.json
 
+# ===== Document exports and database state =====
+/research_document_preview*.json
+/research_conversation*.md
+*.sqlite
+*.sqlite3
+*.db
+/first ms/
+
 # ===== Local-only personal notes and internal documentation =====
 /docs/resume_project.md
 /docs/images/README.md
@@ -94,3 +105,10 @@ token.json
 *面试笔记*
 *面试准备*
 *简历*
+
+# ===== Local project notes =====
+/docs/*_walkthrough.md
+/docs/core_questions.md
+/docs/source_quick_reference.md
+/docs/project_brief.md
+/docs/v2_*.md

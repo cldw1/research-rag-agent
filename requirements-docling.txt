@@ -1,0 +1,10 @@
+# Optional PDF/OCR + token-aware chunking features. Keeps the base app lightweight.
+# Install after requirements.txt: python -m pip install -c requirements.txt -r requirements-docling.txt
+docling-slim[format-pdf,models-local,feat-ocr-rapidocr,feat-chunking]==2.150.0
+docling-core[chunking]==2.106.0
+rapidocr==3.10.0
+onnxruntime==1.31.1
+# Compatible model download client required by the selected Docling model stack.
+huggingface-hub==1.33.0
+# Honor an existing SOCKS proxy when prefetching model files.
+httpx[socks]==0.28.1

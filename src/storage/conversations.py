@@ -1,0 +1,232 @@
+"""Persistent complete turns, citations and idempotency, with isolated scope."""
+
+import re
+import uuid
+from datetime import timedelta
+
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session
+
+from src.agent.context_window import validate_turn
+from src.llm.provider import ModelConfig
+from src.storage.artifacts import StorageError
+from src.storage.database import catalog_version, write_session
+from src.storage.document_store import now, timestamp
+from src.storage.models import (ChunkRecord, CitationRecord, ConversationRecord, ConversationTurn,
+                                DocumentRecord, IndexVersion, MessageRecord)
+
+
+class ConversationStore:
+    def __init__(self, documents):
+        self.documents, self.engine = documents, documents.engine
+        if catalog_version(self.engine) != 2:
+            raise StorageError("schema_upgrade_required", "文档库需要先备份并升级聊天存储结构")
+
+    @staticmethod
+    def _guard(session, conversation_id, *, require_active=False):
+        conversation = session.get(ConversationRecord, conversation_id)
+        if conversation is None or conversation.deleted_at:
+            raise StorageError("conversation_not_found", "会话不存在或已删除")
+        document = session.get(DocumentRecord, conversation.document_id)
+        if document is None or document.deleted_at:
+            raise StorageError("document_not_found", "会话所属文档已移出文档库")
+        index = session.get(IndexVersion, conversation.index_id)
+        if index is None or index.document_id != document.id:
+            raise StorageError("invalid_conversation_scope", "会话的索引范围无效")
+        if require_active and document.active_index_id != conversation.index_id:
+            raise StorageError("conversation_index_changed", "文档索引已变更，请基于当前版本新建会话；历史来源保持原版本")
+        return conversation
+
+    def create(self, document_id, config, title="新会话"):
+        if not isinstance(config, ModelConfig):
+            raise StorageError("invalid_model_config", "模型配置必须使用不含凭据的标准结构")
+        title = self._title(title)
+        with write_session(self.engine) as session:
+            document = self.documents._require_document(session, document_id)
+            if not document.active_index_id:
+                raise StorageError("not_indexed", "请先为文档建立索引")
+            index = session.get(IndexVersion, document.active_index_id)
+            if index is None or index.document_id != document_id:
+                raise StorageError("invalid_conversation_scope", "当前索引与文档不一致")
+            conversation = ConversationRecord(id=uuid.uuid4().hex, document_id=document_id,
+                index_id=document.active_index_id, title=title, model_config=ModelConfig.to_dict(config),
+                created_at=timestamp(), updated_at=timestamp())
+            session.add(conversation)
+            return conversation.id
+
+    @staticmethod
+    def _title(value):
+        if not isinstance(value, str) or not value.strip() or len(value) > 100:
+            raise StorageError("invalid_title", "会话标题应为 1–100 字符")
+        return value.strip()
+
+    def list(self):
+        with Session(self.engine) as session:
+            rows = session.scalars(select(ConversationRecord).join(DocumentRecord,
+                DocumentRecord.id == ConversationRecord.document_id).where(
+                ConversationRecord.deleted_at.is_(None), DocumentRecord.deleted_at.is_(None))
+                .order_by(ConversationRecord.updated_at.desc()))
+            return [{"id": item.id, "title": item.title, "document_id": item.document_id,
+                     "index_id": item.index_id, "model_config": item.model_config,
+                     "updated_at": item.updated_at} for item in rows]
+
+    def details(self, conversation_id, *, require_active=False):
+        with Session(self.engine) as session:
+            item = self._guard(session, conversation_id, require_active=require_active)
+            return {"id": item.id, "title": item.title, "document_id": item.document_id,
+                    "index_id": item.index_id, "model_config": item.model_config}
+
+    def rename(self, conversation_id, title):
+        title = self._title(title)
+        with write_session(self.engine) as session:
+            item = self._guard(session, conversation_id)
+            item.title, item.updated_at = title, timestamp()
+
+    def delete(self, conversation_id):
+        with write_session(self.engine) as session:
+            item = self._guard(session, conversation_id)
+            item.deleted_at, item.updated_at = timestamp(), timestamp()
+            if item.active_turn_id:
+                turn = session.get(ConversationTurn, item.active_turn_id)
+                if turn and turn.status == "running":
+                    turn.status, turn.error_code, turn.updated_at = "cancelled", "conversation_deleted", timestamp()
+                item.active_turn_id = None
+
+    def begin(self, conversation_id, question, config, request_id):
+        if not isinstance(config, ModelConfig):
+            raise StorageError("invalid_model_config", "模型配置必须使用不含凭据的标准结构")
+        settings = ModelConfig.to_dict(config)
+        if not isinstance(question, str) or not question.strip() or len(question) > 8000:
+            raise StorageError("invalid_question", "问题不能为空且不能超过 8000 字符")
+        if not isinstance(request_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", request_id):
+            raise StorageError("invalid_request_id", "请求 ID 无效")
+        with write_session(self.engine) as session:
+            conversation = self._guard(session, conversation_id, require_active=True)
+            previous = session.scalar(select(ConversationTurn).where(
+                ConversationTurn.conversation_id == conversation_id, ConversationTurn.request_id == request_id))
+            if previous:
+                if previous.question != question or ModelConfig(**previous.model_config).to_dict() != settings:
+                    raise StorageError("request_conflict", "同一请求 ID 不能用于不同问题或模型配置")
+                if previous.status == "completed":
+                    return previous.id, previous.result
+                raise StorageError("request_already_used", "请求已处理或失败，请使用新的请求 ID 重试")
+            if conversation.active_turn_id:
+                active = session.get(ConversationTurn, conversation.active_turn_id)
+                if active and active.status == "running":
+                    if active.lease_until > timestamp():
+                        raise StorageError("conversation_busy", "此会话正在生成回答，请等待当前请求完成")
+                    active.status, active.error_code = "interrupted", "lease_expired"
+            ordinal = (session.scalar(select(func.max(ConversationTurn.ordinal)).where(
+                ConversationTurn.conversation_id == conversation_id)) or 0) + 1
+            turn = ConversationTurn(id=uuid.uuid4().hex, conversation_id=conversation_id, ordinal=ordinal,
+                request_id=request_id, question=question, status="running", model_config=settings,
+                created_at=timestamp(), updated_at=timestamp(), lease_until=timestamp(now() + timedelta(minutes=15)))
+            session.add(turn)
+            session.flush()
+            session.add(MessageRecord(turn_id=turn.id, position=0, role="user", data={"role": "user", "content": question}))
+            conversation.active_turn_id = turn.id
+            return turn.id, None
+
+    def history(self, conversation_id):
+        with Session(self.engine) as session:
+            self._guard(session, conversation_id)
+            turns = session.scalars(select(ConversationTurn).where(
+                ConversationTurn.conversation_id == conversation_id).order_by(ConversationTurn.ordinal))
+            output = []
+            for turn in turns:
+                messages = list(session.scalars(select(MessageRecord).where(
+                    MessageRecord.turn_id == turn.id).order_by(MessageRecord.position)))
+                output.append({"id": turn.id, "question": turn.question, "status": turn.status,
+                    "error_code": turn.error_code, "model_config": turn.model_config,
+                    "result": turn.result, "messages": [message.data for message in messages]})
+            return output
+
+    def sources(self, conversation_id):
+        with Session(self.engine) as session:
+            self._guard(session, conversation_id)
+            return [row.source for row in session.scalars(select(CitationRecord).where(
+                CitationRecord.conversation_id == conversation_id).order_by(CitationRecord.number))]
+
+    def complete(self, conversation_id, turn_id, result):
+        messages = result["messages"]
+        validate_turn(messages)
+        with write_session(self.engine) as session:
+            conversation = self._guard(session, conversation_id, require_active=True)
+            turn = session.get(ConversationTurn, turn_id)
+            if (turn is None or turn.conversation_id != conversation_id or turn.status != "running"
+                    or conversation.active_turn_id != turn_id):
+                raise StorageError("turn_superseded", "当前回合已取消或被替代")
+            if (messages[0].get("role") != "user" or messages[0].get("content") != turn.question
+                    or set(messages[0]) - {"role", "content", "reference_context"}
+                    or ("reference_context" in messages[0] and not isinstance(messages[0]["reference_context"], str))):
+                raise StorageError("invalid_history", "回合用户消息与原始问题不一致")
+            # Validate every registry source against the selected immutable index.
+            for source in result["registered_sources"]:
+                chunk = session.scalar(select(ChunkRecord).where(
+                    ChunkRecord.index_id == conversation.index_id, ChunkRecord.chunk_id == source["chunk_id"]))
+                if chunk is None or source["paper_id"] != conversation.document_id:
+                    raise StorageError("citation_scope_violation", "引用不属于会话绑定的文档索引")
+                number = int(source["citation"])
+                existing = session.get(CitationRecord, (conversation_id, number))
+                if existing and existing.chunk_id != source["chunk_id"]:
+                    raise StorageError("citation_conflict", "已分配的引用编号不能指向其他来源")
+                if existing is None:
+                    snapshot = {**source, "text": chunk.data["text"], "page_number": chunk.data.get("page_number"),
+                                "source_metadata": chunk.data.get("source_metadata", {}),
+                                "persistent_index_id": conversation.index_id}
+                    session.add(CitationRecord(conversation_id=conversation_id, number=number,
+                        index_id=conversation.index_id, chunk_id=source["chunk_id"], source=snapshot))
+            session.add_all(MessageRecord(turn_id=turn_id, position=i, role=message["role"], data=message)
+                            for i, message in enumerate(messages) if i)
+            turn.result, turn.status, turn.updated_at = result, "completed", timestamp()
+            conversation.active_turn_id, conversation.model_config, conversation.updated_at = None, turn.model_config, timestamp()
+
+    def fail(self, conversation_id, turn_id, code):
+        # Error codes are internal constants; never store SDK exception messages.
+        if not re.fullmatch(r"[a-z_]{1,64}", code):
+            code = "generation_failed"
+        with write_session(self.engine) as session:
+            conversation = session.get(ConversationRecord, conversation_id)
+            turn = session.get(ConversationTurn, turn_id)
+            if turn and turn.conversation_id == conversation_id and turn.status == "running":
+                turn.status, turn.error_code, turn.updated_at = "failed", code, timestamp()
+            if conversation and conversation.active_turn_id == turn_id:
+                conversation.active_turn_id = None
+
+    def cancel(self, conversation_id, turn_id):
+        with write_session(self.engine) as session:
+            conversation = session.get(ConversationRecord, conversation_id)
+            turn = session.get(ConversationTurn, turn_id)
+            if turn and turn.conversation_id == conversation_id and turn.status == "running":
+                turn.status, turn.error_code, turn.updated_at = "cancelled", "generation_cancelled", timestamp()
+            if conversation and conversation.active_turn_id == turn_id:
+                conversation.active_turn_id = None
+
+    def recover_expired(self):
+        count = 0
+        with write_session(self.engine) as session:
+            for turn in session.scalars(select(ConversationTurn).where(
+                    ConversationTurn.status == "running", ConversationTurn.lease_until <= timestamp())):
+                turn.status, turn.error_code, turn.updated_at = "interrupted", "lease_expired", timestamp()
+                conversation = session.get(ConversationRecord, turn.conversation_id)
+                if conversation and conversation.active_turn_id == turn.id:
+                    conversation.active_turn_id = None
+                count += 1
+        return count
+
+    def export_markdown(self, conversation_id):
+        details = self.details(conversation_id)
+        sources = {item["citation"]: item for item in self.sources(conversation_id)}
+        parts = [f"# {details['title']}"]
+        for turn in self.history(conversation_id):
+            parts.append("## 用户\n\n" + turn["question"])
+            if turn["status"] != "completed":
+                parts.append(f"状态：{turn['status']}")
+                continue
+            parts.append("## 助手\n\n" + turn["result"]["answer"])
+            for number in turn["result"]["cited_numbers"]:
+                source = sources.get(number)
+                if source:
+                    location = f"PDF 第 {source['page_number']} 页" if source.get("page_number") else source.get("section", "段落定位")
+                    parts.append(f"[{number}] {source.get('title', '')} · {location}\n\n" + source["text"])
+        return "\n\n".join(parts) + "\n"

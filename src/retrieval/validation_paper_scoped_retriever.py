@@ -4,7 +4,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-import faiss
+from src.runtime import load_faiss
+
+faiss = load_faiss()
 import numpy as np
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer

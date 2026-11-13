@@ -2,7 +2,9 @@ import json
 import sys
 from pathlib import Path
 
-import faiss
+from src.runtime import load_faiss
+
+faiss = load_faiss()
 import numpy as np
 from sentence_transformers import SentenceTransformer
 

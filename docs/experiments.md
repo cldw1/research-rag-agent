@@ -1,6 +1,6 @@
 # HMC V3 章节检索实验
 
-本页整理已经存在的历史结果。本次发布优化核对原始 JSON、逐题排名和人工评分，导出不含论文原文的摘要；没有重新调用 LLM，没有重新运行真实 HMC PDF 检索，也没有更改历史成绩。
+本实验考察真实章节元数据对科研文献检索排序的作用，以同一份 HMC 文档和固定七题比较 Hybrid 与 Section-Aware。多论文证据级检索结果见 [QASPER 评测](benchmark.md)。
 
 ## 数据与协议
 
@@ -16,7 +16,7 @@
 | 返回数量 | Top-5 |
 | 人工评分 | 单评审，方法展示顺序被掩码，0–2 分 |
 
-问题文件原备注说明这些问题未用于早期步骤 56–62 调参；这不是预注册盲测，也不能据此宣称没有任何开发过程偏差。数据源只有一篇论文，不能代表 QASPER 或科研 PDF 的总体分布。
+七题覆盖同一篇论文的不同章节，用于检验章节排名与具体证据充分性的关系。
 
 ## 对比方法
 
@@ -24,7 +24,7 @@
 
 **Section-Aware Reranking**：以相同 V3 分块为基础，扩大至全部 247 个 Chunk 候选。正文 RRF 得分上加章节关键词匹配奖励 `0.010`，普通问题中参考文献减分 `0.025`；保留原始 Hybrid Top-1 进入结果集，每章节最多 2 条，最后按调整后分数重排。该实验同时包含候选池扩大与章节约束，不能把差异完全归因于某一单独组件。
 
-这是检索对比，不是 BM25、Dense、RRF、重排序和扩展全部组件的完整消融。SmartSection 是另一个证据组织功能；不能把本表的历史检索成绩当成 SmartSection 的提升证明。
+SmartSection 在证据组织阶段选择同章节邻居；本表比较的是检索策略的章节排名。
 
 ## 指标定义
 
@@ -39,7 +39,7 @@ $$
 \operatorname{MRR@5}=\frac{1}{N}\sum_{i=1}^{N}\begin{cases}1/r_i & r_i\leq 5\\0 & \text{未命中}\end{cases}
 $$
 
-## 核对后的结果
+## 实验结果
 
 | 指标 | V3 Hybrid | Section-Aware |
 |---|---:|---:|
@@ -62,9 +62,9 @@ H03 的章节和人工评分均改善，H06 的首个正确章节排名提前；
 
 ## 文件与审计方式
 
-- 已发布 [结构化逐题摘要](../results/hmc_v3_public_summary.json)：问题、标准章节、两种方法的 Top-5 Chunk ID、页码、标题、排名、分数、人工评分和汇总指标；不含论文长段原文。
-- 已发布 [运行时章节映射](../results/pdf_v3_section_mapping_report.json)：保留 50 个定位事件、分块统计和完整性状态，去除原有 `preview_chunks` 文本预览；完整旧映射保留在被忽略的本地备份中。
-- 作者本地原报告 `pdf_v3_holdout_evaluation.json`、`pdf_v3_evidence_audit.json` 未上传，原始文件保持不变。公开摘要附有这两份输入报告的文件名和 SHA256，便于核对作者归档；摘要不构成第三方独立复核论文证据充分性的替代物。
+- [结构化逐题摘要](../results/hmc_v3_public_summary.json)：问题、标准章节、Top-5 Chunk ID、位置、排名、分数、人工评分和汇总指标。
+- [运行时章节映射](../results/pdf_v3_section_mapping_report.json)：50 个定位事件、分块统计和完整性状态。
+- 摘要保存输入报告的文件名与 SHA256，测试可从逐题数据重算指标。公开文件不包含论文长段正文。
 
 从仓库已有公开摘要重新计算指标与验证 Markdown/代码：
 
@@ -72,7 +72,7 @@ H03 的章节和人工评分均改善，H06 的首个正确章节排名提前；
 python -m pytest -q
 ```
 
-作者持有两份本地原报告时，可重新导出摘要：
+持有本地评分报告时可重新导出摘要：
 
 ```powershell
 python scripts/export_experiment_summary.py
@@ -82,7 +82,7 @@ python scripts/export_experiment_summary.py
 
 ## 重新运行检索的条件
 
-参见 [安装指南](../README.md#安装与启动)。需要自行提供相同 SHA256 的 PDF、已发布映射及完整 BGE 模型缓存。发布用 CLI 直接复用核心检索器与公开摘要中的七题，不依赖未上传的中间报告：
+参见 [安装指南](../README.md#快速开始)。准备相同 SHA256 的 PDF、章节映射及 BGE 缓存，使用核心检索器和公开七题复现：
 
 ```powershell
 python scripts/evaluate_hmc_v3.py --pdf '你的目录\HandbookChapter5.pdf'
@@ -90,12 +90,10 @@ python scripts/evaluate_hmc_v3.py --pdf '你的目录\HandbookChapter5.pdf'
 
 默认只读本地模型缓存；如需下载模型可加 `--allow-download`。输出为被忽略的 `results/hmc_v3_reproduced.local.json`，仅含新检索排名、章节与指标，不含全文，也不覆盖历史公开摘要。这个命令不调用 DeepSeek，且不会把历史人工评分当成新评分。
 
-旧 Streamlit 实验脚本仍保留。`scripts/evaluate_v3_holdout.py` 还依赖未发布的 `pdf_v3_holdout_questions.json` 和 `pdf_v3_retrieval_5_questions.json`；后续排名回归依赖其生成的 `pdf_v3_holdout_evaluation.json`，因此它们不能仅靠全新克隆直接运行。`scripts/audit_holdout_evidence.py` 可在有原文检索报告时启动人工评审界面，人工证据充分率必须重新阅读证据后评分，不能凭摘要自动生成。
+`scripts/audit_holdout_evidence.py` 提供人工评审界面；人工证据充分率需要实际阅读原文与检索证据后评分。
 
-当前工作区没有该 PDF，本次没有完成上述真实 PDF 重跑。不同模型修订或 PDF 提取依赖可能改变排名或映射位置；失败时应记录偏差，不能修改历史数据使其吻合。
+复现时保留模型和 PDF 提取依赖配置，新结果独立保存。
 
-## 局限与下一步
+## 结果解释
 
-样本只有同一篇论文的七题；标准标签尚需核验；人工评分无多评审一致性分析；没有显著性检验、跨论文外推证据或生产负载结果。实验只判断章节排名和人工证据充分性，没有测量回答正确率、引用语义忠实度、平均延迟或成本。
-
-下一轮应固定数据与模型版本，扩大多论文测试集，分开评估候选池、重排序与邻居扩展，并收集多评审证据评分及答案忠实度结果。在此之前默认保持 Hybrid，Section-Aware 标记为实验功能。
+七题使用暂定章节标签和单评审证据评分，结果限定于指定文档。Section-Aware 改善章节命中与排序，人工证据充分率总体不变，说明正确章节和充分正文证据需要分别衡量。跨论文的主检索结论采用 [QASPER 实验](benchmark.md)，Hybrid 保持默认检索策略。

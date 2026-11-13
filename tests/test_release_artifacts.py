@@ -86,7 +86,7 @@ def test_six_real_screenshots_remain_public():
 
 
 def test_all_project_python_files_parse():
-    files = [ROOT / "app.py", *ROOT.glob("src/**/*.py"), *ROOT.glob("scripts/*.py"), *ROOT.glob("tests/*.py")]
+    files = [ROOT / "app.py", *ROOT.glob("pages/*.py"), *ROOT.glob("src/**/*.py"), *ROOT.glob("scripts/*.py"), *ROOT.glob("tests/*.py")]
     for path in files:
         ast.parse(path.read_text(encoding="utf-8-sig"), filename=str(path))
 

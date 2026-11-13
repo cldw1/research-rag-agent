@@ -1,277 +1,208 @@
 # Research RAG Agent
 
-**面向英文科研论文的可追溯问答原型：Hybrid Retrieval · DeepSeek Tool Calling · 章节感知检索实验。**
+**面向科研文献的可追溯问答助手：多格式文档 · 混合检索 · 工具调用 · 持久化会话。**
 
-从 QASPER Validation 论文或本地文本型 PDF 中检索证据，由 Agent 选择论文目录与正文搜索工具，生成带数字引用的回答，并在 Streamlit 中查看工具调用、页码和对应原文。
+上传论文、Word 或 Markdown 文档，解析并建立知识索引后，通过多轮对话查找研究方法、实验结论和原文证据。系统将回答与文档位置关联，支持查看引用片段、恢复历史会话和导出 Markdown；同时提供 QASPER 数据集检索与章节感知实验。
 
-- **检索工程**：BM25 + BGE-small-en-v1.5 + FAISS，通过 RRF 融合关键词与语义排名。
-- **Agent 工程**：两个受约束工具、论文范围校验、工具调用预算、会话内 Chunk 去重与引用编号复用。
-- **证据组织**：Anchor-First 优先保留检索片段；已验证 V3 的 Section-Aware 模式支持同章节跨页邻居扩展。
-- **可核验评估**：单篇 HMC 论文的 7 道章节级问题，Hit@5 为 6/7 → 7/7，人工证据充分率均为 6/7。**结果不能推广为通用问答性能提升。**
+[快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [检索评测](docs/benchmark.md) · [章节实验](docs/experiments.md)
 
-[安装运行](#安装与启动) · [实验详情](docs/experiments.md) · [功能截图](#功能截图)
+## 核心功能
 
-## 功能与支持范围
+| 模块 | 功能 |
+|---|---|
+| 文档工作台 | 批量上传 PDF、DOCX、MD、TXT，搜索文档、查看解析状态与处理任务 |
+| 结构化分块 | Fixed、Recursive、Structure、Adaptive 策略，结合原文结构、字符与 Embedding Token 预算 |
+| 混合检索 | BM25 + BGE-small-en-v1.5 + FAISS，RRF 融合排名，Anchor-First 组织上下文 |
+| 科研 Agent | 论文目录与正文检索工具，参数和文档范围校验、工具预算与停止条件 |
+| 多轮对话 | 完整回合滑动窗口、历史恢复、流式输出、停止、重新生成和失败重试 |
+| 模型配置 | DeepSeek、OpenAI、Claude、Gemini、阿里云百炼及自定义兼容服务的适配入口 |
+| 来源追踪 | 稳定数字引用、论文与章节信息、真实 PDF 页码或段落/行号、原文片段 |
+| 持久化 | SQLite 保存文档、Chunk、会话和引用；本地保存原文件与不可变 FAISS 索引版本 |
+| 数据管理 | 文件哈希去重、索引复用与重建、可恢复的文档移出、备份与恢复 |
+| 检索实验 | QASPER 证据级检索评测，以及指定 HMC PDF 的 Section-Aware 章节检索 |
 
-| 能力 | QASPER Validation | 普通 PDF | 已验证 HMC V3 PDF |
-|---|---|---|---|
-| 数据准备 | 先运行两步准备脚本 | 页面上传并本地建索引 | 上传指定版本 PDF，并加载已发布映射 |
-| 索引范围 | 固定种子抽取的 30 篇论文，按所选论文检索 | 当前上传论文 | 当前上传论文 |
-| Hybrid 检索 | 支持 | 默认 | 默认 |
-| 结构信息 | 数据集章节元数据 | `Page X` 页码标签 | 固定映射的真实章节标题 |
-| Section-Aware | 当前 UI 不提供 | 不开放，保持 Hybrid | 可选实验模式 |
-| 邻近证据扩展 | Anchor-First | Anchor-First，同页邻段 | Hybrid 用 Anchor-First；Section-Aware 用 SmartSection |
-| 引用追踪 | 论文、章节、Chunk | 论文、页码、Chunk | 论文、章节、页码、Chunk |
-
-普通 PDF 不是通用章节识别：扫描件不支持 OCR，公式和双栏文本可能有提取误差。上传上限为 **20 MB、80 页、1500 个 Chunk**。索引保存在当前 Streamlit 会话内，重启或会话失效后需重建。
+PDF 默认采用 PyMuPDF 文本提取；需要 OCR 或更复杂版面处理时，可配置 Tesseract 或可选的 Docling/RapidOCR 后端。配置与处理提示见 [文档解析](docs/user_guide.md#文档解析与分块)。
 
 ## 系统架构
 
 ```mermaid
 flowchart TD
-    UI[Streamlit 页面] --> Q[QASPER 数据与预建索引]
-    UI --> PDF[上传文本型 PDF]
-    PDF --> CHECK{文件名与 SHA256 匹配且有映射?}
-    CHECK -->|否| PAGE[按页与文本块分块]
-    CHECK -->|是| V3[已验证 V3 章节分块]
-    Q --> STORE[论文范围内的 Chunk 与索引]
-    PAGE --> STORE
-    V3 --> STORE
-    UI --> AGENT[DeepSeek Research Agent]
-    AGENT --> OUTLINE[get_paper_outline]
-    OUTLINE --> STORE
-    AGENT --> SEARCH[search_research_paper]
-    SEARCH --> PROXY[PDF 检索策略代理]
-    SEARCH -->|QASPER| HYBRID
-    PROXY --> HYBRID[BM25 与 BGE FAISS 检索]
-    STORE --> HYBRID
-    HYBRID --> RRF[RRF 排名融合]
-    RRF --> MODE{所选策略}
-    MODE -->|Hybrid| ANCHOR[Anchor-First 邻段扩展]
-    MODE -->|已验证 V3 的 Section-Aware| RERANK[受约束章节重排序]
-    RERANK --> SMART[SmartSection 同章节邻居排序]
-    ANCHOR --> BUDGET[字符预算与完整证据块]
-    SMART --> BUDGET
-    BUDGET --> CITE[Chunk 去重与全局引用注册]
-    CITE --> AGENT
-    AGENT --> ANSWER[回答与数字引用]
-    ANSWER --> UI
+    UI["Streamlit 交互"] --> DOC["文档管理服务"]
+    UI --> CHAT["科研对话服务"]
+    UI --> EXP["数据集与章节检索"]
+    DOC --> PARSE["统一解析与结构分块"]
+    PARSE --> EMB["BGE 编码与版本化索引"]
+    DOC <--> STORE["SQLite 与本地文件"]
+    EMB --> STORE
+    CHAT <--> STORE
+    CHAT --> AGENT["单 Agent 与上下文窗口"]
+    AGENT <--> LLM["模型适配层"]
+    AGENT <--> TOOLS["目录与正文工具"]
+    TOOLS --> RAG["混合检索与证据组织"]
+    EXP --> RAG
+    STORE --> RAG
 ```
 
-### 检索与证据流程
+Python 应用服务按解析、存储、检索、生成和会话职责划分。文档处理与向量搜索在本地运行，生成模型通过独立适配层调用。
 
-1. 用户选定论文，检索始终限制在该论文内。
-2. BM25 与 Dense 分别取候选，Dense 使用归一化 BGE 向量与 FAISS 内积。查询添加 BGE 检索指令前缀，正文不添加。
-3. RRF 根据两路排名融合，常数 `k = 60`；并列分数按索引位置稳定排序。
-4. 默认采用 Hybrid。已验证 V3 可扩展至全部论文 Chunk 候选池，再做章节关键词加分、参考文献降权和章节数量约束。
-5. RAG Pipeline 取检索结果的前 5 条作为 Anchor，优先放入上下文，再补充邻居。SmartSection 最多加入 2 个邻居，搜索前后 10 个 Chunk，可跨页但不跨真实章节。
-6. 字符预算包含元数据、编号与分隔符；保留完整证据块。预算不足时会减少证据，无法放入首块时返回明确错误。
+### 检索与证据组织
 
-RRF 公式使用 GitHub 支持的显示数学语法：
+1. 查询限定在当前选择的论文与索引版本内。
+2. BM25 与 Dense 分别产生候选；Dense 使用归一化 BGE 向量和 FAISS IndexFlatIP。
+3. RRF 根据排名融合，常数 `k=60`：
 
 $$
-\operatorname{RRF}(d)=\sum_{r\in R}\frac{1}{k+\operatorname{rank}_r(d)}
+\operatorname{RRF}(d)=\sum_{r\in R}\frac{1}{60+\operatorname{rank}_r(d)}
 $$
 
-即对每一路排名累加 `1 / (60 + rank)`，不直接相加 BM25 与向量相似度分数。
+4. Anchor-First 优先保留命中的证据，再补充同组邻段；上下文按预算选择完整证据块。
+5. Agent 注册来源编号，将工具结果回传模型，再保存回答、消息与引用关系。
 
-Section-Aware 默认参数：章节命中奖励 `0.010`、普通问题参考文献惩罚 `0.025`、每章节最多 `2` 条。保留原始 Hybrid Top-1 **进入最终结果集**，但重排后不保证仍排第一；章节不足时返回数量可能少于请求值。
+### Agent 与上下文
 
-### Agent 工具与引用
-
-| 工具 | 输入 | 返回 |
+| 工具 | 输入 | 输出 |
 |---|---|---|
-| `get_paper_outline` | 当前 `paper_id` | 标题、章节/页码标签、Chunk 数量 |
-| `search_research_paper` | 当前 `paper_id`、检索问题 | 检索与扩展后的证据、引用元数据 |
+| `get_paper_outline` | 当前文档 ID | 文档标题、章节/页码标签与 Chunk 统计 |
+| `search_research_paper` | 当前文档 ID、检索问题 | 证据正文、来源位置与引用元数据 |
 
-入口复用 [ResearchAgent](scripts/demo_agent_live_dedup.py)，运行时通过 `RetrievalStrategyProxy` 接入 PDF 策略。首轮要求调用工具，后续由模型决定是否继续；每题最多执行 **2 次工具**、每会话最多 **10 次工具**、每题最多 **5 轮模型交互**。单次检索上下文预算为 7400 字符，引用去重后的证据硬限制为 8000 字符，这些不是整个会话的 token 上限。
+Agent 由 Python 校验并执行工具；单次问答最多进行五轮模型请求、两次工具尝试。每次请求前，根据输入预算选择完整历史回合，保持工具调用与返回消息配对。生成输入采用明确标记的预算估算，Embedding 分块使用 BGE 的实际 tokenizer。
 
-工具参数校验阻止访问其他论文；检索文本被提示为参考数据。`(paper_id, chunk_id)` 注册为会话内稳定的数字编号；重复检索复用编号并省略重复全文。回答中的数字引用会与注册表核对，页面显示原文及无效引用提示。**编号存在不等于证据在语义上支持答案**，目前没有自动完成回答忠实度评估。
+## 快速开始
 
-## 实验结果
-
-历史报告来自 *MCMC Using Hamiltonian Dynamics* 的特定 50 页 PDF：247 个 V3 Chunk、50 条标题匹配记录、7 道章节级问题，返回 Top-5。
-
-| 指标 | V3 Hybrid | Section-Aware |
-|---|---:|---:|
-| Hit@5 | 85.7%（6/7） | 100.0%（7/7） |
-| MRR@5 | 0.786 | 0.929 |
-| 人工证据充分率（评分为 2） | 85.7%（6/7） | 85.7%（6/7） |
-| 平均证据评分（0–2） | 1.857 | 1.857 |
-
-这是**同一篇论文上的小样本章节检索对比**，标签仍为 provisional，人工评分仅有一名评审。Section-Aware 一题证据评分更好、一题更差、五题相同。章节排名改善没有提高总体人工证据充分率，因此 Hybrid 保持默认。该结果没有衡量回答正确率，也不属于完整 QASPER benchmark。
-
-已发布 [逐题结构化结果](results/hmc_v3_public_summary.json) 和 [实验说明](docs/experiments.md)。公开摘要不含论文长段原文或聊天记录；自动测试可从逐题排名与人工评分重新计算指标。它验证历史数据一致性，不等于重新运行 HMC 检索实验。
-
-## 安装与启动
-
-### 1. Python 与依赖
-
-本次本地验证环境为 **Windows、Python 3.13.9、CPU**。依赖文件固定本次验证的直接依赖版本，尚未锁定全部传递依赖和模型修订；未声称其他 Python、系统或全新环境已经实测。FAISS、PyMuPDF 和 PyTorch 需要与平台匹配的安装包。模型、数据和索引均不随仓库上传。
+本地验证环境：Windows、Python 3.13.9、CPU。
 
 ```powershell
 git clone https://github.com/cldw1/research-rag-agent.git
 cd research-rag-agent
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-若 PowerShell 禁止激活脚本，可直接用 `.\.venv\Scripts\python.exe` 代替下文的 `python`，无需更改系统执行策略。macOS/Linux 的虚拟环境激活命令为 `source .venv/bin/activate`，本次未在这些平台验证。
-
-### 2. DeepSeek 配置
-
-```powershell
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 Copy-Item .env.example .env
+.\.venv\Scripts\python.exe -m streamlit run app.py --server.address 127.0.0.1 --server.port 8501
 ```
 
-编辑 `.env` 中的 `DEEPSEEK_API_KEY`，填入自己的密钥。外部已经设置的同名环境变量优先，不会被 `.env` 覆盖。当前代码的 API 地址为 `https://api.deepseek.com`、模型常量为 `deepseek-flash`，使用 OpenAI Python SDK 的兼容接口；账号权限与模型可用性需要使用者自行确认。
+打开 [本地应用](http://localhost:8501)：
 
-**提交聊天问题会调用付费 API；本地建索引和离线测试不调用 LLM。** 未配置密钥时仍可进入页面并建立 PDF 索引，聊天输入被禁用；配置后请重启应用。不需要设置 `OPENAI_API_KEY`。
+1. 进入 **文档工作台**，上传文档，点击“保存并解析上传文档”。
+2. 查看解析结果和分块来源，点击“构建或复用持久化索引”。
+3. 进入 **科研对话**，选择文档并新建会话。
+4. 选择模型供应商、填写 API Key 和参数，开始问答；历史与引用自动保存。
+5. 需要运行数据集或章节实验时，使用首页的 QASPER / PDF 检索区域。
 
-### 3. 准备 BGE 模型
+BGE 首次使用会下载到 `models/embedding_cache/`；已有完整缓存后可离线运行文档编码和检索。API Key 可直接在科研对话页面输入，也可使用 `.env` 中的可选默认配置。文档解析与建索引不需要生成模型 Key。
 
-首次索引或检索需要联网下载 `BAAI/bge-small-en-v1.5`，应用和 Validation 构建脚本使用 `models/embedding_cache/` 缓存。也可提前下载：
+### QASPER 数据准备
+
+交互式 QASPER 示例使用固定种子选出的 30 篇 Validation 论文，每篇一道问题；此示例与完整 Test 检索评测分别保存。
 
 ```powershell
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-small-en-v1.5', device='cpu', cache_folder='models/embedding_cache')"
+.\.venv\Scripts\python.exe scripts/prepare_validation_sample.py
+.\.venv\Scripts\python.exe scripts/build_validation_faiss.py
 ```
 
-需要 Hugging Face 网络访问和足够的本地磁盘空间，不需要 LLM Key。已有完整缓存后可设置 `HF_HUB_OFFLINE=1`、`TRANSFORMERS_OFFLINE=1` 避免联网查找模型；离线加载失败时应先补齐缓存。
+生成的 Chunk、向量和索引保存在 `data/processed/`。上传自己的文档无需执行这两步。
 
-### 4. 启动并上传普通 PDF
+## 检索评测
 
-在项目根目录运行：
+### QASPER 文本证据检索
 
-```powershell
-python -m streamlit run app.py --server.address 127.0.0.1 --server.port 8501
-```
+主实验采用官方 Test 的 416 篇论文、1451 个问题，按预先固定规则纳入可唯一对齐正文的文本证据题。相同分块和 BGE 模型下比较 BM25、Dense、Hybrid，另以相同上下文预算比较 Top-5 与 Anchor-First。
 
-访问 [本地页面](http://localhost:8501)。首次默认选择 QASPER；若尚无索引，页面给出准备命令，可直接在侧栏切换到「上传自己的 PDF」。上传文本型英文 PDF，点击「开始解析 PDF 并建立索引」，完成后开始问答。
+纳入 **1216 个问题、400 篇评分论文**，索引共 **17474 个 Chunk**。结果如下：
 
-文件和 PDF 索引暂存在当前会话；Embedding 模型通过 `st.cache_resource` 复用。切换论文或 PDF 检索策略会重置聊天。上传 PDF 的提取文本会随检索工具结果发送给 DeepSeek；聊天 JSON 仅在手动下载后保存，请自行保管，勿提交到仓库。
+| 方法 | Hit@5 | Recall@5 | MRR@5 | nDCG@5 |
+|---|---:|---:|---:|---:|
+| BM25 | 64.72% | 51.04% | 0.3908 | 0.3767 |
+| Dense | 66.94% | 54.29% | 0.4279 | 0.4098 |
+| Hybrid | 73.77% | 60.05% | 0.4723 | 0.4507 |
 
-### 5. 准备 QASPER Validation 索引
+Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，按论文聚类的配对 95% bootstrap 区间为 **[4.42, 9.26] 个百分点**。同一证据预算下，Anchor-First 的段落覆盖从 60.05% 增至 64.37%。配置、筛选、完整指标和上下文长度见 [实验报告](docs/benchmark.md) 与 [结构化结果](results/qasper_test_summary.json)。
 
-这一步用于 QASPER 模式，**不是上传 PDF 的前置条件**。复用仓库已有脚本，无需构建训练集索引：
+### HMC 章节感知检索
 
-```powershell
-python scripts/prepare_validation_sample.py
-python scripts/build_validation_faiss.py
-```
+在 *MCMC Using Hamiltonian Dynamics* 的指定 50 页 PDF 上，使用 247 个 V3 Chunk 和 7 道章节级问题比较两种检索策略：
 
-第一步从 Hugging Face 的 QASPER Validation Parquet 加载数据，使用种子 `42` 选择 30 篇论文，每篇一道有文本证据的问题，保存整篇论文的 Chunk。第二步过滤无可检索词项的块、计算归一化 BGE 向量、生成 FAISS 索引并校验数量和自检相似度。
+| 指标 | Hybrid | Section-Aware |
+|---|---:|---:|
+| Hit@5 | 85.7%（6/7） | 100.0%（7/7） |
+| MRR@5 | 0.786 | 0.929 |
+| 人工证据充分率 | 85.7%（6/7） | 85.7%（6/7） |
 
-| 生成路径 | 用途 |
+该实验展示章节元数据对排序的作用，范围为同一篇论文的七题。完整逐题结果、指标口径与复现命令见 [章节实验报告](docs/experiments.md) 和 [结构化摘要](results/hmc_v3_public_summary.json)。
+
+## 数据存储
+
+默认目录为 `data/copilot_v2/`，可通过 `COPILOT_DATA_DIR` 配置：
+
+| 内容 | 保存方式 |
 |---|---|
-| `data/raw/hf_cache/` | QASPER 原始数据缓存 |
-| `results/qasper_validation_30_questions.json` | 问题与人工证据，仅供评估，不进入检索器 |
-| `data/processed/qasper_validation_30_chunks.jsonl` | 准备阶段的原始分块 |
-| `data/processed/qasper_validation_30.faiss` | 应用读取的向量索引 |
-| `data/processed/qasper_validation_30_embeddings.npy` | 应用读取的向量矩阵 |
-| `data/processed/qasper_validation_30_index_chunks.jsonl` | 与向量一一对应的元数据 |
+| 文档与解析版本、Chunk、任务 | SQLite `catalog.sqlite` |
+| 会话、回合、消息、引用关系 | 同一 SQLite 数据库 |
+| 原始文档 | `objects/<SHA256>` |
+| 向量与 FAISS 索引 | `indexes/<索引ID>/vectors.npy`、`index.faiss` |
+| 模型、Chunk 和文件对应关系 | 索引配置与 `manifest.json` 校验清单 |
 
-两步均不调用 DeepSeek，但首次会下载数据和模型。三个应用索引文件必须来自同一次构建，勿混用训练集与验证集文件。重新准备会覆盖同名本地输出，保留实验时请先自行备份。上游数据版本、模型版本或解析依赖变化可能改变构建结果，固定随机种子不保证跨版本完全一致。
-
-### 6. 启用特定 HMC V3 章节功能
-
-仓库包含运行所需 [章节映射](results/pdf_v3_section_mapping_report.json)，**不分发论文 PDF**。需要自行合法获取已验证的 `HandbookChapter5.pdf`；应用同时要求文件名一致、映射存在，且文件 SHA256 为：
-
-```text
-9e886059d25db512b670fed4d064d52cd5af41a8510f4d6adfeffff87ec43e4b
-```
-
-```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '你的目录\HandbookChapter5.pdf'
-```
-
-匹配后在上传页面建索引，预期为 50 页、247 个 Chunk，才会出现 Hybrid / Section-Aware 选择。同名不同内容、重命名的文件或缺失映射将使用普通 Hybrid；V3 构建校验失败会报错，不能将其当成已经验证的章节索引。不要通过改名或改哈希绕过校验。映射依赖此 PDF 的文本提取顺序，其他版本或任意论文不支持直接复用。
-
-## 自动化测试与发布检查
-
-```powershell
-python -m pip install -r requirements-dev.txt
-python -m pytest -q
-python -m pip check
-python scripts/check_github_safety.py
-```
-
-`pytest` 默认只收集 `tests/`，避免把依赖本地报告或带 Streamlit 顶层界面的实验脚本当成单元测试执行。测试涵盖原有四套离线断言、两种检索策略、策略代理、模拟 Agent 工具循环、普通 PDF 的真实解析/BM25/FAISS、未验证索引保护、邻居扩展、完整证据与字符预算、引用去重、公开指标重算、Markdown 相对链接和项目 Python 语法。测试中的模拟向量与模拟 LLM 只用于验证行为，不代表真实模型表现。
-
-原有离线脚本仍可单独执行：
-
-```powershell
-python scripts/test_retrieval_strategy.py
-python scripts/test_section_aware_reranker.py
-python scripts/test_step69_strategy_proxy.py
-python scripts/test_step70_smart_expander.py
-```
-
-已有指定 HMC PDF 和 BGE 缓存时，可运行 `python scripts/evaluate_hmc_v3.py --pdf '你的目录\HandbookChapter5.pdf'`，直接从公开七题重跑两种检索策略，无需 LLM。新结果单独保存，不覆盖历史摘要；详情见 [实验复现说明](docs/experiments.md#重新运行检索的条件)。
-
-`scripts/evaluate_v3_holdout.py`、`scripts/test_real_v3_retrieval_strategy.py` 等是 Streamlit 实验入口，需要指定 PDF 与本地报告，使用 `python -m streamlit run 脚本路径`。`scripts/check_project_readiness.py` 会检查未发布的历史报告，适用于作者本地归档，不是全新克隆的通用验收入口。部分 `demo_*`、`evaluate_*` 脚本会调用 DeepSeek，运行前请先检查实现。
-
-安全脚本扫描已跟踪及未忽略的待加入文件，只输出风险位置，不输出完整密钥，发现风险会返回非零退出码。`.env`、环境目录、模型、数据、索引、原始实验报告和默认聊天导出名均已忽略；Git 已跟踪的文件仍需审查，勿强制加入被忽略的私有文件。
+新索引写入并校验后，再在事务中切换活动版本。重启时读取已保存的解析结果、Chunk 和索引；会话与引用绑定具体版本，保证历史来源可追溯。备份和 CLI 管理见 [使用指南](docs/user_guide.md#数据管理与备份)。
 
 ## 功能截图
 
-以下六张为项目作者提供的真实运行截图，按原图保存，涵盖 QASPER、普通 PDF，以及**已验证的 HMC V3 PDF**。HMC 的 Hybrid 与 Section-Aware 演示使用同一份已验证章节索引，不能作为任意 PDF 章节识别能力的证明。
+**论文选择与问答**
 
-**QASPER 主界面与论文管理**
+![QASPER 论文选择与问答](docs/images/main.png)
 
-![QASPER Validation 主界面、论文选择与 Agent 配置](docs/images/main.png)
+**PDF 文献检索与引用**
 
-**普通 PDF 上传与 Hybrid 问答**
+![PDF Hybrid 问答](docs/images/pdf-qa.png)
 
-以 *Mixing time of the conditional backward sampling particle filter* 为例，页面显示 20 页、487 个 Chunk / FAISS 向量，回答带数字引用。侧栏明确提示该 PDF 尚无经过验证的章节映射，使用 Hybrid。
+**章节感知检索**
 
-![普通 PDF：20 页、487 个 Chunk，默认 Hybrid 问答与数字引用](docs/images/pdf-qa.png)
-
-**已验证 HMC V3 的 Section-Aware 选择与问答**
-
-可见 50 页、247 个 Chunk / FAISS 向量，以及所选的实验策略。截图用于展示界面与引用机制，不构成回答正确性验证；数学公式与编号仍需对照 PDF 原文核验。
-
-![已验证 HMC V3：Section-Aware 策略与 Leapfrog 问答](docs/images/section-aware.png)
+![指定 HMC 文献的 Section-Aware 问答](docs/images/section-aware.png)
 
 <details>
-<summary>展开查看 HMC Hybrid 问答、Agent 工具调用和引用原文</summary>
+<summary>查看 Hybrid 问答、工具调用与原文证据</summary>
 
-**HMC V3 Hybrid 问答**：保留默认 Hybrid，回答带数字引用。这里使用的是已验证章节索引，并非普通 PDF 的按页索引。
+![HMC Hybrid 问答](docs/images/hmc-hybrid-qa.png)
 
-![已验证 HMC V3 的默认 Hybrid 问答与数字引用](docs/images/hmc-hybrid-qa.png)
+![Agent 工具调用记录](docs/images/agent-tools.png)
 
-**Agent 工具调用**：该轮记录包含 `get_paper_outline` 和 `search_research_paper` 两次工具执行，搜索经过检索策略代理。
-
-![Agent 的目录与正文搜索工具调用参数、Chunk 统计及策略代理调用记录](docs/images/agent-tools.png)
-
-**引用追踪**：展示引用编号对应的 PDF 页码、真实章节标题、Chunk ID 和原文片段。
-
-![引用编号到 HMC PDF 页码、章节、Chunk ID 与原文的追踪](docs/images/citations.png)
+![引用与原文定位](docs/images/citations.png)
 
 </details>
+
+## 测试与复现
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe scripts/check_github_safety.py
+```
+
+测试覆盖文档解析、来源与分块预算、混合检索、RRF、索引与会话恢复、完整回合窗口、工具调用、引用、流式状态、删除与重建、备份及界面启动。生成协议使用 Mock 验证；真实 BGE 的跨进程持久化检查可通过下列脚本运行：
+
+```powershell
+.\.venv\Scripts\python.exe scripts/smoke_conversations.py --output results/chat_check.json
+```
+
+检索实验与功能测试分别报告，便于区分证据排名、软件行为和生成回答质量。
 
 ## 项目结构
 
 ```text
 research-rag-agent/
-├── app.py                         # Streamlit 入口
-├── requirements.txt               # 直接运行依赖
-├── requirements-dev.txt           # pytest
-├── pytest.ini                     # 离线测试收集范围
+├── app.py                  # 应用入口、QASPER / PDF 检索
+├── pages/                  # 文档工作台、科研对话
 ├── src/
-│   ├── ingestion/                 # QASPER 与 PDF 分块
-│   ├── retrieval/                 # Hybrid、策略代理、章节重排与扩展
-│   ├── agent/                     # 搜索/目录工具、全局引用注册
-│   └── generation/                # RAG Pipeline、上下文预算、生成
-├── scripts/                       # 数据准备、实验、演示与安全检查
-├── tests/                         # 无付费 API 的回归测试
-├── results/                       # 只发布章节映射与脱敏实验摘要
-└── docs/                          # 公开实验说明与功能截图
+│   ├── ingestion/          # 多格式解析与结构分块
+│   ├── storage/            # 数据库、原始文件、索引、会话、备份
+│   ├── retrieval/          # BM25、Dense、RRF、章节策略与证据扩展
+│   ├── generation/         # RAG Pipeline 与证据上下文
+│   ├── agent/              # 工具调用循环、上下文窗口、引用
+│   ├── llm/                # 模型配置与供应商协议适配
+│   └── evaluation/         # 证据匹配、指标与统计区间
+├── scripts/                # 数据准备、评测、管理与集成检查
+├── tests/                  # 离线单元和集成测试
+├── results/                # 可公开的结构化实验结果
+└── docs/                   # 使用指南、架构、实验与截图
 ```
 
-技术栈：Python、Streamlit、OpenAI SDK / DeepSeek、Sentence-Transformers / BGE、BM25、FAISS、NumPy、PyMuPDF、Hugging Face Datasets、pytest。
-
-## 当前边界与后续方向
-
-当前为单论文问答与检索实验原型，未进行大规模并发或生产环境验证。HMC 章节映射是特定 PDF 的已验证元数据，不是通用 PDF 章节提取能力；引用校验只检查编号与来源映射。后续优先扩大跨论文人工核验评测，评估回答忠实度与延迟，改善公式提取，再考虑通用章节识别与索引持久化。
+技术栈：Python、Streamlit、SQLAlchemy、SQLite、PyMuPDF、Sentence-Transformers / BGE、BM25、FAISS、NumPy、Hugging Face Datasets、LLM API、pytest。

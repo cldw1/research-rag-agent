@@ -69,6 +69,13 @@ st.caption(
     "DeepSeek Tool Calling"
 )
 
+navigation = st.columns(2)
+with navigation[0]:
+    st.page_link("pages/1_document_workbench.py", label="文档工作台", icon="📚")
+with navigation[1]:
+    st.page_link("pages/2_research_chat.py", label="科研对话", icon="💬")
+st.caption("在文档工作台管理文献，在科研对话中恢复历史问答；下方提供 QASPER 与 PDF 检索。")
+
 
 # ==========================================
 # 3. DeepSeek 客户端
@@ -89,7 +96,7 @@ if api_key and "deepseek_client" not in st.session_state:
 
 client = st.session_state.get("deepseek_client") if api_key else None
 if client is None:
-    st.info("尚未配置 DEEPSEEK_API_KEY：可以建立 PDF 索引，问答前请在 .env 中配置并重启应用。")
+    st.info("此检索页使用 .env 中的 DeepSeek 配置；也可进入科研对话页直接填写 API Key。未配置时仍可建立 PDF 索引。")
 
 
 # ==========================================
@@ -452,7 +459,7 @@ else:
         else:
             selected_retrieval_strategy = "hybrid"
             if pdf_hash == VERIFIED_PDF_SHA256 and not VERIFIED_MAPPING_PATH.is_file():
-                st.warning("未找到 results/pdf_v3_section_mapping_report.json，当前使用旧版 Hybrid。")
+                st.warning("未找到 results/pdf_v3_section_mapping_report.json，当前使用默认 Hybrid。")
             else:
                 st.caption("这份 PDF 尚无经过验证的章节映射，使用 Hybrid。")
 

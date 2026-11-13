@@ -72,6 +72,15 @@ def build_context(results, max_chars=8000):
             "chunk_id": chunk_id
         })
 
+        # Structured 2.0 sources carry exact locations and immutable index versions.
+        # Historical context text and citation numbering remain unchanged.
+        for field in (
+            "document_id", "document_version", "index_version", "page_number",
+            "section_path", "source_metadata",
+        ):
+            if field in item:
+                sources[-1][field] = item[field]
+
         seen_chunk_ids.add(chunk_id)
 
         used_chars += separator_chars + len(block)

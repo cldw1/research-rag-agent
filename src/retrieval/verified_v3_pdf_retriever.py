@@ -9,7 +9,9 @@ import hashlib
 import json
 from pathlib import Path
 
-import faiss
+from src.runtime import load_faiss
+
+faiss = load_faiss()
 import numpy as np
 import pymupdf
 from rank_bm25 import BM25Okapi
