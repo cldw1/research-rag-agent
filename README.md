@@ -118,6 +118,8 @@ BGE 首次使用会下载到 `models/embedding_cache/`；已有完整缓存后�
 
 Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，按论文聚类的配对 95% bootstrap 区间为 **[4.42, 9.26] 个百分点**。同一证据预算下，Anchor-First 的段落覆盖从 60.05% 增至 64.37%。配置、筛选、完整指标和上下文长度见 [实验报告](docs/benchmark.md) 与 [结构化结果](results/qasper_test_summary.json)。
 
+对 263 道失败案例进一步复现来源与排序，并在独立 Validation 的 841 题上比较融合参数。对照支持保留当前等权 RRF 默认配置，详见 [误差分析与参数验证](docs/retrieval_analysis.md)。
+
 ### HMC 章节感知检索
 
 在 *MCMC Using Hamiltonian Dynamics* 的指定 50 页 PDF 上，使用 247 个 V3 Chunk 和 7 道章节级问题比较两种检索策略：

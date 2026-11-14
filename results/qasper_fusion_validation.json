@@ -1,0 +1,269 @@
+{
+  "protocol": {
+    "dataset": "allenai/qasper",
+    "split": "validation",
+    "policies": {
+      "hybrid_rrf60": {
+        "constant": 60,
+        "weights": {
+          "bm25": 1.0,
+          "dense": 1.0
+        }
+      },
+      "hybrid_rrf10": {
+        "constant": 10,
+        "weights": {
+          "bm25": 1.0,
+          "dense": 1.0
+        }
+      },
+      "hybrid_dense1_5": {
+        "constant": 60,
+        "weights": {
+          "bm25": 1.0,
+          "dense": 1.5
+        }
+      }
+    },
+    "selection_rule": "Validation Recall@5 is primary; require non-decreasing Hit@5 and MRR@5, and a paper-bootstrap paired Recall@5 95% lower bound above zero. Otherwise retain hybrid_rrf60. Candidate policies are fixed before scoring.",
+    "source_sha256": "db75eebc7704ff1d9114f1a1d9409d501b654888947f47d0406cb945dc6e1841",
+    "question_ids_sha256": "9c6c7a206061e8e5ddb5c7315db12b60c32303f5c6eafcd117df06a35cbc1b37",
+    "chunk_config": {
+      "strategy": "adaptive",
+      "max_tokens": 480,
+      "max_chars": 1200,
+      "overlap_chars": 0,
+      "max_chunks": 1500
+    },
+    "embedding_profile": {
+      "model_name": "BAAI/bge-small-en-v1.5",
+      "revision": "weights-config-sha256:532ab8efa7655a803a8718750d99a7e3624d79025d1a0f86daca8c9da45d9913",
+      "dimension": 384,
+      "tokenizer": "tokenizer-v2:BAAI/bge-small-en-v1.5:e7acac705d41d215293eb7eed52289e4e0fcdc6d2511d7b5960f970d63862de1:special-tokens-included",
+      "max_sequence_length": 512,
+      "normalized": true,
+      "metric": "inner_product"
+    },
+    "candidate_k": 50,
+    "k": 5,
+    "bootstrap_seed": 42,
+    "bootstrap_resamples": 2000,
+    "query_encoding": "one real BGE query vector shared by all compared fusion policies",
+    "threads": 8,
+    "generation_api_calls": 0
+  },
+  "corpus": {
+    "total_questions": 1005,
+    "eligible_questions": 841,
+    "no_text_evidence": 53,
+    "unmapped_text_evidence": 45,
+    "unanswerable": 60,
+    "ambiguous_text_evidence": 6,
+    "total_papers": 281,
+    "eligible_papers": 274,
+    "chunk_count": 11956
+  },
+  "question_count": 841,
+  "results": {
+    "dense": {
+      "metrics_at_5": {
+        "hit": 0.6599286563614745,
+        "precision": 0.16527942925089179,
+        "mrr": 0.38481965913594923,
+        "ndcg": 0.38634848861088855,
+        "recall": 0.5597394447275541,
+        "full_paragraph_recall": 0.517318290772512,
+        "all_gold_covered": 0.42568370986920334,
+        "evidence_f1": 0.2184717854639406
+      },
+      "paired_minus_rrf60": {
+        "hit": {
+          "mean": -0.07728894173602854,
+          "low": -0.11269802548501894,
+          "high": -0.044339431474787375,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": -0.05882478599482166,
+          "low": -0.08883365167072894,
+          "high": -0.029527841729512484,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.07938961553705903,
+          "low": -0.10246663559484767,
+          "high": -0.05697011639304786,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": -0.0604910021050277,
+          "low": -0.08009077794984983,
+          "high": -0.040821861782309024,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.012026657710974994,
+          "low": -0.0004734094918891148,
+          "high": 0.025747199389128873,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      }
+    },
+    "hybrid_rrf60": {
+      "metrics_at_5": {
+        "hit": 0.737217598097503,
+        "precision": 0.18192627824019025,
+        "mrr": 0.4642092746730083,
+        "ndcg": 0.4468394907159163,
+        "recall": 0.6185642307223759,
+        "full_paragraph_recall": 0.5610533309998232,
+        "all_gold_covered": 0.450653983353151,
+        "evidence_f1": 0.2064451277529656
+      },
+      "paired_minus_rrf60": {}
+    },
+    "hybrid_rrf10": {
+      "metrics_at_5": {
+        "hit": 0.7288941736028538,
+        "precision": 0.1812128418549346,
+        "mrr": 0.4583828775267539,
+        "ndcg": 0.44354942328259866,
+        "recall": 0.6148108827359718,
+        "full_paragraph_recall": 0.560102768812638,
+        "all_gold_covered": 0.4530321046373365,
+        "evidence_f1": 0.21176771076731687
+      },
+      "paired_minus_rrf60": {
+        "hit": {
+          "mean": -0.008323424494649227,
+          "low": -0.022865398265928677,
+          "high": 0.0058969250201198215,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": -0.0037533479864038724,
+          "low": -0.016687219815944905,
+          "high": 0.009628883732838957,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.00582639714625446,
+          "low": -0.012094906564737289,
+          "high": -5.9005775296205106e-05,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": -0.0032900674333175392,
+          "low": -0.009614154732445226,
+          "high": 0.0030144877884671073,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.005322583014351253,
+          "low": -6.125713413695423e-05,
+          "high": 0.010440747876119955,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      }
+    },
+    "hybrid_dense1_5": {
+      "metrics_at_5": {
+        "hit": 0.7336504161712247,
+        "precision": 0.1821640903686088,
+        "mrr": 0.46327784383670234,
+        "ndcg": 0.4476660412443586,
+        "recall": 0.6203676393628831,
+        "full_paragraph_recall": 0.5600822648087809,
+        "all_gold_covered": 0.45541022592152197,
+        "evidence_f1": 0.21079006006778456
+      },
+      "paired_minus_rrf60": {
+        "hit": {
+          "mean": -0.0035671819262782403,
+          "low": -0.018890200708382526,
+          "high": 0.011751226930255062,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": 0.0018034086405073334,
+          "low": -0.011676001448867303,
+          "high": 0.015065467868054476,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.0009314308363059861,
+          "low": -0.010229146451033242,
+          "high": 0.008576501710591907,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": 0.0008265505284424111,
+          "low": -0.006809326067186656,
+          "high": 0.008677925750559704,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.004344932314818941,
+          "low": -0.0008388199027652409,
+          "high": 0.009564960639666885,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      }
+    }
+  },
+  "selected_policy": "hybrid_rrf60",
+  "elapsed_seconds": 412.1791021999961,
+  "cache_hits": 0,
+  "records_sha256": "dbf52098cc308e37448c51cb78e7c76d451f797076c86b957de09998126a6b0d",
+  "scope": "Parameter comparison and selection on Validation; published Test baseline remains unchanged.",
+  "public_artifacts": {
+    "per_question": "qasper_fusion_validation_per_question.csv",
+    "sha256": "68326d127a1dad3dbf63f573f5008ff3a8f6dd280360ddaf02fdeed0717cd2c8",
+    "rows": 3364
+  }
+}
