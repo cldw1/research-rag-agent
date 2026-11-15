@@ -89,7 +89,7 @@ def load_previous_report():
                 "V3 Section-Aware Reranking"
             ):
                 raise ValueError(
-                    "文件不是第57步的实验报告"
+                    "输入文件不是预期的章节检索报告"
                 )
 
             if data.get("chunk_count") != 247:
@@ -435,7 +435,7 @@ def summarize(items):
 def main():
 
     print("=" * 65)
-    print("第58步：受约束的章节重排序实验")
+    print("受约束的章节重排序实验")
     print("=" * 65)
 
     previous = load_previous_report()
@@ -616,7 +616,7 @@ def main():
     )
 
     print(
-        "\n第58步实验完成！"
+        "\n章节重排序实验完成！"
     )
 
 

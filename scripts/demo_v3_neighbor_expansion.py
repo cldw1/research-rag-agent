@@ -478,7 +478,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📚 第59步：同章节邻近证据扩展")
+st.title("📚 同章节邻近证据扩展")
 
 st.caption(
     "保留原始 Top-5，在 8000 字符预算内"
@@ -529,7 +529,7 @@ if st.button(
 
         if previous.get("pdf_hash") != pdf_hash:
             raise ValueError(
-                "PDF 与第56步的文件不一致"
+                "PDF 与章节映射基线文件不一致"
             )
 
         if uploaded.name != mapping["filename"]:

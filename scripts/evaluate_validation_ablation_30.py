@@ -421,7 +421,7 @@ def main():
     print("未匹配到索引的证据单独统计，不计入覆盖率分母。")
     print("Validation 结果不等于最终独立测试集成绩。")
 
-    print("\n第32步实验完成！")
+    print("\nValidation 消融实验完成！")
 
 
 if __name__ == "__main__":

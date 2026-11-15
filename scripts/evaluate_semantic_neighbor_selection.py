@@ -223,7 +223,7 @@ def compare_methods(scored):
 def main():
 
     print("=" * 65)
-    print("第61步：语义邻近证据排序实验")
+    print("语义邻近证据排序实验")
     print("=" * 65)
 
     data = load_data()

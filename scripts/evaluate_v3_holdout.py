@@ -320,7 +320,7 @@ class V3Retriever(UploadedPDFRetriever):
 
 
 # ==========================================
-# 8. 第58步关键词评分规则
+# 8. 章节关键词评分规则
 # ==========================================
 
 def keyword_tokens(text):
@@ -607,7 +607,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📊 第64步：V3 独立检索评测")
+st.title("📊 V3 章节检索评测")
 
 st.caption(
     "7 道新问题；比较原始 V3 Hybrid "
@@ -615,7 +615,7 @@ st.caption(
 )
 
 st.info(
-    "冻结第58步的评分参数。"
+    "使用冻结的章节重排序评分参数。"
     "本次不调用 DeepSeek、Cross-Encoder，"
     "也不修改正式 Agent。"
 )
@@ -971,7 +971,7 @@ st.download_button(
 )
 
 st.caption(
-    "本轮只计算章节级命中指标。"
+    "本评测计算章节级命中指标。"
     "标准标签仍需人工核验；"
     "命中章节不等于答案正确。"
 )

@@ -136,7 +136,7 @@ def main():
     )
 
     print("=" * 55)
-    print("第70步：智能章节邻居测试")
+    print("智能章节邻居测试")
     print("=" * 55)
 
     for item in ranked:

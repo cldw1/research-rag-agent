@@ -9,7 +9,7 @@ from unittest.mock import Mock
 import pytest
 
 from scripts.demo_agent_live_dedup import ResearchAgent, deduplicate_tool_result
-from scripts.test_step69_strategy_proxy import FakeRetriever as RankingOnlyRetriever
+from scripts.test_strategy_proxy import FakeRetriever as RankingOnlyRetriever
 from src.agent.citation_registry import GlobalCitationRegistry
 from src.agent.paper_outline_tool import PaperOutlineTool
 from src.generation.context_builder import build_context
@@ -49,7 +49,7 @@ def prohibit_network_and_paid_calls(monkeypatch):
 
 @pytest.mark.parametrize("module", [
     "scripts.test_retrieval_strategy", "scripts.test_section_aware_reranker",
-    "scripts.test_step69_strategy_proxy", "scripts.test_step70_smart_expander",
+    "scripts.test_strategy_proxy", "scripts.test_smart_section_expander",
 ])
 def test_existing_offline_assertions(module):
     importlib.import_module(module).main()

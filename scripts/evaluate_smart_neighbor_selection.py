@@ -331,7 +331,7 @@ def build_new_evidence(record, selected):
         for chunk_id in anchor_ids
     )
 
-    # 当前报告只证明新集合是第59步
+    # 当前报告只证明新集合是基础邻段扩展的
     # 已验证集合的子集。
     old_ids = set(
         record["expanded_chunk_ids"]
@@ -382,7 +382,7 @@ def main():
         "V3 Same-Section Neighbor Expansion"
     ):
         raise ValueError(
-            "输入文件不是第59步的报告"
+            "输入文件不是章节邻段扩展报告"
         )
 
     if (
@@ -396,7 +396,7 @@ def main():
     results = []
 
     print("=" * 65)
-    print("第60步：智能邻近证据选择")
+    print("智能邻近证据选择")
     print("=" * 65)
 
     for index, record in enumerate(
@@ -420,7 +420,7 @@ def main():
             > data["max_context_chars"]
         ):
             raise ValueError(
-                "上一轮上下文超出预算"
+                "原始上下文超出预算"
             )
 
         selected_equations = sorted(

@@ -89,7 +89,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📋 第65步：证据充分性评估")
+st.title("📋 证据充分性评估")
 
 st.info(
     "阅读每组 Top-5 证据，判断它们能否"

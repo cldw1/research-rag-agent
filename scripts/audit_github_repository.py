@@ -92,8 +92,8 @@ def classify_path(relative_path):
     ):
         return "review"
 
-    # 第69步的本地代码备份
-    if name == "app_before_step69.py":
+    # 本地代码备份
+    if name.startswith("app_before_") and path.suffix == ".py":
         return "backup"
 
     return None

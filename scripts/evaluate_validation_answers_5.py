@@ -472,7 +472,7 @@ def main():
     print("最终答案是否正确，需要对照人工证据检查。")
     print("标准证据没有发送给 DeepSeek。")
 
-    print("\n第33步完成！")
+    print("\nValidation 回答评测完成！")
 
 
 if __name__ == "__main__":

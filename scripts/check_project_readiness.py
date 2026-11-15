@@ -47,8 +47,8 @@ CORE_FILES = [
 TEST_SCRIPTS = [
     "scripts/test_section_aware_reranker.py",
     "scripts/test_retrieval_strategy.py",
-    "scripts/test_step69_strategy_proxy.py",
-    "scripts/test_step70_smart_expander.py",
+    "scripts/test_strategy_proxy.py",
+    "scripts/test_smart_section_expander.py",
 ]
 
 
@@ -335,7 +335,7 @@ def check_experiments():
         }
 
     # --------------------------------------
-    # 第68步真实 PDF 回归测试
+    # 真实 PDF 回归测试
     # --------------------------------------
 
     try:
@@ -378,7 +378,7 @@ def check_experiments():
 def main():
 
     print("=" * 65)
-    print("第71步：Research RAG Agent 自动化验收")
+    print("Research RAG Agent 自动化检查")
     print("=" * 65)
 
     core_files = check_core_files()

@@ -389,7 +389,7 @@ def main():
     print(OUTPUT_PATH)
 
     print("\n全部方法均满足严格字符预算！")
-    print("第35步完成！")
+    print("严格上下文预算评测完成！")
 
 
 if __name__ == "__main__":

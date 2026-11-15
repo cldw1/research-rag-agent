@@ -416,11 +416,11 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🧪 第68步：真实 PDF 检索回归测试")
+st.title("🧪 真实 PDF 检索回归测试")
 
 st.caption(
-    "验证第67步新接口是否能复现"
-    "第64步的真实PDF检索结果。"
+    "验证检索策略接口能否复现"
+    "冻结的 PDF 检索基线。"
 )
 
 st.info(
@@ -467,7 +467,7 @@ if st.button(
         if pdf_hash != previous["pdf_hash"]:
 
             raise ValueError(
-                "PDF 与第64步文件不一致"
+                "PDF 与回归基线文件不一致"
             )
 
         if uploaded.name != mapping["filename"]:
@@ -552,7 +552,7 @@ if st.button(
                     top_k=5
                 )
 
-                # 第64步保存的真实结果
+                # 已保存的真实检索基线
                 old_hybrid_ids = [
                     item["chunk_id"]
                     for item in case[
@@ -647,7 +647,7 @@ if st.button(
                 for item in records
             ])
 
-            # 检查指标与第64步一致
+            # 检查指标与基线一致
             expected_hybrid = previous[
                 "baseline_metrics"
             ]
@@ -765,7 +765,7 @@ if report["regression_passed"]:
 else:
 
     st.error(
-        "部分结果与第64步不一致，"
+        "部分结果与冻结基线不一致，"
         "请查看下方明细。"
     )
 

@@ -36,7 +36,7 @@ data/
 *.rar
 
 # ===== Local backups =====
-app_before_step69.py
+/app_before_*.py
 
 # ===== Local audit reports =====
 results/repository_audit.json
@@ -111,6 +111,13 @@ token.json
 *学习报告*
 *面试笔记*
 *面试准备*
+*面试*
+*求职*
+*interview*.docx
+*interview*.txt
+*resume*.docx
+/interview-notes/
+/career-notes/
 *简历*
 
 # ===== Local project notes =====

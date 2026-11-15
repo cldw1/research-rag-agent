@@ -178,7 +178,7 @@ def validate_cases(section_map):
 def main():
 
     print("=" * 60)
-    print("第63步：构建独立检索测试集")
+    print("构建章节检索评测集")
     print("=" * 60)
 
     section_map = load_sections()

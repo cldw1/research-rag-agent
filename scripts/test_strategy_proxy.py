@@ -1,4 +1,4 @@
-"""Run from project root: python scripts/test_step69_strategy_proxy.py"""
+"""Run from project root: python scripts/test_strategy_proxy.py"""
 from collections import Counter
 from pathlib import Path
 import sys
@@ -73,7 +73,7 @@ def main():
     else:
         raise AssertionError("页面分块索引不得启用 section_aware")
 
-    print("第69步：策略代理测试通过！")
+    print("策略代理测试通过！")
     print("Hybrid:", [x["chunk_id"] for x in a])
     print("Section-Aware:", [x["chunk_id"] for x in b])
     print("普通 PDF 的章节模式已正确禁止")

@@ -29,7 +29,7 @@ MODEL_NAME = (
 
 
 # ==========================================
-# 2. 读取上一轮实验
+# 2. 读取候选证据报告
 # ==========================================
 
 def load_data():
@@ -245,7 +245,7 @@ def main():
     results = []
 
     print("=" * 65)
-    print("第62步：Cross-Encoder 证据排序")
+    print("Cross-Encoder 证据排序")
     print("=" * 65)
 
     for index, record in enumerate(

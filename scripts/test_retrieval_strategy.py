@@ -157,7 +157,7 @@ def main():
     )
 
     print("=" * 55)
-    print("第67步：检索策略切换测试")
+    print("检索策略切换测试")
     print("=" * 55)
 
     print("\n原始 Hybrid：")

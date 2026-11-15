@@ -66,14 +66,21 @@ def test_markdown_local_links_exist():
 
 
 def test_personal_documents_stay_out_of_public_files():
-    private_paths = ["docs/resume_project.md", "docs/images/README.md", "docs/release_check.md"]
+    private_paths = [
+        "docs/resume_project.md", "docs/core_questions.md", "docs/project_brief.md",
+        "docs/source_quick_reference.md", "docs/images/README.md", "docs/release_check.md",
+        "docs/面试问答.md", "docs/interview_qa.docx",
+        "local-notes/Research_RAG_Agent_Project_Presentation.md",
+        "local-notes/archive/embedding_demo.py.py",
+    ]
     public_files = {path.relative_to(ROOT).as_posix() for path in get_candidate_files()}
     assert not public_files.intersection(private_paths)
     process = subprocess.run(
-        ["git", "check-ignore", "--no-index", "--", *private_paths], cwd=ROOT,
+        ["git", "check-ignore", "--no-index", "-z", "--stdin"], cwd=ROOT,
+        input="\0".join(private_paths) + "\0",
         capture_output=True, text=True, encoding="utf-8", check=True,
     )
-    assert set(process.stdout.splitlines()) == set(private_paths)
+    assert set(filter(None, process.stdout.split("\0"))) == set(private_paths)
 
 
 def test_six_real_screenshots_remain_public():

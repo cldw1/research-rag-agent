@@ -603,7 +603,7 @@ def main():
     print("\n报告文件：")
     print(OUTPUT_PATH)
 
-    print("\n第39步完成！")
+    print("\n引用追踪演示完成！")
 
 
 if __name__ == "__main__":
