@@ -13,8 +13,11 @@ class ResearchChatService:
         if cancellation:
             cancellation.check()
         details = self.conversations.details(conversation_id, require_active=True)
-        if (retriever.paper_id != details["document_id"]
-                or getattr(retriever, "index_id", None) != details["index_id"]):
+        expected = {item["document_id"]: item["index_id"] for item in details["documents"]}
+        actual = getattr(retriever, "document_bindings", None)
+        if actual is None:
+            actual = {retriever.paper_id: getattr(retriever, "index_id", None)}
+        if actual != expected:
             raise StorageError("retriever_scope_mismatch", "检索器与会话的文档或索引版本不一致")
         turn_id, existing = self.conversations.begin(conversation_id, question, provider.config, request_id)
         if existing is not None:

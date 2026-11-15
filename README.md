@@ -4,6 +4,8 @@
 
 上传论文、Word 或 Markdown 文档，解析并建立知识索引后，通过多轮对话查找研究方法、实验结论和原文证据。系统将回答与文档位置关联，支持查看引用片段、恢复历史会话和导出 Markdown；同时提供 QASPER 数据集检索与章节感知实验。
 
+科研对话可选择 **1–5 篇已索引文档**，围绕单篇提问或比较多篇文献。每个会话固定所选文档及各自索引版本，引用按文件名区分来源。
+
 [快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [实验结论](docs/experiment_summary.md) · [检索评测](docs/benchmark.md)
 
 ## 核心功能
@@ -14,6 +16,7 @@
 | 结构化分块 | Fixed、Recursive、Structure、Adaptive 策略，结合原文结构、字符与 Embedding Token 预算 |
 | 混合检索 | BM25 + BGE-small-en-v1.5 + FAISS，RRF 融合排名，Anchor-First 组织上下文 |
 | 科研 Agent | 论文目录与正文检索工具，参数和文档范围校验、工具预算与停止条件 |
+| 多文档问答 | 会话多选文档、统一混合检索、按论文分配证据、分文档引用与覆盖提示 |
 | 多轮对话 | 完整回合滑动窗口、历史恢复、流式输出、停止、重新生成和失败重试 |
 | 模型配置 | DeepSeek、OpenAI、Claude、Gemini、阿里云百炼及自定义兼容服务的适配入口 |
 | 来源追踪 | 稳定数字引用、论文与章节信息、真实 PDF 页码或段落/行号、原文片段 |
@@ -62,8 +65,8 @@ $$
 
 | 工具 | 输入 | 输出 |
 |---|---|---|
-| `get_paper_outline` | 当前文档 ID | 文档标题、章节/页码标签与 Chunk 统计 |
-| `search_research_paper` | 当前文档 ID、检索问题 | 证据正文、来源位置与引用元数据 |
+| `get_paper_outline` | 会话范围 ID 或所选文档 ID | 按文档区分的标题、章节/页码标签与 Chunk 统计 |
+| `search_research_paper` | 会话范围 ID 或所选文档 ID、检索问题 | 证据正文、来源位置、引用元数据与文档覆盖情况 |
 
 Agent 由 Python 校验并执行工具；单次问答最多进行五轮模型请求、两次工具尝试。每次请求前，根据输入预算选择完整历史回合，保持工具调用与返回消息配对。生成输入采用明确标记的预算估算，Embedding 分块使用 BGE 的实际 tokenizer。
 
@@ -85,11 +88,13 @@ Copy-Item .env.example .env
 
 1. 进入 **文档工作台**，上传文档，点击“保存并解析上传文档”。
 2. 查看解析结果和分块来源，点击“构建或复用持久化索引”。
-3. 进入 **科研对话**，选择文档并新建会话。
+3. 进入 **科研对话**，选择 1–5 篇已索引文档并新建会话。
 4. 选择模型供应商、填写 API Key 和参数，开始问答；历史与引用自动保存。
 5. 需要运行数据集或章节实验时，使用首页的 QASPER / PDF 检索区域。
 
 BGE 首次使用会下载到 `models/embedding_cache/`；已有完整缓存后可离线运行文档编码和检索。API Key 可直接在科研对话页面输入，也可使用 `.env` 中的可选默认配置。文档解析与建索引不需要生成模型 Key。
+
+已有单文档会话库可继续使用。页面出现“备份并启用多文档会话”时，点击后先完整备份，再新增文档关联表并保留原会话、消息和引用，详见 [数据管理](docs/user_guide.md#数据管理与备份)。
 
 ### QASPER 数据准备
 
@@ -190,9 +195,12 @@ Validation 的同一批 **841 题**分别用于融合参数和分块策略对照
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/smoke_conversations.py --output results/chat_check.json
+.\.venv\Scripts\python.exe scripts/smoke_multidoc.py
 ```
 
 检索实验与功能测试分别报告，便于区分证据排名、软件行为和生成回答质量。
+
+多文档检查使用两篇固定合成文档、真实缓存 BGE、SQLite 和 FAISS，在两个进程中验证文档范围、历史、引用及备份恢复；生成响应使用固定脚本。QASPER 指标仍对应 [单论文内的文本证据基线](docs/benchmark.md)。
 
 ## 项目结构
 

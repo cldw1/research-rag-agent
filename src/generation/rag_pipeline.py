@@ -292,6 +292,9 @@ class ResearchRAGPipeline:
         )
 
         all_chunks = paper_data["chunks"]
+        allowed_ids = set(paper_data.get("document_ids", [str(paper_id)]))
+        if any(str(chunk["paper_id"]) not in allowed_ids for chunk in all_chunks):
+            raise RuntimeError("发现跨论文检索结果")
 
         # ----------------------------------
         # B. 检索 Top-10
@@ -376,8 +379,7 @@ class ResearchRAGPipeline:
         for source in sources:
 
             if (
-                str(source["paper_id"])
-                != str(paper_id)
+                str(source["paper_id"]) not in allowed_ids
             ):
 
                 raise RuntimeError(
@@ -414,6 +416,10 @@ class ResearchRAGPipeline:
 
         return {
             "paper_id": str(paper_id),
+            "selected_document_ids": sorted(allowed_ids),
+            "selected_documents": paper_data.get("documents", []),
+            "covered_document_ids": sorted({str(item["paper_id"]) for item in sources}),
+            "missing_document_ids": sorted(allowed_ids - {str(item["paper_id"]) for item in sources}),
             "question": question,
             "method": method,
             "expansion_mode": expansion_mode,

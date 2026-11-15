@@ -340,6 +340,16 @@ class LocalDocumentStore:
         self.assert_active(document_id, index_id)
         return PersistentRetriever(self, index_id, retriever)
 
+    def load_scoped_retriever(self, document_ids, model, profile):
+        ids = list(document_ids)
+        if not 1 <= len(ids) <= 5 or len(set(ids)) != len(ids):
+            raise StorageError("invalid_document_selection", "请选择 1–5 篇不同的已索引文档")
+        members = [self.load_retriever(did, model, profile) for did in ids]
+        if len(members) == 1:
+            return members[0]
+        from src.retrieval.multi_document_retriever import MultiDocumentRetriever
+        return MultiDocumentRetriever(members)
+
     def delete_document(self, document_id):
         with write_session(self.engine) as session:
             record = self._require_document(session, document_id, include_deleted=True)

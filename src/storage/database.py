@@ -3,16 +3,18 @@
 from contextlib import contextmanager
 from pathlib import Path
 
-from sqlalchemy import create_engine, event, inspect, select
+from sqlalchemy import create_engine, event, inspect, literal, select
 from sqlalchemy.engine import URL
 from sqlalchemy.orm import Session
 
-from src.storage.models import Base, SchemaVersion
+from src.storage.models import Base, ConversationDocument, ConversationRecord, SchemaVersion
 
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 V1_TABLES = {"schema_version", "documents", "document_versions", "index_versions", "chunks", "ingestion_jobs"}
 CHAT_TABLES = {"conversations", "conversation_turns", "messages", "citations"}
+V2_TABLES = V1_TABLES | CHAT_TABLES
+SCOPE_TABLES = {"conversation_documents"}
 
 
 def open_catalog(path: Path):
@@ -36,8 +38,9 @@ def open_catalog(path: Path):
                 if "schema_version" not in names:
                     raise ValueError("数据库不是受支持的文档目录；不会自动修改现有表")
                 versions = connection.execute(select(SchemaVersion.version)).scalars().all()
-                expected = V1_TABLES if versions == [1] else set(Base.metadata.tables)
-                if versions not in ([1], [SCHEMA_VERSION]) or not expected.issubset(names):
+                expected = {1: V1_TABLES, 2: V2_TABLES, 3: set(Base.metadata.tables)}.get(
+                    versions[0] if len(versions) == 1 else None)
+                if expected is None or not expected.issubset(names):
                     raise ValueError("数据库结构版本不匹配；请先备份并使用显式迁移")
             connection.commit()
     except Exception:
@@ -58,7 +61,7 @@ def upgrade_chat_schema(store):
     from src.storage.artifacts import StorageError
 
     version = catalog_version(store.engine)
-    if version == SCHEMA_VERSION:
+    if version in (2, 3):
         return None
     if version != 1:
         raise StorageError("schema_upgrade_required", "不支持该数据库版本的自动升级")
@@ -67,13 +70,47 @@ def upgrade_chat_schema(store):
     with store.engine.connect() as connection:
         connection.exec_driver_sql("BEGIN IMMEDIATE")
         try:
-            if connection.execute(select(SchemaVersion.version)).scalar_one() == SCHEMA_VERSION:
+            if connection.execute(select(SchemaVersion.version)).scalar_one() in (2, 3):
                 connection.rollback()
                 return backup
             if set(inspect(connection).get_table_names()) != V1_TABLES:
                 raise StorageError("schema_mismatch", "现有表与已知 v1 结构不一致，未执行升级")
             Base.metadata.create_all(connection, tables=[Base.metadata.tables[name] for name in CHAT_TABLES])
-            connection.execute(SchemaVersion.__table__.update().values(version=SCHEMA_VERSION))
+            connection.execute(SchemaVersion.__table__.update().values(version=2))
+            connection.commit()
+        except Exception:
+            connection.rollback()
+            raise
+    return backup
+
+
+def upgrade_multidoc_schema(store):
+    """Explicit v2 -> v3: back up, add a scope table, retain all old IDs/records."""
+    import uuid
+    from src.storage.backup import create_backup
+    from src.storage.artifacts import StorageError
+
+    version = catalog_version(store.engine)
+    if version == 3:
+        return None
+    if version != 2:
+        raise StorageError("schema_upgrade_required", "请先启用聊天存储，再升级多文档会话")
+    backup = store.root.parent / "catalog_backups" / (store.root.name + "-v2-" + uuid.uuid4().hex)
+    create_backup(store, backup)
+    with store.engine.connect() as connection:
+        connection.exec_driver_sql("BEGIN IMMEDIATE")
+        try:
+            current = connection.execute(select(SchemaVersion.version)).scalar_one()
+            if current == 3:
+                connection.rollback()
+                return backup
+            if current != 2 or set(inspect(connection).get_table_names()) != V2_TABLES:
+                raise StorageError("schema_mismatch", "现有表与已知 v2 结构不一致，未执行升级")
+            Base.metadata.create_all(connection, tables=[ConversationDocument.__table__])
+            connection.execute(ConversationDocument.__table__.insert().from_select(
+                ["conversation_id", "document_id", "index_id", "position"],
+                select(ConversationRecord.id, ConversationRecord.document_id, ConversationRecord.index_id, literal(0))))
+            connection.execute(SchemaVersion.__table__.update().values(version=3))
             connection.commit()
         except Exception:
             connection.rollback()

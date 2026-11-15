@@ -19,7 +19,7 @@ from src.llm.factory import CATALOG, create_provider
 from src.generation_task import GenerationPool
 from src.storage.artifacts import StorageError
 from src.storage.conversations import ConversationStore
-from src.storage.database import catalog_version, upgrade_chat_schema
+from src.storage.database import catalog_version, upgrade_chat_schema, upgrade_multidoc_schema
 from src.storage.document_store import LocalDocumentStore, default_data_root
 
 
@@ -60,6 +60,16 @@ if catalog_version(documents.engine) == 1:
             st.error("升级未完成；请检查备份目录权限和原文件/索引完整性。现有文档数据未删除。")
     st.stop()
 conversations = ConversationStore(documents)
+schema_version = catalog_version(documents.engine)
+if schema_version == 2:
+    st.info("当前文档库可继续单文档对话。启用多文档会话前将完整备份，原会话与引用保留。")
+    if st.button("备份并启用多文档会话"):
+        try:
+            with st.spinner("备份并扩展会话文档关联…"):
+                upgrade_multidoc_schema(documents)
+            st.rerun()
+        except Exception:
+            st.error("多文档升级未完成，请检查备份与索引文件；可继续使用现有单文档会话。")
 
 with st.sidebar:
     st.header("生成模型")
@@ -100,10 +110,11 @@ with st.sidebar:
 
     st.divider()
     indexed = {item["document_id"]: item for item in documents.list_documents() if item["index_id"]}
-    selected_document = st.selectbox("新会话使用的文档", list(indexed),
-        format_func=lambda value: indexed[value]["filename"]) if indexed else None
-    if st.button("新建会话", disabled=not selected_document or config is None):
-        st.session_state["research_conversation_id"] = conversations.create(selected_document, config)
+    selected_documents = st.multiselect("新会话使用的文档（最多 5 篇）", list(indexed),
+        default=list(indexed)[:1], max_selections=5 if schema_version >= 3 else 1,
+        format_func=lambda value: indexed[value]["filename"] + " · " + value[-8:]) if indexed else []
+    if st.button("新建会话", disabled=not selected_documents or config is None):
+        st.session_state["research_conversation_id"] = conversations.create(selected_documents, config)
         st.rerun()
     st.caption("请先在文档工作台上传并建立索引；从原应用的页面导航可进入工作台。")
 
@@ -118,6 +129,10 @@ if not selected_id:
     st.info("先在工作台保存并索引文档，再在左侧新建会话。浏览历史无需 API Key。")
     st.stop()
 details = conversations.details(selected_id)
+selected_names = {item["document_id"]: item["filename"] for item in details["documents"]}
+st.caption("当前会话文档范围：" + "、".join(selected_names.values()))
+if len(selected_names) > 1:
+    st.caption("多文档检索使用统一排名并按论文分配证据；比较结论请结合各篇原文引用。")
 task = st.session_state.get("research_generation_task")
 busy = task is not None and task.snapshot()["status"] == "running"
 notice = st.session_state.pop("research_generation_notice", None)
@@ -161,11 +176,15 @@ for turn in history:
             st.warning("本轮存在缺失或未注册的引用，请核对原文。编号有效也不等于结论已经通过事实核验。")
         if result.get("truncated"):
             st.warning("模型因输出上限停止，回答可能不完整。")
+        if len(selected_names) > 1 and result.get("missing_document_ids"):
+            missing = "、".join(selected_names.get(did, did) for did in result["missing_document_ids"])
+            st.warning("本次工具证据尚未覆盖：" + missing + "。涉及这些文档的结论需补充取证。")
         for number in result["cited_numbers"]:
             source = all_sources.get(number)
             if source:
                 location = f"PDF 第 {source['page_number']} 页" if source.get("page_number") else source.get("section", "原文段落")
-                with st.expander(f"[{number}] {source.get('title', '')} · {location}"):
+                filename = selected_names.get(source["paper_id"], source.get("title", ""))
+                with st.expander(f"[{number}] {filename} · {source.get('title', '')} · {location}"):
                     st.code(source["text"], language=None)
                     st.json(source.get("source_metadata", {}), expanded=False)
         with st.expander("本轮上下文和用量"):
@@ -213,13 +232,13 @@ with retry_columns[1]:
     if st.button("重试最近未完成问题", disabled=not enabled or latest_failed is None):
         retry_question = latest_failed["question"]
 st.caption("重新生成保留原回答并追加新回合；重试使用当前模型设置和新的请求 ID。")
-question = st.chat_input("向这篇文献提问", disabled=not enabled) or retry_question
+question = st.chat_input("向选中的文献提问，或比较它们的方法与结论", disabled=not enabled) or retry_question
 if question:
     provider = None
     try:
         with st.spinner("加载本地检索资源…"):
             model, counter, profile = embedding_resources()
-            retriever = documents.load_retriever(details["document_id"], model, profile)
+            retriever = documents.load_scoped_retriever([item["document_id"] for item in details["documents"]], model, profile)
             provider = create_provider(config, key)
         # Freeze all arguments: Streamlit reruns must not retarget a running job.
         def work(token, callback, service=ResearchChatService(conversations), cid=selected_id,

@@ -76,7 +76,7 @@ def build_context(results, max_chars=8000):
         # Historical context text and citation numbering remain unchanged.
         for field in (
             "document_id", "document_version", "index_version", "page_number",
-            "section_path", "source_metadata",
+            "section_path", "source_metadata", "persistent_index_id",
         ):
             if field in item:
                 sources[-1][field] = item[field]

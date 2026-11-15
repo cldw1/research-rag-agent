@@ -20,6 +20,12 @@ class PaperOutlineTool:
 
         paper_id = str(paper_id)
 
+        members = getattr(self.retriever, "document_retrievers", None)
+        if members and paper_id == self.retriever.paper_id:
+            self.retriever.get_paper_data(paper_id)  # Check every bound index before exposing metadata.
+            return {"tool_name": self.name, "paper_id": paper_id,
+                    "documents": [PaperOutlineTool(member).run(did) for did, member in members.items()]}
+
         paper_data = self.retriever.get_paper_data(
             paper_id
         )
@@ -72,6 +78,7 @@ class PaperOutlineTool:
             "tool_name": self.name,
             "paper_id": paper_id,
             "title": chunks[0].get("title", ""),
+            "filename": chunks[0].get("source_metadata", {}).get("filename", ""),
             "section_count": len(sections),
             "total_chunks": len(chunks),
             "sections": sections

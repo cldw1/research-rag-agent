@@ -49,5 +49,9 @@ class PaperSearchTool:
             "evidence": prepared["context"],
             "sources": prepared["sources"],
             "context_chars": prepared["context_chars"],
-            "chunk_count": prepared["chunk_count"]
+            "chunk_count": prepared["chunk_count"],
+            "selected_document_ids": prepared["selected_document_ids"],
+            "selected_documents": prepared["selected_documents"],
+            "covered_document_ids": prepared["covered_document_ids"],
+            "missing_document_ids": prepared["missing_document_ids"],
         }

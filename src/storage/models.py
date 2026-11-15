@@ -91,6 +91,15 @@ class ConversationRecord(Base):
     active_turn_id: Mapped[str | None] = mapped_column(String(32))
 
 
+class ConversationDocument(Base):
+    __tablename__ = "conversation_documents"
+    conversation_id: Mapped[str] = mapped_column(ForeignKey("conversations.id"), primary_key=True)
+    document_id: Mapped[str] = mapped_column(ForeignKey("documents.id"), primary_key=True)
+    index_id: Mapped[str] = mapped_column(ForeignKey("index_versions.id"))
+    position: Mapped[int] = mapped_column(Integer)
+    __table_args__ = (UniqueConstraint("conversation_id", "position"),)
+
+
 class ConversationTurn(Base):
     __tablename__ = "conversation_turns"
     id: Mapped[str] = mapped_column(String(32), primary_key=True)

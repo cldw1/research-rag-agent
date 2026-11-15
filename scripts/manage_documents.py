@@ -23,6 +23,7 @@ def main():
     commands.add_parser("recover")
     commands.add_parser("schema-version")
     commands.add_parser("upgrade-chat")
+    commands.add_parser("upgrade-multidoc")
     upload = commands.add_parser("upload")
     upload.add_argument("file", type=Path)
     upload.add_argument("--ocr", action="store_true")
@@ -70,6 +71,10 @@ def main():
             elif args.command == "upgrade-chat":
                 from src.storage.database import catalog_version, upgrade_chat_schema
                 backup = upgrade_chat_schema(store)
+                result = {"schema_version": catalog_version(store.engine), "backup": str(backup) if backup else None}
+            elif args.command == "upgrade-multidoc":
+                from src.storage.database import catalog_version, upgrade_multidoc_schema
+                backup = upgrade_multidoc_schema(store)
                 result = {"schema_version": catalog_version(store.engine), "backup": str(backup) if backup else None}
             elif args.command == "upload":
                 from src.ingestion.parsers import ParseOptions

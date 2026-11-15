@@ -12,46 +12,76 @@ from src.llm.provider import ModelConfig
 from src.storage.artifacts import StorageError
 from src.storage.database import catalog_version, write_session
 from src.storage.document_store import now, timestamp
-from src.storage.models import (ChunkRecord, CitationRecord, ConversationRecord, ConversationTurn,
-                                DocumentRecord, IndexVersion, MessageRecord)
+from src.storage.models import (ChunkRecord, CitationRecord, ConversationDocument, ConversationRecord, ConversationTurn,
+                                DocumentRecord, IndexVersion, MessageRecord, SchemaVersion)
+
+
+MAX_CONVERSATION_DOCUMENTS = 5
 
 
 class ConversationStore:
     def __init__(self, documents):
         self.documents, self.engine = documents, documents.engine
-        if catalog_version(self.engine) != 2:
+        if catalog_version(self.engine) not in (2, 3):
             raise StorageError("schema_upgrade_required", "文档库需要先备份并升级聊天存储结构")
+
+    @staticmethod
+    def _bindings(session, conversation):
+        if session.scalar(select(SchemaVersion.version)) == 2:
+            return [(conversation.document_id, conversation.index_id)]
+        rows = list(session.scalars(select(ConversationDocument).where(
+            ConversationDocument.conversation_id == conversation.id).order_by(ConversationDocument.position)))
+        if (not 1 <= len(rows) <= MAX_CONVERSATION_DOCUMENTS or rows[0].position != 0
+                or (rows[0].document_id, rows[0].index_id) != (conversation.document_id, conversation.index_id)
+                or [row.position for row in rows] != list(range(len(rows)))):
+            raise StorageError("invalid_conversation_scope", "会话文档集合与索引范围无效")
+        return [(row.document_id, row.index_id) for row in rows]
 
     @staticmethod
     def _guard(session, conversation_id, *, require_active=False):
         conversation = session.get(ConversationRecord, conversation_id)
         if conversation is None or conversation.deleted_at:
             raise StorageError("conversation_not_found", "会话不存在或已删除")
-        document = session.get(DocumentRecord, conversation.document_id)
-        if document is None or document.deleted_at:
-            raise StorageError("document_not_found", "会话所属文档已移出文档库")
-        index = session.get(IndexVersion, conversation.index_id)
-        if index is None or index.document_id != document.id:
-            raise StorageError("invalid_conversation_scope", "会话的索引范围无效")
-        if require_active and document.active_index_id != conversation.index_id:
-            raise StorageError("conversation_index_changed", "文档索引已变更，请基于当前版本新建会话；历史来源保持原版本")
+        for document_id, index_id in ConversationStore._bindings(session, conversation):
+            document = session.get(DocumentRecord, document_id)
+            if document is None or document.deleted_at:
+                raise StorageError("document_not_found", "会话所属文档已移出文档库")
+            index = session.get(IndexVersion, index_id)
+            if index is None or index.document_id != document.id:
+                raise StorageError("invalid_conversation_scope", "会话的索引范围无效")
+            if require_active and document.active_index_id != index_id:
+                raise StorageError("conversation_index_changed", "文档索引已变更，请基于当前版本新建会话；历史来源保持原版本")
         return conversation
 
     def create(self, document_id, config, title="新会话"):
         if not isinstance(config, ModelConfig):
             raise StorageError("invalid_model_config", "模型配置必须使用不含凭据的标准结构")
         title = self._title(title)
+        ids = [document_id] if isinstance(document_id, str) else document_id
+        if (not isinstance(ids, (list, tuple)) or not 1 <= len(ids) <= MAX_CONVERSATION_DOCUMENTS
+                or any(not isinstance(item, str) or not item for item in ids) or len(set(ids)) != len(ids)):
+            raise StorageError("invalid_document_selection", "请选择 1–5 篇不同的已索引文档")
         with write_session(self.engine) as session:
-            document = self.documents._require_document(session, document_id)
-            if not document.active_index_id:
-                raise StorageError("not_indexed", "请先为文档建立索引")
-            index = session.get(IndexVersion, document.active_index_id)
-            if index is None or index.document_id != document_id:
-                raise StorageError("invalid_conversation_scope", "当前索引与文档不一致")
-            conversation = ConversationRecord(id=uuid.uuid4().hex, document_id=document_id,
-                index_id=document.active_index_id, title=title, model_config=ModelConfig.to_dict(config),
+            version = session.scalar(select(SchemaVersion.version))
+            if len(ids) > 1 and version < 3:
+                raise StorageError("schema_upgrade_required", "请先备份并启用多文档会话存储")
+            selected = []
+            for selected_id in ids:
+                document = self.documents._require_document(session, selected_id)
+                if not document.active_index_id:
+                    raise StorageError("not_indexed", "请先为文档建立索引")
+                index = session.get(IndexVersion, document.active_index_id)
+                if index is None or index.document_id != selected_id:
+                    raise StorageError("invalid_conversation_scope", "当前索引与文档不一致")
+                selected.append((selected_id, document.active_index_id))
+            conversation = ConversationRecord(id=uuid.uuid4().hex, document_id=selected[0][0],
+                index_id=selected[0][1], title=title, model_config=ModelConfig.to_dict(config),
                 created_at=timestamp(), updated_at=timestamp())
             session.add(conversation)
+            session.flush()
+            if version >= 3:
+                session.add_all(ConversationDocument(conversation_id=conversation.id, document_id=did,
+                    index_id=iid, position=i) for i, (did, iid) in enumerate(selected))
             return conversation.id
 
     @staticmethod
@@ -62,19 +92,30 @@ class ConversationStore:
 
     def list(self):
         with Session(self.engine) as session:
-            rows = session.scalars(select(ConversationRecord).join(DocumentRecord,
-                DocumentRecord.id == ConversationRecord.document_id).where(
-                ConversationRecord.deleted_at.is_(None), DocumentRecord.deleted_at.is_(None))
+            rows = session.scalars(select(ConversationRecord).where(ConversationRecord.deleted_at.is_(None))
                 .order_by(ConversationRecord.updated_at.desc()))
-            return [{"id": item.id, "title": item.title, "document_id": item.document_id,
-                     "index_id": item.index_id, "model_config": item.model_config,
-                     "updated_at": item.updated_at} for item in rows]
+            result = []
+            for item in rows:
+                try:
+                    self._guard(session, item.id)
+                except StorageError:
+                    continue
+                result.append({**self._details(session, item), "updated_at": item.updated_at})
+            return result
+
+    @staticmethod
+    def _details(session, item):
+        documents = []
+        for did, iid in ConversationStore._bindings(session, item):
+            document = session.get(DocumentRecord, did)
+            documents.append({"document_id": did, "index_id": iid, "filename": document.filename})
+        return {"id": item.id, "title": item.title, "document_id": item.document_id,
+                "index_id": item.index_id, "model_config": item.model_config, "documents": documents}
 
     def details(self, conversation_id, *, require_active=False):
         with Session(self.engine) as session:
             item = self._guard(session, conversation_id, require_active=require_active)
-            return {"id": item.id, "title": item.title, "document_id": item.document_id,
-                    "index_id": item.index_id, "model_config": item.model_config}
+            return self._details(session, item)
 
     def rename(self, conversation_id, title):
         title = self._title(title)
@@ -161,21 +202,25 @@ class ConversationStore:
                     or ("reference_context" in messages[0] and not isinstance(messages[0]["reference_context"], str))):
                 raise StorageError("invalid_history", "回合用户消息与原始问题不一致")
             # Validate every registry source against the selected immutable index.
+            bindings = dict(self._bindings(session, conversation))
             for source in result["registered_sources"]:
+                index_id = bindings.get(source["paper_id"])
+                if index_id is None or source.get("persistent_index_id", index_id) != index_id:
+                    raise StorageError("citation_scope_violation", "引用不属于会话绑定的文档索引")
                 chunk = session.scalar(select(ChunkRecord).where(
-                    ChunkRecord.index_id == conversation.index_id, ChunkRecord.chunk_id == source["chunk_id"]))
-                if chunk is None or source["paper_id"] != conversation.document_id:
+                    ChunkRecord.index_id == index_id, ChunkRecord.chunk_id == source["chunk_id"]))
+                if chunk is None:
                     raise StorageError("citation_scope_violation", "引用不属于会话绑定的文档索引")
                 number = int(source["citation"])
                 existing = session.get(CitationRecord, (conversation_id, number))
-                if existing and existing.chunk_id != source["chunk_id"]:
+                if existing and (existing.chunk_id != source["chunk_id"] or existing.index_id != index_id):
                     raise StorageError("citation_conflict", "已分配的引用编号不能指向其他来源")
                 if existing is None:
                     snapshot = {**source, "text": chunk.data["text"], "page_number": chunk.data.get("page_number"),
                                 "source_metadata": chunk.data.get("source_metadata", {}),
-                                "persistent_index_id": conversation.index_id}
+                                "persistent_index_id": index_id}
                     session.add(CitationRecord(conversation_id=conversation_id, number=number,
-                        index_id=conversation.index_id, chunk_id=source["chunk_id"], source=snapshot))
+                        index_id=index_id, chunk_id=source["chunk_id"], source=snapshot))
             session.add_all(MessageRecord(turn_id=turn_id, position=i, role=message["role"], data=message)
                             for i, message in enumerate(messages) if i)
             turn.result, turn.status, turn.updated_at = result, "completed", timestamp()
@@ -218,6 +263,7 @@ class ConversationStore:
         details = self.details(conversation_id)
         sources = {item["citation"]: item for item in self.sources(conversation_id)}
         parts = [f"# {details['title']}"]
+        parts.append("文档范围：" + "、".join(item["filename"] for item in details["documents"]))
         for turn in self.history(conversation_id):
             parts.append("## 用户\n\n" + turn["question"])
             if turn["status"] != "completed":

@@ -25,6 +25,7 @@ def expand_anchors_first(
     for chunk in all_chunks:
 
         key = (
+            chunk["paper_id"],
             chunk["section_index"],
             chunk["paragraph_index"]
         )
@@ -79,6 +80,7 @@ def expand_anchors_first(
                 continue
 
             key = (
+                anchor["paper_id"],
                 section_index,
                 paragraph_index + offset
             )
