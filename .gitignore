@@ -65,6 +65,9 @@ models/
 !/results/qasper_fusion_validation.json
 !/results/qasper_fusion_validation_per_question.csv
 !/results/qasper_case_inspection.json
+!/results/qasper_chunking_validation.json
+!/results/qasper_chunking_validation_per_question.csv
+!/results/qasper_chunking_validation_contexts.csv
 
 # ===== Local reports =====
 /reports/

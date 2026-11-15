@@ -87,6 +87,8 @@ Evidence F1 对所选 Chunk 涉及的正文段落集合与每份参考证据集�
 
 这两组失败案例的来源覆盖、原始排名复现及独立 Validation 参数对照，见 [检索误差分析](retrieval_analysis.md)。
 
+相同 Validation 问题与 Embedding 配置下的段落合并对照，见 [分块实验](chunking_experiment.md)。
+
 ## 工程耗时
 
 | 方法 | 平均查询 ms | P50 ms | P95 ms |

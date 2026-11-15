@@ -1,0 +1,660 @@
+{
+  "protocol": {
+    "version": "qasper-chunking-v1",
+    "dataset": "allenai/qasper",
+    "split": "validation",
+    "source_sha256": "db75eebc7704ff1d9114f1a1d9409d501b654888947f47d0406cb945dc6e1841",
+    "question_ids_sha256": "9c6c7a206061e8e5ddb5c7315db12b60c32303f5c6eafcd117df06a35cbc1b37",
+    "paper_ids_sha256": "7cb69467f0865d2488f775619576c0f953f98954eb742b67fb661266f7301d70",
+    "baseline_records_sha256": "dbf52098cc308e37448c51cb78e7c76d451f797076c86b957de09998126a6b0d",
+    "configs": {
+      "adaptive": {
+        "strategy": "adaptive",
+        "max_tokens": 480,
+        "max_chars": 1200,
+        "overlap_chars": 0,
+        "max_chunks": 1500
+      },
+      "structure": {
+        "strategy": "structure",
+        "max_tokens": 480,
+        "max_chars": 1200,
+        "overlap_chars": 0,
+        "max_chunks": 1500
+      }
+    },
+    "embedding_profile": {
+      "model_name": "BAAI/bge-small-en-v1.5",
+      "revision": "weights-config-sha256:532ab8efa7655a803a8718750d99a7e3624d79025d1a0f86daca8c9da45d9913",
+      "dimension": 384,
+      "tokenizer": "tokenizer-v2:BAAI/bge-small-en-v1.5:e7acac705d41d215293eb7eed52289e4e0fcdc6d2511d7b5960f970d63862de1:special-tokens-included",
+      "max_sequence_length": 512,
+      "normalized": true,
+      "metric": "inner_product"
+    },
+    "candidate_k": 50,
+    "rrf_k": 60,
+    "k_values": [
+      1,
+      5,
+      10
+    ],
+    "evidence_char_budget": 7400,
+    "neighbor_window": 1,
+    "selection_rule": "Recommend structure for follow-up only if its Anchor-First full-paragraph recall has a paired paper-bootstrap 95% lower bound above zero, and Hybrid Hit@5 and MRR@5 do not decrease. Otherwise retain adaptive. This experiment never changes production defaults or the published Test baseline.",
+    "bootstrap_seed": 42,
+    "bootstrap_resamples": 2000,
+    "threads": 8,
+    "query_timing": "Candidate generation including real BGE query encoding plus RRF ordering; one call per question/strategy shared across BM25/Dense/Hybrid quality scoring; not end-to-end application latency.",
+    "index_timing": "Cache restoration and fresh encoding reported separately; unequal cache states are not a cold-build speed comparison.",
+    "token_accounting": "BGE tokenizer reference counts including special tokens; not generation-model usage.",
+    "gold_policy": "Unchanged union of uniquely aligned paragraph IDs; no answer text enters indexing or queries.",
+    "execution_order": "document-major; adaptive/structure order alternates by document index",
+    "environment": {
+      "python": "3.13.9",
+      "os": "Windows",
+      "torch": "2.15.0+cpu",
+      "device": "cpu"
+    },
+    "code_sha256": {
+      "scripts/compare_chunking.py": "372d0592489e345711c7a22dc9839802afc8b55b9f179d234f8f280f2e9e11ae",
+      "src/evaluation/chunking_comparison.py": "d0597410b16f4071d93dd42a48185f347dc07ffeeac15ef1a37d09b51ae976f0",
+      "src/evaluation/qasper_benchmark.py": "405bf7d8ec028b0ce893991ddc32bb1a211e09c000b48872d3d67a3ae6e4eb07",
+      "src/ingestion/structured_chunker.py": "b9f410940f8a5ae4ba2977fd44b42672eaff0247d451a978d41ec9e28a7d6bb9",
+      "src/retrieval/structured_retriever.py": "d52f33d77cf30f4b38bf046ff8cdf5c35f29da34bf459b944b0467a47df87109",
+      "src/retrieval/context_expander.py": "50e14a8f6b41cd5a35d76d71d4d6ec104183c236e6f2cf842659cbebf6ecefbc",
+      "src/generation/context_builder.py": "e993560e3d15161e7877ae234dca367d49bff767d5bc98c8647b406415d1fe02",
+      "src/generation/strict_context_builder.py": "bbf0f7091fa68bc2d887ee6ce40b17a3ce096679399beaa189428686f3f6b0bf",
+      "scripts/compare_rank_fusion.py": "4bf434b072af735f18ddf207af5847de99b08bf2b6c02e5a3d653a42e9bbcb96",
+      "scripts/run_qasper_benchmark.py": "c9d027cb9ee9aa05f6d422cce9b9f7a753fd80e107490bc586f6b0ec9ea2b08b"
+    },
+    "generation_api_calls": 0
+  },
+  "corpus": {
+    "total_questions": 1005,
+    "eligible_questions": 841,
+    "no_text_evidence": 53,
+    "unmapped_text_evidence": 45,
+    "unanswerable": 60,
+    "ambiguous_text_evidence": 6,
+    "total_papers": 281,
+    "eligible_papers": 274
+  },
+  "question_count": 841,
+  "adaptive_baseline_reproduced": true,
+  "all_source_characters_preserved": true,
+  "production_default_unchanged": true,
+  "results": {
+    "adaptive": {
+      "methods": {
+        "bm25": {
+          "1": {
+            "hit": 0.2318668252080856,
+            "precision": 0.2318668252080856,
+            "mrr": 0.2318668252080856,
+            "ndcg": 0.2318668252080856,
+            "recall": 0.17058490459203893,
+            "full_paragraph_recall": 0.14326482079157465,
+            "all_gold_covered": 0.10107015457788347,
+            "evidence_f1": 0.17884038276428288
+          },
+          "5": {
+            "hit": 0.6361474435196195,
+            "precision": 0.15101070154577884,
+            "mrr": 0.3770907649623464,
+            "ndcg": 0.3606461382919809,
+            "recall": 0.5146825396825396,
+            "full_paragraph_recall": 0.45977624898552366,
+            "all_gold_covered": 0.3579072532699168,
+            "evidence_f1": 0.1716744021849796
+          },
+          "10": {
+            "hit": 0.8240190249702735,
+            "precision": 0.11093935790725329,
+            "mrr": 0.4025512900364268,
+            "ndcg": 0.4352655701128728,
+            "recall": 0.7200064171526716,
+            "full_paragraph_recall": 0.6576684974425759,
+            "all_gold_covered": 0.5517241379310345,
+            "evidence_f1": 0.13206111618558555
+          }
+        },
+        "dense": {
+          "1": {
+            "hit": 0.2211652794292509,
+            "precision": 0.2211652794292509,
+            "mrr": 0.2211652794292509,
+            "ndcg": 0.2211652794292509,
+            "recall": 0.16007209859766341,
+            "full_paragraph_recall": 0.13840005284713966,
+            "all_gold_covered": 0.09631391200951249,
+            "evidence_f1": 0.1684512871195392
+          },
+          "5": {
+            "hit": 0.6599286563614745,
+            "precision": 0.16527942925089179,
+            "mrr": 0.38481965913594923,
+            "ndcg": 0.38634848861088855,
+            "recall": 0.5597394447275541,
+            "full_paragraph_recall": 0.517318290772512,
+            "all_gold_covered": 0.42568370986920334,
+            "evidence_f1": 0.2184717854639406
+          },
+          "10": {
+            "hit": 0.8442330558858502,
+            "precision": 0.11807372175980975,
+            "mrr": 0.4099281845120133,
+            "ndcg": 0.4607203705841832,
+            "recall": 0.7599860075187067,
+            "full_paragraph_recall": 0.7146035263455002,
+            "all_gold_covered": 0.6183115338882283,
+            "evidence_f1": 0.15943792354194491
+          }
+        },
+        "hybrid": {
+          "1": {
+            "hit": 0.30439952437574314,
+            "precision": 0.30439952437574314,
+            "mrr": 0.30439952437574314,
+            "ndcg": 0.30439952437574314,
+            "recall": 0.2198714682067833,
+            "full_paragraph_recall": 0.19195685408527263,
+            "all_gold_covered": 0.13317479191438764,
+            "evidence_f1": 0.23117843973967636
+          },
+          "5": {
+            "hit": 0.737217598097503,
+            "precision": 0.18192627824019025,
+            "mrr": 0.4642092746730083,
+            "ndcg": 0.4468394907159163,
+            "recall": 0.6185642307223759,
+            "full_paragraph_recall": 0.5610533309998232,
+            "all_gold_covered": 0.450653983353151,
+            "evidence_f1": 0.2064451277529656
+          },
+          "10": {
+            "hit": 0.8787158145065398,
+            "precision": 0.12342449464922713,
+            "mrr": 0.4833715531396863,
+            "ndcg": 0.5132154945544387,
+            "recall": 0.7898517191620639,
+            "full_paragraph_recall": 0.7408029676757382,
+            "all_gold_covered": 0.6373365041617123,
+            "evidence_f1": 0.1487691687887095
+          }
+        }
+      },
+      "contexts": {
+        "top5": {
+          "recall": 0.6185642307223759,
+          "full_paragraph_recall": 0.5610533309998232,
+          "all_gold_covered": 0.450653983353151,
+          "evidence_f1": 0.2064451277529656,
+          "chunks": 5.0,
+          "characters": 5263.434007134364,
+          "bge_reference_tokens": 1346.8620689655172
+        },
+        "anchor_first": {
+          "recall": 0.6630417046291006,
+          "full_paragraph_recall": 0.6136560526275151,
+          "all_gold_covered": 0.5077288941736029,
+          "evidence_f1": 0.19925975222118786,
+          "chunks": 7.717003567181926,
+          "characters": 6637.755053507729,
+          "bge_reference_tokens": 1753.6527942925088
+        }
+      }
+    },
+    "structure": {
+      "methods": {
+        "bm25": {
+          "1": {
+            "hit": 0.20332936979785968,
+            "precision": 0.20332936979785968,
+            "mrr": 0.20332936979785968,
+            "ndcg": 0.20332936979785968,
+            "recall": 0.1375672385482136,
+            "full_paragraph_recall": 0.11163439216352415,
+            "all_gold_covered": 0.07491082045184304,
+            "evidence_f1": 0.17345374931581828
+          },
+          "5": {
+            "hit": 0.5731272294887039,
+            "precision": 0.13483947681331748,
+            "mrr": 0.33087594133967496,
+            "ndcg": 0.30383783582563995,
+            "recall": 0.4347069300101405,
+            "full_paragraph_recall": 0.3811878767288993,
+            "all_gold_covered": 0.2877526753864447,
+            "evidence_f1": 0.20061845935805506
+          },
+          "10": {
+            "hit": 0.7562425683709869,
+            "precision": 0.09964328180737217,
+            "mrr": 0.35479540607364624,
+            "ndcg": 0.36622396813847113,
+            "recall": 0.6107393795265377,
+            "full_paragraph_recall": 0.5534549675453362,
+            "all_gold_covered": 0.43876337693222356,
+            "evidence_f1": 0.16161580340530288
+          }
+        },
+        "dense": {
+          "1": {
+            "hit": 0.22235434007134364,
+            "precision": 0.22235434007134364,
+            "mrr": 0.22235434007134364,
+            "ndcg": 0.22235434007134364,
+            "recall": 0.1430317271577676,
+            "full_paragraph_recall": 0.126413189136138,
+            "all_gold_covered": 0.08085612366230678,
+            "evidence_f1": 0.18459411509352058
+          },
+          "5": {
+            "hit": 0.6302021403091558,
+            "precision": 0.15885850178359096,
+            "mrr": 0.370055489496631,
+            "ndcg": 0.3506645829001482,
+            "recall": 0.4944562835763787,
+            "full_paragraph_recall": 0.4558004883212969,
+            "all_gold_covered": 0.351961950059453,
+            "evidence_f1": 0.25356462140053104
+          },
+          "10": {
+            "hit": 0.8109393579072532,
+            "precision": 0.11307966706302022,
+            "mrr": 0.3945841118849442,
+            "ndcg": 0.41594968034397495,
+            "recall": 0.6787980021035906,
+            "full_paragraph_recall": 0.6301059688098928,
+            "all_gold_covered": 0.5124851367419738,
+            "evidence_f1": 0.19568511398017405
+          }
+        },
+        "hybrid": {
+          "1": {
+            "hit": 0.27110582639714625,
+            "precision": 0.27110582639714625,
+            "mrr": 0.27110582639714625,
+            "ndcg": 0.27110582639714625,
+            "recall": 0.1809066115546496,
+            "full_paragraph_recall": 0.15735188645414566,
+            "all_gold_covered": 0.10463733650416171,
+            "evidence_f1": 0.2306475662004794
+          },
+          "5": {
+            "hit": 0.6825208085612366,
+            "precision": 0.1667063020214031,
+            "mrr": 0.41872770511296076,
+            "ndcg": 0.38856260824972844,
+            "recall": 0.5400312793297336,
+            "full_paragraph_recall": 0.48460123573084335,
+            "all_gold_covered": 0.37812128418549346,
+            "evidence_f1": 0.2469653150390368
+          },
+          "10": {
+            "hit": 0.8347205707491082,
+            "precision": 0.1160523186682521,
+            "mrr": 0.4389068191684125,
+            "ndcg": 0.4482325897365316,
+            "recall": 0.7007970395306901,
+            "full_paragraph_recall": 0.6424934327134089,
+            "all_gold_covered": 0.5196195005945303,
+            "evidence_f1": 0.1870108763424623
+          }
+        }
+      },
+      "contexts": {
+        "top5": {
+          "recall": 0.5400312793297336,
+          "full_paragraph_recall": 0.48460123573084335,
+          "all_gold_covered": 0.37812128418549346,
+          "evidence_f1": 0.2469653150390368,
+          "chunks": 5.0,
+          "characters": 4113.708680142688,
+          "bge_reference_tokens": 1092.7467300832343
+        },
+        "anchor_first": {
+          "recall": 0.6291693476295142,
+          "full_paragraph_recall": 0.5870171478673263,
+          "all_gold_covered": 0.47919143876337694,
+          "evidence_f1": 0.2062373727862991,
+          "chunks": 9.475624256837099,
+          "characters": 6663.878715814507,
+          "bge_reference_tokens": 1829.732461355529
+        }
+      }
+    }
+  },
+  "paired_structure_minus_adaptive": {
+    "methods_at_5": {
+      "bm25": {
+        "hit": {
+          "mean": -0.06302021403091558,
+          "low": -0.08647496085581277,
+          "high": -0.04014233576642338,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": -0.07997560967239921,
+          "low": -0.10045691722829365,
+          "high": -0.060638348777031253,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.046214823622671417,
+          "low": -0.06033028300931551,
+          "high": -0.03194376928415833,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": -0.05680830246634091,
+          "low": -0.0692451178741868,
+          "high": -0.04425710713200681,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "full_paragraph_recall": {
+          "mean": -0.07858837225662434,
+          "low": -0.0986137243017081,
+          "high": -0.060063433419344746,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.028944057173075466,
+          "low": 0.019963930641221945,
+          "high": 0.03803656720281253,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      },
+      "dense": {
+        "hit": {
+          "mean": -0.029726516052318668,
+          "low": -0.05529723268617792,
+          "high": -0.0058534425142770284,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": -0.06528316115117541,
+          "low": -0.08748977445669613,
+          "high": -0.04518595930811599,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.014764169639318273,
+          "low": -0.030605742896589846,
+          "high": 0.0007532264279737522,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": -0.03568390571074038,
+          "low": -0.0493984970449101,
+          "high": -0.022517743354627785,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "full_paragraph_recall": {
+          "mean": -0.06151780245121506,
+          "low": -0.0834802058437421,
+          "high": -0.04134241534994687,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.03509283593659042,
+          "low": 0.02348249001847304,
+          "high": 0.04565974277359348,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      },
+      "hybrid": {
+        "hit": {
+          "mean": -0.054696789536266346,
+          "low": -0.07976785714285714,
+          "high": -0.031431124271003814,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "recall": {
+          "mean": -0.07853295139264226,
+          "low": -0.10023685193334574,
+          "high": -0.05875292357406017,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "mrr": {
+          "mean": -0.04548156956004756,
+          "low": -0.06275332935547488,
+          "high": -0.028825810078973977,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "ndcg": {
+          "mean": -0.058276882466187806,
+          "low": -0.072953392626362,
+          "high": -0.04443919500427432,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "full_paragraph_recall": {
+          "mean": -0.07645209526897993,
+          "low": -0.0978351460142601,
+          "high": -0.05612683545947086,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.04052018728607119,
+          "low": 0.030710587475225176,
+          "high": 0.04993026176744044,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      }
+    },
+    "contexts": {
+      "top5": {
+        "recall": {
+          "mean": -0.07853295139264226,
+          "low": -0.10023685193334574,
+          "high": -0.05875292357406017,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "full_paragraph_recall": {
+          "mean": -0.07645209526897993,
+          "low": -0.0978351460142601,
+          "high": -0.05612683545947086,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "all_gold_covered": {
+          "mean": -0.07253269916765755,
+          "low": -0.09677622235747615,
+          "high": -0.05047774280575541,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.04052018728607119,
+          "low": 0.030710587475225176,
+          "high": 0.04993026176744044,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      },
+      "anchor_first": {
+        "recall": {
+          "mean": -0.03387235699958649,
+          "low": -0.05519923048929377,
+          "high": -0.013633555532679451,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "full_paragraph_recall": {
+          "mean": -0.026638904760188948,
+          "low": -0.04789977807952186,
+          "high": -0.006432302365878326,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "all_gold_covered": {
+          "mean": -0.028537455410225922,
+          "low": -0.05269197240751971,
+          "high": -0.005833459675607192,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        },
+        "evidence_f1": {
+          "mean": 0.006977620565111274,
+          "low": 1.7491541928023194e-05,
+          "high": 0.013741350899750891,
+          "confidence": 0.95,
+          "resamples": 2000,
+          "seed": 42,
+          "sampling_unit": "paper"
+        }
+      }
+    }
+  },
+  "recommended_for_followup": "adaptive",
+  "hybrid_hit_transitions_at_5": {
+    "both_hit": 544,
+    "structure_only_hit": 30,
+    "adaptive_only_hit": 76,
+    "both_miss": 191
+  },
+  "engineering": {
+    "adaptive": {
+      "chunk_count": 11956,
+      "chunking_seconds": 12.79507349996129,
+      "vector_bytes": 18364416,
+      "build_seconds": 4.259323899954325,
+      "encoding_and_index_seconds": 0.0,
+      "cache_hit": 281,
+      "merged_paragraph_chunks": 3155,
+      "chunk_tokens": {
+        "n": 11956,
+        "mean": 121.24355971896955,
+        "p50": 129.5,
+        "p95": 264.0
+      },
+      "chunk_characters": {
+        "n": 11956,
+        "mean": 538.5110404817665,
+        "p50": 584.5,
+        "p95": 1151.0
+      },
+      "candidate_query_seconds": {
+        "n": 841,
+        "mean": 0.01079824791892291,
+        "p50": 0.01010899999528192,
+        "p95": 0.01422189999721013
+      }
+    },
+    "structure": {
+      "chunk_count": 17588,
+      "chunking_seconds": 9.042308999720262,
+      "vector_bytes": 27015168,
+      "build_seconds": 472.5781085003109,
+      "encoding_and_index_seconds": 472.5781085003109,
+      "cache_hit": 0,
+      "merged_paragraph_chunks": 0,
+      "chunk_tokens": {
+        "n": 17588,
+        "mean": 83.05958608141916,
+        "p50": 68.0,
+        "p95": 224.0
+      },
+      "chunk_characters": {
+        "n": 17588,
+        "mean": 365.4294973845804,
+        "p50": 293.0,
+        "p95": 1026.0
+      },
+      "candidate_query_seconds": {
+        "n": 841,
+        "mean": 0.011124521522807936,
+        "p50": 0.010454900009790435,
+        "p95": 0.014588899997761473
+      }
+    }
+  },
+  "elapsed_seconds": 542.1923778000055,
+  "artifacts": {
+    "per_question_sha256": "9e74347c427e35c2a7005cb467f262ffc35e59ec49f9a3479dc2fc9db4e8d50f",
+    "protocol_sha256": "e293f574fefeabe3d6bcedd77ed9397bd5a96f445e9df11a64ba7c4820587a90",
+    "per_paper_sha256": "214cbf93970fdc13459b298b5efa3a9acaa5c5b9dbf0957e356558fbeef14b72",
+    "excluded_sha256": "66308faa999621f3218eb2babe5b329a867cdbb2d44c01f0dd4d9fb57538b86f"
+  },
+  "scope": "Exploratory Validation comparison motivated by Test case inspection; source coverage, not generated answer accuracy. Different chunk units make chunk-level Precision/nDCG descriptive.",
+  "public_artifacts": {
+    "qasper_chunking_validation_per_question.csv": {
+      "sha256": "fa211ac6aaa4abefccd413a0df57c636c25e68a392685844cacc242a894f86df",
+      "rows": 5046
+    },
+    "qasper_chunking_validation_contexts.csv": {
+      "sha256": "40f64758fe7f3f224efed648fdb3f52fced6ff965723d50a235adbbbd65405f0",
+      "rows": 3364
+    }
+  }
+}

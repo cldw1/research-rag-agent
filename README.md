@@ -122,6 +122,8 @@ Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，按论文聚类的�
 
 [六个代表性案例](docs/case_studies.md) 对照问题、Gold 与检索片段，解释融合退化、自然段合并及候选截断，并区分原始检索失误与证据扩展后的来源覆盖。
 
+[分块对照实验](docs/chunking_experiment.md) 在全部 841 道 Validation 文本证据问题上比较自适应与结构化分块，固定模型、融合参数和上下文上限，并报告来源覆盖、实际证据长度及索引成本。
+
 ### HMC 章节感知检索
 
 在 *MCMC Using Hamiltonian Dynamics* 的指定 50 页 PDF 上，使用 247 个 V3 Chunk 和 7 道章节级问题比较两种检索策略：
