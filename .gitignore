@@ -64,6 +64,7 @@ models/
 !/results/qasper_failure_audit.json
 !/results/qasper_fusion_validation.json
 !/results/qasper_fusion_validation_per_question.csv
+!/results/qasper_case_inspection.json
 
 # ===== Local reports =====
 /reports/

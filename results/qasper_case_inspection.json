@@ -1,0 +1,1126 @@
+{
+  "baseline_records_sha256": "0da8a9f4433385cfecb92303295cf7389a4f543fb4a74c18941191c9b25590b4",
+  "selection": {
+    "rule": "question_id ascending, at most one question per paper within each stratum",
+    "cohort_counts": {
+      "fusion_dense_top1": 13,
+      "hybrid_rank6_10": 68,
+      "outside_both_pools": 1,
+      "candidate_present_beyond_top10": 71
+    },
+    "cases": [
+      {
+        "case": "C01",
+        "stratum": "fusion_dense_top1",
+        "paper_id": "1911.03642",
+        "question_id": "3435e365adf7866e45670c865dc33bb7d2a6a0c6"
+      },
+      {
+        "case": "C02",
+        "stratum": "fusion_dense_top1",
+        "paper_id": "1810.13414",
+        "question_id": "3d5b4aa1ce99903b1fcd257c1e394f7990431d13"
+      },
+      {
+        "case": "C03",
+        "stratum": "hybrid_rank6_10",
+        "paper_id": "1708.05521",
+        "question_id": "0ac6fbd81e2dd95b800283dc7e59ce969d45fc02"
+      },
+      {
+        "case": "C04",
+        "stratum": "hybrid_rank6_10",
+        "paper_id": "1908.07721",
+        "question_id": "0b10cfa61595b21bf3ff13b4df0fe1c17bbbf4e9"
+      },
+      {
+        "case": "C05",
+        "stratum": "outside_both_pools",
+        "paper_id": "1912.00342",
+        "question_id": "f52c9744a371104eb2677c181a7004f7a77d9dd3"
+      },
+      {
+        "case": "C06",
+        "stratum": "candidate_present_beyond_top10",
+        "paper_id": "1912.00239",
+        "question_id": "058b6e3fdbb607fa7dbfc688628b3e13e130c35a"
+      }
+    ]
+  },
+  "question_count": 6,
+  "cases": [
+    {
+      "case": "C01",
+      "stratum": "fusion_dense_top1",
+      "paper_id": "1911.03642",
+      "question_id": "3435e365adf7866e45670c865dc33bb7d2a6a0c6",
+      "chunk_count": 41,
+      "candidate_k": 41,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0003_0000"
+        ],
+        [
+          "p0003_0000"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 6096,
+          "bge_reference_tokens": 1515
+        },
+        "anchor_first": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 7,
+          "characters": 6550,
+          "bge_reference_tokens": 1701
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0003_0000"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 12,
+          "gold_source_overlap": true,
+          "hybrid_rank": 6,
+          "full_bm25_rank": 19,
+          "full_dense_rank": 1,
+          "bm25_score": 2.6322752026587573,
+          "source_block_ids": [
+            "p0003_0000",
+            "p0003_0001"
+          ],
+          "bm25_rank": 19,
+          "dense_rank": 1,
+          "bm25_contribution": 0.012658227848101266,
+          "dense_contribution": 0.01639344262295082,
+          "rrf_score": 0.029051670471052088,
+          "in_candidate_union": true
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 10,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 1,
+          "full_dense_rank": 6,
+          "bm25_score": 7.268111304443556,
+          "source_block_ids": [
+            "p0002_0000"
+          ],
+          "bm25_rank": 1,
+          "dense_rank": 6,
+          "bm25_contribution": 0.01639344262295082,
+          "dense_contribution": 0.015151515151515152,
+          "rrf_score": 0.031544957774465976,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 40,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 6,
+          "full_dense_rank": 4,
+          "bm25_score": 3.7490852332129587,
+          "source_block_ids": [
+            "p0011_0000",
+            "p0011_0001"
+          ],
+          "bm25_rank": 6,
+          "dense_rank": 4,
+          "bm25_contribution": 0.015151515151515152,
+          "dense_contribution": 0.015625,
+          "rrf_score": 0.030776515151515152,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 14,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 3,
+          "full_dense_rank": 9,
+          "bm25_score": 4.377688691849539,
+          "source_block_ids": [
+            "p0003_0003",
+            "p0003_0004"
+          ],
+          "bm25_rank": 3,
+          "dense_rank": 9,
+          "bm25_contribution": 0.015873015873015872,
+          "dense_contribution": 0.014492753623188406,
+          "rrf_score": 0.03036576949620428,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 23,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 5,
+          "full_dense_rank": 8,
+          "bm25_score": 3.85661937494657,
+          "source_block_ids": [
+            "p0007_0000",
+            "p0007_0001"
+          ],
+          "bm25_rank": 5,
+          "dense_rank": 8,
+          "bm25_contribution": 0.015384615384615385,
+          "dense_contribution": 0.014705882352941176,
+          "rrf_score": 0.030090497737556562,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 19,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 7,
+          "full_dense_rank": 10,
+          "bm25_score": 3.666992825390011,
+          "source_block_ids": [
+            "p0005_0000",
+            "p0005_0001"
+          ],
+          "bm25_rank": 7,
+          "dense_rank": 10,
+          "bm25_contribution": 0.014925373134328358,
+          "dense_contribution": 0.014285714285714285,
+          "rrf_score": 0.029211087420042643,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        10,
+        40,
+        14,
+        23,
+        19,
+        12,
+        1,
+        25,
+        4,
+        27
+      ],
+      "best_gold_hybrid_rank": 6,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 41,
+        "best_gold_hybrid_rank": 6,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    },
+    {
+      "case": "C02",
+      "stratum": "fusion_dense_top1",
+      "paper_id": "1810.13414",
+      "question_id": "3d5b4aa1ce99903b1fcd257c1e394f7990431d13",
+      "chunk_count": 174,
+      "candidate_k": 50,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0014_0000"
+        ],
+        [
+          "p0014_0000"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 4834,
+          "bge_reference_tokens": 1273
+        },
+        "anchor_first": {
+          "recall": 1.0,
+          "full_paragraph_recall": 1.0,
+          "all_gold_covered": 1.0,
+          "evidence_f1": 0.25,
+          "chunks": 7,
+          "characters": 7049,
+          "bge_reference_tokens": 1841
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0014_0000"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 89,
+          "gold_source_overlap": true,
+          "hybrid_rank": 7,
+          "full_bm25_rank": 32,
+          "full_dense_rank": 1,
+          "bm25_score": 2.153061626779749,
+          "source_block_ids": [
+            "p0014_0000",
+            "p0014_0001"
+          ],
+          "bm25_rank": 32,
+          "dense_rank": 1,
+          "bm25_contribution": 0.010869565217391304,
+          "dense_contribution": 0.01639344262295082,
+          "rrf_score": 0.027263007840342125,
+          "in_candidate_union": true
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 3,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 5,
+          "full_dense_rank": 3,
+          "bm25_score": 4.157784389161739,
+          "source_block_ids": [
+            "p0000_0010"
+          ],
+          "bm25_rank": 5,
+          "dense_rank": 3,
+          "bm25_contribution": 0.015384615384615385,
+          "dense_contribution": 0.015873015873015872,
+          "rrf_score": 0.03125763125763126,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 88,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 17,
+          "full_dense_rank": 2,
+          "bm25_score": 2.8783322438212946,
+          "source_block_ids": [],
+          "bm25_rank": 17,
+          "dense_rank": 2,
+          "bm25_contribution": 0.012987012987012988,
+          "dense_contribution": 0.016129032258064516,
+          "rrf_score": 0.029116045245077504,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 95,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 8,
+          "full_dense_rank": 17,
+          "bm25_score": 3.4922346468012915,
+          "source_block_ids": [
+            "p0014_0023"
+          ],
+          "bm25_rank": 8,
+          "dense_rank": 17,
+          "bm25_contribution": 0.014705882352941176,
+          "dense_contribution": 0.012987012987012988,
+          "rrf_score": 0.027692895339954164,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 114,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 10,
+          "full_dense_rank": 15,
+          "bm25_score": 3.392732035103574,
+          "source_block_ids": [
+            "p0015_0023"
+          ],
+          "bm25_rank": 10,
+          "dense_rank": 15,
+          "bm25_contribution": 0.014285714285714285,
+          "dense_contribution": 0.013333333333333334,
+          "rrf_score": 0.02761904761904762,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 128,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 6,
+          "full_dense_rank": 21,
+          "bm25_score": 4.0256879129829795,
+          "source_block_ids": [
+            "p0016_0006"
+          ],
+          "bm25_rank": 6,
+          "dense_rank": 21,
+          "bm25_contribution": 0.015151515151515152,
+          "dense_contribution": 0.012345679012345678,
+          "rrf_score": 0.02749719416386083,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        3,
+        88,
+        95,
+        114,
+        128,
+        87,
+        89,
+        138,
+        132,
+        1
+      ],
+      "best_gold_hybrid_rank": 7,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 174,
+        "best_gold_hybrid_rank": 7,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    },
+    {
+      "case": "C03",
+      "stratum": "hybrid_rank6_10",
+      "paper_id": "1708.05521",
+      "question_id": "0ac6fbd81e2dd95b800283dc7e59ce969d45fc02",
+      "chunk_count": 26,
+      "candidate_k": 26,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0002_0000"
+        ],
+        [
+          "p0002_0000"
+        ],
+        [
+          "p0002_0000"
+        ],
+        [
+          "p0002_0000"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 4275,
+          "bge_reference_tokens": 1119
+        },
+        "anchor_first": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 7,
+          "characters": 5438,
+          "bge_reference_tokens": 1437
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0002_0000"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 8,
+          "gold_source_overlap": true,
+          "hybrid_rank": 6,
+          "full_bm25_rank": 6,
+          "full_dense_rank": 8,
+          "bm25_score": 1.385206874078321,
+          "source_block_ids": [
+            "p0002_0000",
+            "p0002_0001"
+          ],
+          "bm25_rank": 6,
+          "dense_rank": 8,
+          "bm25_contribution": 0.015151515151515152,
+          "dense_contribution": 0.014705882352941176,
+          "rrf_score": 0.029857397504456328,
+          "in_candidate_union": true
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 13,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 4,
+          "full_dense_rank": 4,
+          "bm25_score": 1.7227015656354048,
+          "source_block_ids": [
+            "p0003_0000"
+          ],
+          "bm25_rank": 4,
+          "dense_rank": 4,
+          "bm25_contribution": 0.015625,
+          "dense_contribution": 0.015625,
+          "rrf_score": 0.03125,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 11,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 1,
+          "full_dense_rank": 10,
+          "bm25_score": 2.911763438545335,
+          "source_block_ids": [
+            "p0002_0006",
+            "p0002_0007"
+          ],
+          "bm25_rank": 1,
+          "dense_rank": 10,
+          "bm25_contribution": 0.01639344262295082,
+          "dense_contribution": 0.014285714285714285,
+          "rrf_score": 0.030679156908665108,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 16,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 9,
+          "full_dense_rank": 2,
+          "bm25_score": 0.5314044477209219,
+          "source_block_ids": [],
+          "bm25_rank": 9,
+          "dense_rank": 2,
+          "bm25_contribution": 0.014492753623188406,
+          "dense_contribution": 0.016129032258064516,
+          "rrf_score": 0.030621785881252923,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 17,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 2,
+          "full_dense_rank": 9,
+          "bm25_score": 2.5850825046560835,
+          "source_block_ids": [
+            "p0004_0000"
+          ],
+          "bm25_rank": 2,
+          "dense_rank": 9,
+          "bm25_contribution": 0.016129032258064516,
+          "dense_contribution": 0.014492753623188406,
+          "rrf_score": 0.030621785881252923,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 9,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 5,
+          "full_dense_rank": 7,
+          "bm25_score": 1.6722491642307813,
+          "source_block_ids": [
+            "p0002_0002",
+            "p0002_0003"
+          ],
+          "bm25_rank": 5,
+          "dense_rank": 7,
+          "bm25_contribution": 0.015384615384615385,
+          "dense_contribution": 0.014925373134328358,
+          "rrf_score": 0.030309988518943745,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        13,
+        11,
+        16,
+        17,
+        9,
+        8,
+        22,
+        18,
+        20,
+        19
+      ],
+      "best_gold_hybrid_rank": 6,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 26,
+        "best_gold_hybrid_rank": 6,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    },
+    {
+      "case": "C04",
+      "stratum": "hybrid_rank6_10",
+      "paper_id": "1908.07721",
+      "question_id": "0b10cfa61595b21bf3ff13b4df0fe1c17bbbf4e9",
+      "chunk_count": 63,
+      "candidate_k": 50,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0000_0006"
+        ],
+        [
+          "p0008_0000"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 4158,
+          "bge_reference_tokens": 1106
+        },
+        "anchor_first": {
+          "recall": 0.5,
+          "full_paragraph_recall": 0.5,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.18181818181818182,
+          "chunks": 10,
+          "characters": 6590,
+          "bge_reference_tokens": 1820
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0000_0006",
+        "p0008_0000"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 4,
+          "gold_source_overlap": true,
+          "hybrid_rank": 9,
+          "full_bm25_rank": 19,
+          "full_dense_rank": 9,
+          "bm25_score": 2.266389594998495,
+          "source_block_ids": [
+            "p0000_0004",
+            "p0000_0005",
+            "p0000_0006"
+          ],
+          "bm25_rank": 19,
+          "dense_rank": 9,
+          "bm25_contribution": 0.012658227848101266,
+          "dense_contribution": 0.014492753623188406,
+          "rrf_score": 0.02715098147128967,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 24,
+          "gold_source_overlap": true,
+          "hybrid_rank": 25,
+          "full_bm25_rank": 20,
+          "full_dense_rank": 27,
+          "bm25_score": 2.2201788156495303,
+          "source_block_ids": [
+            "p0008_0000",
+            "p0008_0001"
+          ],
+          "bm25_rank": 20,
+          "dense_rank": 27,
+          "bm25_contribution": 0.0125,
+          "dense_contribution": 0.011494252873563218,
+          "rrf_score": 0.02399425287356322,
+          "in_candidate_union": true
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 58,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 6,
+          "full_dense_rank": 2,
+          "bm25_score": 4.419989496612857,
+          "source_block_ids": [
+            "p0021_0000",
+            "p0021_0001"
+          ],
+          "bm25_rank": 6,
+          "dense_rank": 2,
+          "bm25_contribution": 0.015151515151515152,
+          "dense_contribution": 0.016129032258064516,
+          "rrf_score": 0.03128054740957967,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 3,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 9,
+          "full_dense_rank": 3,
+          "bm25_score": 3.1372305138628818,
+          "source_block_ids": [
+            "p0000_0003"
+          ],
+          "bm25_rank": 9,
+          "dense_rank": 3,
+          "bm25_contribution": 0.014492753623188406,
+          "dense_contribution": 0.015873015873015872,
+          "rrf_score": 0.03036576949620428,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 53,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 2,
+          "full_dense_rank": 12,
+          "bm25_score": 6.900664254793999,
+          "source_block_ids": [
+            "p0019_0000"
+          ],
+          "bm25_rank": 2,
+          "dense_rank": 12,
+          "bm25_contribution": 0.016129032258064516,
+          "dense_contribution": 0.013888888888888888,
+          "rrf_score": 0.030017921146953404,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 14,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 10,
+          "full_dense_rank": 5,
+          "bm25_score": 3.093229439897769,
+          "source_block_ids": [
+            "p0004_0000",
+            "p0004_0001"
+          ],
+          "bm25_rank": 10,
+          "dense_rank": 5,
+          "bm25_contribution": 0.014285714285714285,
+          "dense_contribution": 0.015384615384615385,
+          "rrf_score": 0.02967032967032967,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 43,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 13,
+          "full_dense_rank": 6,
+          "bm25_score": 2.7379328039414323,
+          "source_block_ids": [
+            "p0015_0000"
+          ],
+          "bm25_rank": 13,
+          "dense_rank": 6,
+          "bm25_contribution": 0.0136986301369863,
+          "dense_contribution": 0.015151515151515152,
+          "rrf_score": 0.028850145288501453,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        58,
+        3,
+        53,
+        14,
+        43,
+        39,
+        7,
+        37,
+        4,
+        47
+      ],
+      "best_gold_hybrid_rank": 9,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 63,
+        "best_gold_hybrid_rank": 9,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    },
+    {
+      "case": "C05",
+      "stratum": "outside_both_pools",
+      "paper_id": "1912.00342",
+      "question_id": "f52c9744a371104eb2677c181a7004f7a77d9dd3",
+      "chunk_count": 64,
+      "candidate_k": 50,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0018_0000",
+          "p0018_0001"
+        ],
+        [
+          "p0018_0000",
+          "p0018_0001"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 5188,
+          "bge_reference_tokens": 1386
+        },
+        "anchor_first": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 7,
+          "characters": 6575,
+          "bge_reference_tokens": 1752
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0018_0000",
+        "p0018_0001"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 59,
+          "gold_source_overlap": true,
+          "hybrid_rank": null,
+          "full_bm25_rank": 61,
+          "full_dense_rank": 52,
+          "bm25_score": 0.0,
+          "source_block_ids": [
+            "p0018_0000",
+            "p0018_0001"
+          ],
+          "bm25_rank": null,
+          "dense_rank": null,
+          "bm25_contribution": 0.0,
+          "dense_contribution": 0.0,
+          "rrf_score": null,
+          "in_candidate_union": false
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 56,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 5,
+          "full_dense_rank": 17,
+          "bm25_score": 2.8094862790383544,
+          "source_block_ids": [
+            "p0017_0027",
+            "p0017_0029",
+            "p0017_0031",
+            "p0017_0033",
+            "p0017_0035",
+            "p0017_0037"
+          ],
+          "bm25_rank": 5,
+          "dense_rank": 17,
+          "bm25_contribution": 0.015384615384615385,
+          "dense_contribution": 0.012987012987012988,
+          "rrf_score": 0.028371628371628373,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 40,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 7,
+          "full_dense_rank": 15,
+          "bm25_score": 2.2631345242338643,
+          "source_block_ids": [
+            "p0013_0002",
+            "p0013_0003",
+            "p0013_0005",
+            "p0013_0007",
+            "p0013_0009"
+          ],
+          "bm25_rank": 7,
+          "dense_rank": 15,
+          "bm25_contribution": 0.014925373134328358,
+          "dense_contribution": 0.013333333333333334,
+          "rrf_score": 0.028258706467661692,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 28,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 3,
+          "full_dense_rank": 21,
+          "bm25_score": 2.938924567799638,
+          "source_block_ids": [
+            "p0009_0000",
+            "p0009_0002",
+            "p0009_0004",
+            "p0009_0006",
+            "p0009_0008",
+            "p0009_0010",
+            "p0009_0012",
+            "p0009_0014",
+            "p0009_0016"
+          ],
+          "bm25_rank": 3,
+          "dense_rank": 21,
+          "bm25_contribution": 0.015873015873015872,
+          "dense_contribution": 0.012345679012345678,
+          "rrf_score": 0.02821869488536155,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 5,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 22,
+          "full_dense_rank": 3,
+          "bm25_score": 0.0,
+          "source_block_ids": [],
+          "bm25_rank": 22,
+          "dense_rank": 3,
+          "bm25_contribution": 0.012195121951219513,
+          "dense_contribution": 0.015873015873015872,
+          "rrf_score": 0.028068137824235385,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 1,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 1,
+          "full_dense_rank": 35,
+          "bm25_score": 3.2181731480652034,
+          "source_block_ids": [
+            "p0000_0000"
+          ],
+          "bm25_rank": 1,
+          "dense_rank": 35,
+          "bm25_contribution": 0.01639344262295082,
+          "dense_contribution": 0.010526315789473684,
+          "rrf_score": 0.026919758412424506,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        56,
+        40,
+        28,
+        5,
+        1,
+        31,
+        43,
+        54,
+        17,
+        10
+      ],
+      "best_gold_hybrid_rank": null,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 64,
+        "best_gold_hybrid_rank": 61,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    },
+    {
+      "case": "C06",
+      "stratum": "candidate_present_beyond_top10",
+      "paper_id": "1912.00239",
+      "question_id": "058b6e3fdbb607fa7dbfc688628b3e13e130c35a",
+      "chunk_count": 51,
+      "candidate_k": 50,
+      "rrf_constant": 60,
+      "reference_paragraph_sets": [
+        [
+          "p0013_0001",
+          "p0014_0001"
+        ],
+        [
+          "p0014_0001"
+        ]
+      ],
+      "baseline_context_metrics": {
+        "top5": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 5,
+          "characters": 5684,
+          "bge_reference_tokens": 1374
+        },
+        "anchor_first": {
+          "recall": 0.0,
+          "full_paragraph_recall": 0.0,
+          "all_gold_covered": 0.0,
+          "evidence_f1": 0.0,
+          "chunks": 7,
+          "characters": 6234,
+          "bge_reference_tokens": 1566
+        }
+      },
+      "gold_paragraph_ids": [
+        "p0013_0001",
+        "p0014_0001"
+      ],
+      "gold_chunks": [
+        {
+          "chunk_ordinal": 37,
+          "gold_source_overlap": true,
+          "hybrid_rank": 12,
+          "full_bm25_rank": 12,
+          "full_dense_rank": 16,
+          "bm25_score": 4.030546344670012,
+          "source_block_ids": [
+            "p0013_0000",
+            "p0013_0001"
+          ],
+          "bm25_rank": 12,
+          "dense_rank": 16,
+          "bm25_contribution": 0.013888888888888888,
+          "dense_contribution": 0.013157894736842105,
+          "rrf_score": 0.027046783625730993,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 40,
+          "gold_source_overlap": true,
+          "hybrid_rank": 29,
+          "full_bm25_rank": 23,
+          "full_dense_rank": 35,
+          "bm25_score": 3.4764632470812145,
+          "source_block_ids": [
+            "p0014_0001"
+          ],
+          "bm25_rank": 23,
+          "dense_rank": 35,
+          "bm25_contribution": 0.012048192771084338,
+          "dense_contribution": 0.010526315789473684,
+          "rrf_score": 0.022574508560558024,
+          "in_candidate_union": true
+        }
+      ],
+      "top5": [
+        {
+          "chunk_ordinal": 42,
+          "gold_source_overlap": false,
+          "hybrid_rank": 1,
+          "full_bm25_rank": 1,
+          "full_dense_rank": 3,
+          "bm25_score": 7.136494350667448,
+          "source_block_ids": [
+            "p0015_0000",
+            "p0015_0001"
+          ],
+          "bm25_rank": 1,
+          "dense_rank": 3,
+          "bm25_contribution": 0.01639344262295082,
+          "dense_contribution": 0.015873015873015872,
+          "rrf_score": 0.032266458495966696,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 46,
+          "gold_source_overlap": false,
+          "hybrid_rank": 2,
+          "full_bm25_rank": 2,
+          "full_dense_rank": 5,
+          "bm25_score": 6.916907980076173,
+          "source_block_ids": [
+            "p0017_0000"
+          ],
+          "bm25_rank": 2,
+          "dense_rank": 5,
+          "bm25_contribution": 0.016129032258064516,
+          "dense_contribution": 0.015384615384615385,
+          "rrf_score": 0.0315136476426799,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 2,
+          "gold_source_overlap": false,
+          "hybrid_rank": 3,
+          "full_bm25_rank": 10,
+          "full_dense_rank": 2,
+          "bm25_score": 4.44174186169354,
+          "source_block_ids": [
+            "p0000_0001"
+          ],
+          "bm25_rank": 10,
+          "dense_rank": 2,
+          "bm25_contribution": 0.014285714285714285,
+          "dense_contribution": 0.016129032258064516,
+          "rrf_score": 0.0304147465437788,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 1,
+          "gold_source_overlap": false,
+          "hybrid_rank": 4,
+          "full_bm25_rank": 3,
+          "full_dense_rank": 11,
+          "bm25_score": 6.816433583257487,
+          "source_block_ids": [
+            "p0000_0000"
+          ],
+          "bm25_rank": 3,
+          "dense_rank": 11,
+          "bm25_contribution": 0.015873015873015872,
+          "dense_contribution": 0.014084507042253521,
+          "rrf_score": 0.029957522915269395,
+          "in_candidate_union": true
+        },
+        {
+          "chunk_ordinal": 32,
+          "gold_source_overlap": false,
+          "hybrid_rank": 5,
+          "full_bm25_rank": 13,
+          "full_dense_rank": 4,
+          "bm25_score": 3.9835864718874023,
+          "source_block_ids": [
+            "p0011_0000"
+          ],
+          "bm25_rank": 13,
+          "dense_rank": 4,
+          "bm25_contribution": 0.0136986301369863,
+          "dense_contribution": 0.015625,
+          "rrf_score": 0.0293236301369863,
+          "in_candidate_union": true
+        }
+      ],
+      "hybrid_top10_ordinals": [
+        42,
+        46,
+        2,
+        1,
+        32,
+        8,
+        33,
+        3,
+        30,
+        7
+      ],
+      "best_gold_hybrid_rank": 12,
+      "counterfactual_full_candidate_pool": {
+        "candidate_k": 51,
+        "best_gold_hybrid_rank": 12,
+        "meaning": "Diagnostic recomputation using the same scores and RRF constant, with every chunk as a candidate"
+      }
+    }
+  ],
+  "diagnostic_context_rescues": {
+    "fusion_regression": {
+      "questions": 73,
+      "anchor_first_any_gold": 7,
+      "anchor_first_all_gold": 5.0
+    },
+    "all_miss": {
+      "questions": 190,
+      "anchor_first_any_gold": 33,
+      "anchor_first_all_gold": 13.0
+    }
+  },
+  "original_rankings_reproduced": true,
+  "gold_source_coverage_verified": true,
+  "scope": "Purposefully selected diagnostic cases; case observations do not establish population gains."
+}
