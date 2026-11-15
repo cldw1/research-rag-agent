@@ -4,7 +4,7 @@
 
 上传论文、Word 或 Markdown 文档，解析并建立知识索引后，通过多轮对话查找研究方法、实验结论和原文证据。系统将回答与文档位置关联，支持查看引用片段、恢复历史会话和导出 Markdown；同时提供 QASPER 数据集检索与章节感知实验。
 
-[快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [检索评测](docs/benchmark.md) · [章节实验](docs/experiments.md)
+[快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [实验结论](docs/experiment_summary.md) · [检索评测](docs/benchmark.md)
 
 ## 核心功能
 
@@ -118,11 +118,14 @@ BGE 首次使用会下载到 `models/embedding_cache/`；已有完整缓存后�
 
 Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，按论文聚类的配对 95% bootstrap 区间为 **[4.42, 9.26] 个百分点**。同一证据预算下，Anchor-First 的段落覆盖从 60.05% 增至 64.37%。配置、筛选、完整指标和上下文长度见 [实验报告](docs/benchmark.md) 与 [结构化结果](results/qasper_test_summary.json)。
 
-对 263 道失败案例进一步复现来源与排序，并在独立 Validation 的 841 题上比较融合参数。对照支持保留当前等权 RRF 默认配置，详见 [误差分析与参数验证](docs/retrieval_analysis.md)。
+Validation 的同一批 **841 题**分别用于融合参数和分块策略对照。融合验证支持保留等权 RRF、常数 60；分块对照结果如下：
 
-[六个代表性案例](docs/case_studies.md) 对照问题、Gold 与检索片段，解释融合退化、自然段合并及候选截断，并区分原始检索失误与证据扩展后的来源覆盖。
+| 策略 | Hybrid Hit@5 | 来源 Recall@5 | Anchor-First 完整段落 Recall | Chunk 数 |
+|---|---:|---:|---:|---:|
+| 自适应 | 73.72% | 61.86% | 61.37% | 11,956 |
+| 结构化 | 68.25% | 54.00% | 58.70% | 17,588 |
 
-[分块对照实验](docs/chunking_experiment.md) 在全部 841 道 Validation 文本证据问题上比较自适应与结构化分块，固定模型、融合参数和上下文上限，并报告来源覆盖、实际证据长度及索引成本。
+在当前模型、检索参数与证据上限下保留自适应分块。完整 [实验结论](docs/experiment_summary.md) 汇总数据范围与采用依据；[分块报告](docs/chunking_experiment.md) 提供配对区间和实际成本，[误差分析](docs/retrieval_analysis.md) 与 [六个原文案例](docs/case_studies.md) 区分原始排名、证据扩展和回答判断。
 
 ### HMC 章节感知检索
 
