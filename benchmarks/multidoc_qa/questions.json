@@ -1,0 +1,126 @@
+{
+  "schema_version": "multidoc-questions-v1",
+  "questions": [
+    {
+      "question_id": "md-01",
+      "question": "Compare which components are trained and frozen in RAG task fine-tuning versus LoRA. Explain any stated reason for keeping components fixed.",
+      "source_question_ids": [
+        "rag-04",
+        "lora-01"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-02",
+      "question": "What role do attention projections play in the Transformer multi-head mechanism, and which two projections receive LoRA in most experiments? Attribute each statement to its paper.",
+      "source_question_ids": [
+        "attention-06",
+        "lora-06"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-03",
+      "question": "Contrast RAG index replacement at inference with LoRA weight merging at deployment. What does each operation change?",
+      "source_question_ids": [
+        "rag-14",
+        "lora-07"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-04",
+      "question": "Distinguish the hardware and training schedule reported for Transformer from the GPU and number of trials used for the LoRA paper adapter-latency measurement. Do not equate training duration with inference latency.",
+      "source_question_ids": [
+        "attention-09",
+        "lora-10"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-05",
+      "question": "List the open-domain QA evaluation datasets and metric in RAG, and the model families and downstream benchmarks evaluated in LoRA. Keep the two evaluation settings separate.",
+      "source_question_ids": [
+        "rag-07",
+        "lora-09"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-06",
+      "question": "Report Transformer base/big English-German BLEU and the LoRA paper GPT-3 full-fine-tuning/LoRA training throughput. Why should these reported quantities not be treated as the same performance measure?",
+      "source_question_ids": [
+        "attention-12",
+        "lora-11"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-07",
+      "question": "State the sequence-length condition in the Transformer self-attention efficiency discussion and the LoRA limitation when merging different task updates for batching. Keep their conditions distinct.",
+      "source_question_ids": [
+        "attention-13",
+        "lora-12"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-08",
+      "question": "Does RAG retrieval guarantee unbiased factual answers, and does a small LoRA task checkpoint eliminate storage of the base model? Answer separately using each paper.",
+      "source_question_ids": [
+        "rag-13",
+        "lora-13"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-09",
+      "question": "Describe the RAG Wikipedia snapshot, passage size, corpus size and index, then the GPT-3 r=4 LoRA training-memory and task-checkpoint sizes. Distinguish retrieval storage from model-adaptation storage.",
+      "source_question_ids": [
+        "rag-06",
+        "lora-08"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-10",
+      "question": "What batch-size-one Transformer big inference latency and RAG-Sequence NQ k=5 mean query latency are reported in milliseconds? If either is unreported, say so separately; do not substitute another measurement.",
+      "source_question_ids": [
+        "attention-15",
+        "rag-15"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-11",
+      "question": "Report the Transformer training hardware and schedule. Separately, can the LoRA paper supply joules per generated token for GPT-3 r=4? Do not convert the other paper training duration into energy.",
+      "source_question_ids": [
+        "attention-09",
+        "lora-15"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    },
+    {
+      "question_id": "md-12",
+      "question": "Do the three papers report comparable deployment measurements: Transformer big batch-size-one latency, RAG-Sequence NQ k=5 mean latency, and GPT-3 r=4 LoRA energy per generated token? Identify missing measurements without inventing or ranking them.",
+      "source_question_ids": [
+        "attention-15",
+        "rag-15",
+        "lora-15"
+      ],
+      "review_status": "pending",
+      "comparison_note": "Keep paper identities, units and experimental conditions distinct. No cross-paper causal or quality ranking is implied."
+    }
+  ]
+}

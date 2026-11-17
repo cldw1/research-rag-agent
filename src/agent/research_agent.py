@@ -10,6 +10,8 @@ from src.agent.paper_outline_tool import PaperOutlineTool
 from src.agent.paper_search_tool import PaperSearchTool
 from src.agent.tool_schema import TOOLS
 from src.llm.provider import ModelError
+from src.generation.answer_policy import ANSWER_GROUNDING_RULES, policy_version
+from src.generation.citations import extract_citation_numbers
 
 
 def restore_registry(sources):
@@ -53,7 +55,8 @@ class ResearchAgent:
     max_rounds = 5
     max_tool_calls = 2
 
-    def __init__(self, provider, retriever, *, sources=()):
+    def __init__(self, provider, retriever, *, sources=(), answer_policy='legacy'):
+        self.answer_policy_version = policy_version(answer_policy)
         self.provider, self.retriever = provider, retriever
         self.paper_id = retriever.paper_id
         self.document_ids = tuple(getattr(retriever, "document_ids", (self.paper_id,)))
@@ -79,6 +82,8 @@ class ResearchAgent:
                 "For comparisons, distinguish each paper's findings and cite sources separately. "
                 "Check which documents have actual body evidence; explicitly state missing evidence and never infer another paper's results."
             )
+        if answer_policy == 'grounded':
+            self.system += f"\nAnswer policy: {self.answer_policy_version}\n{ANSWER_GROUNDING_RULES}"
 
     def _execute(self, call, sent):
         try:
@@ -219,10 +224,11 @@ class ResearchAgent:
             raise ModelError("empty_answer", "模型未返回有效回答")
         current.append(self._state_message({"role": "assistant", "content": answer}, response))
         validate_turn(current)
-        numbers = sorted({int(value) for value in re.findall(r"\[(\d+)\]", answer)})
+        numbers = extract_citation_numbers(answer)
         unknown = [number for number in numbers if self.registry.get_source(number) is None]
         known = [self.registry.get_source(number) for number in numbers if number not in unknown]
         return {"question": question, "answer": answer, "messages": current,
+                "answer_policy_version": self.answer_policy_version,
                 "selected_document_ids": list(self.document_ids),
                 "evidence_document_ids": sorted({did for did, _ in self.sent_this_turn}),
                 "missing_document_ids": sorted(set(self.document_ids) - {did for did, _ in self.sent_this_turn}),

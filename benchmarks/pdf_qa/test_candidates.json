@@ -1,0 +1,4343 @@
+{
+  "schema_version": "pdf-qa-v1",
+  "dataset_id": "research-pdf-qa-150-v2-test",
+  "status": "annotation_candidate",
+  "annotation_policy": "AI-authored and checked against pinned PDF text; independent human review pending. Test candidates are not scored.",
+  "selection_sha256": "13f2170bd361ed9c39f05f16b85e7b0604ba28f9ea6c1addb729495c1122dba3",
+  "papers": [
+    {
+      "paper_id": "bert",
+      "arxiv_version": "1810.04805v2",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "split": "test",
+      "topic": "language pretraining",
+      "source_url": "https://arxiv.org/pdf/1810.04805v2",
+      "filename": "bert.pdf",
+      "pdf_sha256": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+      "page_count": 16,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "adam",
+      "arxiv_version": "1412.6980v9",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "split": "test",
+      "topic": "stochastic optimization",
+      "source_url": "https://arxiv.org/pdf/1412.6980v9",
+      "filename": "adam.pdf",
+      "pdf_sha256": "eab9c73ae2ceda884b94830bda99312254bac4806f6c9f045cbab90721ecda31",
+      "page_count": 15,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "resnet",
+      "arxiv_version": "1512.03385v1",
+      "title": "Deep Residual Learning for Image Recognition",
+      "split": "test",
+      "topic": "computer vision",
+      "source_url": "https://arxiv.org/pdf/1512.03385v1",
+      "filename": "resnet.pdf",
+      "pdf_sha256": "1e0651b6810ecba34a3dbc5b5b0209226f889004607c1f203540a48d64e5a93a",
+      "page_count": 12,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "batchnorm",
+      "arxiv_version": "1502.03167v3",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "split": "test",
+      "topic": "normalization",
+      "source_url": "https://arxiv.org/pdf/1502.03167v3",
+      "filename": "batchnorm.pdf",
+      "pdf_sha256": "bdc69e0b568f41d8d3181cc9077a461f58fcdd1c70c9f49efe60a05ee6109655",
+      "page_count": 11,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "simcse",
+      "arxiv_version": "2104.08821v4",
+      "title": "SimCSE: Simple Contrastive Learning of Sentence Embeddings",
+      "split": "test",
+      "topic": "sentence embeddings",
+      "source_url": "https://arxiv.org/pdf/2104.08821v4",
+      "filename": "simcse.pdf",
+      "pdf_sha256": "964f6eaf602bcded15e77ea846355a2174887f90e862d501dd4cb3229853877f",
+      "page_count": 17,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "flashattention",
+      "arxiv_version": "2205.14135v2",
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "split": "test",
+      "topic": "GPU algorithms",
+      "source_url": "https://arxiv.org/pdf/2205.14135v2",
+      "filename": "flashattention.pdf",
+      "pdf_sha256": "ca7f9fda10b90fc05dd291a3accc85e9c1a4a860b99b31928dab03ed3fcb14e4",
+      "page_count": 34,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    },
+    {
+      "paper_id": "calibration",
+      "arxiv_version": "1706.04599v2",
+      "title": "On Calibration of Modern Neural Networks",
+      "split": "test",
+      "topic": "probability calibration",
+      "source_url": "https://arxiv.org/pdf/1706.04599v2",
+      "filename": "calibration.pdf",
+      "pdf_sha256": "cb654a65acb785ed4387d6c2db1301d065075dddc2d363676836a2f2a14bc50d",
+      "page_count": 14,
+      "locator_engine": "pymupdf-2.0",
+      "qasper_id_overlap": {
+        "train": false,
+        "validation": false,
+        "test": false
+      }
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "bert-01",
+      "paper_id": "bert",
+      "question": "What layer, hidden-size, attention-head and parameter counts define BERT base and large?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "base：12 层、768 隐层、12 头、110M 参数；large：24 层、1024 隐层、16 头、340M 参数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 25,
+          "bbox": [
+            307.2760009765625,
+            568.5677490234375,
+            525.5484619140625,
+            618.968505859375
+          ],
+          "char_start": 0,
+          "char_end": 160,
+          "text_sha256": "ff6e951e0177302275cc131ba1b7f48efa7be3bf45209561ac630a8c0a3726f2",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-02",
+      "paper_id": "bert",
+      "question": "What tokenizer vocabulary size and special classification/separator tokens are used?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "约 30000 WordPiece；CLS 用于序列表示，SEP 区分文本段。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 2,
+          "bbox": [
+            71.99998474121094,
+            202.39471435546875,
+            290.2729187011719,
+            416.7815246582031
+          ],
+          "char_start": 0,
+          "char_end": 731,
+          "text_sha256": "dd6ee0869dbc36e44f4347e2a064a7d8e28c4c0d5800b7ac840b04ff3d940b17",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-03",
+      "paper_id": "bert",
+      "question": "What corpora and sizes are used for pretraining?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "BooksCorpus 约 8 亿词，英文 Wikipedia 约 25 亿词。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 9,
+          "bbox": [
+            72.0,
+            320.96478271484375,
+            290.2693176269531,
+            466.3395080566406
+          ],
+          "char_start": 0,
+          "char_end": 520,
+          "text_sha256": "c234f584447344ac8777c5ff594e881ea08535bd2053ca0dd00b816f6f3822a6",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-04",
+      "paper_id": "bert",
+      "question": "Which tokens contribute to the masked-language-model prediction loss?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "随机选择 15% 的 WordPiece 位置，只预测这些被选择位置的原词，而非重建整个输入。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 1,
+          "bbox": [
+            307.2760009765625,
+            66.37065887451172,
+            525.5452270507812,
+            252.2634735107422
+          ],
+          "char_start": 0,
+          "char_end": 670,
+          "text_sha256": "b62aa342e9f8cb1422a2dcffdb013a8752a98b6e1adf1719921e97e1a80ab400",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-05",
+      "paper_id": "bert",
+      "question": "How are the selected MLM positions corrupted to reduce the train-finetune mismatch?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "选中位置中 80% 换为 MASK、10% 换为随机词、10% 保持原词，缓解微调时无 MASK 的差异。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 3,
+          "bbox": [
+            307.2760009765625,
+            256.05975341796875,
+            525.548828125,
+            455.5015563964844
+          ],
+          "char_start": 0,
+          "char_end": 704,
+          "text_sha256": "03df095dcdcc0c622311344abf75930eef33239114c0843a2cc5b90df3bbac53",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-06",
+      "paper_id": "bert",
+      "question": "How are positive and negative examples constructed for next-sentence prediction?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "50% 使用真实后续句，50% 使用语料中随机句，分别标注 IsNext 和 NotNext。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 8,
+          "bbox": [
+            307.2760009765625,
+            471.96990966796875,
+            525.5462036132812,
+            725.7385864257812
+          ],
+          "char_start": 0,
+          "char_end": 911,
+          "text_sha256": "c48ac5c64702f9716a20834e510869d4a67c7498f26cf65294ca9260998d8433",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-07",
+      "paper_id": "bert",
+      "question": "Are BERT encoder parameters frozen during downstream fine-tuning?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "不冻结；接入任务输入输出后，端到端微调全部参数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 17,
+          "bbox": [
+            71.99996948242188,
+            259.85736083984375,
+            525.5473022460938,
+            316.5849609375
+          ],
+          "char_start": 0,
+          "char_end": 456,
+          "text_sha256": "2704ab7d3008f09bd62977fd8c1aec87b746959f9a6a586ae1a31b59a121aab0",
+          "section": "Figure 1 caption"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 18,
+          "bbox": [
+            72.00001525878906,
+            674.2748413085938,
+            290.2706604003906,
+            765.3225708007812
+          ],
+          "char_start": 0,
+          "char_end": 337,
+          "text_sha256": "3206f839b8b4c8a9730500b94bcbe4561204d1674e834c6182744c1a1ac81ab7",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-08",
+      "paper_id": "bert",
+      "question": "How is the GLUE classification head attached and trained?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "将 CLS 最终隐向量接入 K×H 的分类权重，用 softmax 分类损失微调。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 15,
+          "bbox": [
+            307.2760009765625,
+            584.6339721679688,
+            525.5490112304688,
+            716.3296508789062
+          ],
+          "char_start": 0,
+          "char_end": 451,
+          "text_sha256": "5331fa451d42baaae3749424754b6f6d3c5802fe8ed73723b511ac02995acbc6",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-09",
+      "paper_id": "bert",
+      "question": "How does the SQuAD 2.0 model represent a question with no answer span?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "将无答案的起止位置放在 CLS，并比较无答案分数与最佳非空跨度分数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 25,
+          "bbox": [
+            72.0,
+            606.024658203125,
+            290.2702941894531,
+            724.17138671875
+          ],
+          "char_start": 0,
+          "char_end": 430,
+          "text_sha256": "e1d2fc684f7e2d8226f999faf32e0cccff28a02b1c24d4b517018bf1006e6dee",
+          "section": "4.3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-10",
+      "paper_id": "bert",
+      "question": "What pretraining batch size and number of optimization steps are used?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "batch 为 256 个序列，训练 100 万步；文中给出每批 256×512 token 的规模。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 13,
+          "block_index": 44,
+          "bbox": [
+            72.00004577636719,
+            728.4706420898438,
+            290.269287109375,
+            765.3223876953125
+          ],
+          "char_start": 0,
+          "char_end": 140,
+          "text_sha256": "2793b22296e50f666d59f122a129a41c0ded5b11b311f42ea4e150120c3fef3c",
+          "section": "A.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-11",
+      "paper_id": "bert",
+      "question": "What Adam settings, warmup and weight decay are reported for pretraining?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "学习率 1e-4，beta1=0.9、beta2=0.999，L2 权重衰减 0.01；前 10000 步预热，随后线性衰减。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 13,
+          "block_index": 30,
+          "bbox": [
+            307.2760009765625,
+            265.9156494140625,
+            525.546630859375,
+            411.1604309082031
+          ],
+          "char_start": 0,
+          "char_end": 489,
+          "text_sha256": "f1d0bef875af9df45f6a8f77975186a23fe667febc141f62bda89ec6a7264cd8",
+          "section": "A.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-12",
+      "paper_id": "bert",
+      "question": "What TPU configurations and pretraining duration are reported for base and large?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "base 使用 4 个 Cloud TPU（16 芯片），large 使用 16 个（64 芯片）；各训练约 4 天。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 13,
+          "block_index": 34,
+          "bbox": [
+            307.27606201171875,
+            415.4957275390625,
+            525.54541015625,
+            479.4444885253906
+          ],
+          "char_start": 0,
+          "char_end": 213,
+          "text_sha256": "8d24696e3cb922893ba77308947ce5d699672ed12afdb82bb85152d1b2cf3fbf",
+          "section": "A.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-13",
+      "paper_id": "bert",
+      "question": "How does the bidirectional pretraining design connect to the downstream GLUE sequence representation?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "预训练通过 MLM 使用左右文信息；GLUE 使用 CLS 的最终表示接分类头，并微调。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 1,
+          "bbox": [
+            307.2760009765625,
+            66.37065887451172,
+            525.5452270507812,
+            252.2634735107422
+          ],
+          "char_start": 0,
+          "char_end": 670,
+          "text_sha256": "b62aa342e9f8cb1422a2dcffdb013a8752a98b6e1adf1719921e97e1a80ab400",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 15,
+          "bbox": [
+            307.2760009765625,
+            584.6339721679688,
+            525.5490112304688,
+            716.3296508789062
+          ],
+          "char_start": 0,
+          "char_end": 451,
+          "text_sha256": "5331fa451d42baaae3749424754b6f6d3c5802fe8ed73723b511ac02995acbc6",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-14",
+      "paper_id": "bert",
+      "question": "How does pretraining differ from fine-tuning in both input corruption and parameter updating?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "预训练选择位置并按 80/10/10 扰动；微调不使用 MASK 扰动，端到端更新参数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 3,
+          "bbox": [
+            307.2760009765625,
+            256.05975341796875,
+            525.548828125,
+            455.5015563964844
+          ],
+          "char_start": 0,
+          "char_end": 704,
+          "text_sha256": "03df095dcdcc0c622311344abf75930eef33239114c0843a2cc5b90df3bbac53",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 18,
+          "bbox": [
+            72.00001525878906,
+            674.2748413085938,
+            290.2706604003906,
+            765.3225708007812
+          ],
+          "char_start": 0,
+          "char_end": 337,
+          "text_sha256": "3206f839b8b4c8a9730500b94bcbe4561204d1674e834c6182744c1a1ac81ab7",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "bert-15",
+      "paper_id": "bert",
+      "question": "What total pretraining energy consumption in kWh is reported for BERT large?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "文中未给出该总能耗，训练芯片数和天数不能替代 kWh。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "已核查预训练附录与 energy、kWh、watt 等全文关键词；需独立确认能耗未报告。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "已核查预训练附录与 energy、kWh、watt 等全文关键词；需独立确认能耗未报告。"
+      }
+    },
+    {
+      "question_id": "adam-01",
+      "paper_id": "adam",
+      "question": "Which two earlier optimizers motivate Adam and what situations motivate combining them?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "AdaGrad 适合稀疏梯度，RMSProp 适合在线和非平稳目标；Adam 试图结合二者优点。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 10,
+          "bbox": [
+            104.9591293334961,
+            610.9503784179688,
+            490.3218688964844,
+            729.2769775390625
+          ],
+          "char_start": 0,
+          "char_end": 1004,
+          "text_sha256": "65ae051d059024fdaf0f826f160830a6147b6c11c9acb21ce0639ef85271b366",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-02",
+      "paper_id": "adam",
+      "question": "What do the first and second running moments estimate, and is the second a centered variance?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "分别估计梯度均值和梯度平方的二阶原始矩；后者不是中心化方差。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 12,
+          "bbox": [
+            104.95906829833984,
+            556.8114624023438,
+            490.3228759765625,
+            669.1171875
+          ],
+          "char_start": 0,
+          "char_end": 745,
+          "text_sha256": "e351c53d866d6f18457e3511ff29a4b6526ebdd90f4d7f99138e5b526726e090",
+          "section": "2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-03",
+      "paper_id": "adam",
+      "question": "What default learning rate, decay coefficients and epsilon are recommended for the tested problems?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "alpha=0.001，beta1=0.9，beta2=0.999，epsilon=1e-8；是文中测试问题的默认值。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 2,
+          "bbox": [
+            104.95903778076172,
+            129.25521850585938,
+            490.3208312988281,
+            163.41993713378906
+          ],
+          "char_start": 0,
+          "char_end": 207,
+          "text_sha256": "ebb54007bec3aa53c4d1514d99634ff4cb501c6e9edeb9daa591d4189e9f14bf",
+          "section": "Algorithm 1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-04",
+      "paper_id": "adam",
+      "question": "How are the running moments initialized and what initial bias does this introduce?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "两个矩初值为零，早期估计因此向零偏，beta 接近 1 时尤其明显。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 4,
+          "bbox": [
+            114.65432739257812,
+            213.82009887695312,
+            263.7812805175781,
+            262.4687805175781
+          ],
+          "char_start": 0,
+          "char_end": 126,
+          "text_sha256": "16494ac971be6f8b698f677aec3d1ae99cd1117ba5d4f316ab32bd627489d4c9",
+          "section": "Algorithm 1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 2,
+          "block_index": 12,
+          "bbox": [
+            104.95906829833984,
+            556.8114624023438,
+            490.3228759765625,
+            669.1171875
+          ],
+          "char_start": 0,
+          "char_end": 745,
+          "text_sha256": "e351c53d866d6f18457e3511ff29a4b6526ebdd90f4d7f99138e5b526726e090",
+          "section": "2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-05",
+      "paper_id": "adam",
+      "question": "Which divisors correct the first and second moment initialization biases?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "分别除以 1-beta1^t 和 1-beta2^t，再用于参数更新。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 6,
+          "bbox": [
+            124.34851837158203,
+            291.9896545410156,
+            423.8284606933594,
+            340.3091735839844
+          ],
+          "char_start": 0,
+          "char_end": 59,
+          "text_sha256": "e8900a0d414088534531fc94af7ddc1fd3039480431709978233aebce86e3b84",
+          "section": "Algorithm 1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 2,
+          "block_index": 7,
+          "bbox": [
+            124.34849548339844,
+            302.6541442871094,
+            390.41607666015625,
+            350.97369384765625
+          ],
+          "char_start": 0,
+          "char_end": 63,
+          "text_sha256": "9d0c26f75d48937bfa14744179fb7231871548d61e7f5adff7a7eb60869c8d22",
+          "section": "Algorithm 1"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 2,
+          "block_index": 8,
+          "bbox": [
+            114.65431213378906,
+            313.31866455078125,
+            411.4381103515625,
+            362.8119812011719
+          ],
+          "char_start": 0,
+          "char_end": 146,
+          "text_sha256": "3c900ee9bfefb2db2ec990f0218ecc52e9b63026d1604ea4ca52dfec4b92dce1",
+          "section": "Algorithm 1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "算法公式已目视核对；原始 PDF 将幂指数拆分在多个文字块中。"
+    },
+    {
+      "question_id": "adam-06",
+      "paper_id": "adam",
+      "question": "How does the paper distinguish Adam from RMSProp with momentum?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "Adam 直接用梯度的一二阶矩估计更新，RMSProp momentum 对已缩放梯度使用动量；后者缺少同样的初始化偏差修正。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 2,
+          "bbox": [
+            104.95903778076172,
+            213.4846954345703,
+            490.32208251953125,
+            300.166748046875
+          ],
+          "char_start": 0,
+          "char_end": 730,
+          "text_sha256": "f160d8bf635f3d797120004a852431746570e9cc4aa3166e43a6c93282fb121a",
+          "section": "5"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-07",
+      "paper_id": "adam",
+      "question": "What quantity is used to evaluate the online convex optimization analysis?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "使用累计 regret，与同一可行集中的最佳固定参数比较累计损失。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 2,
+          "bbox": [
+            104.9589614868164,
+            138.85409545898438,
+            490.32232666015625,
+            214.52359008789062
+          ],
+          "char_start": 0,
+          "char_end": 615,
+          "text_sha256": "4f30421f771de0c45d9a7fb6a1e3752f32ef4a2c0c83af9433a0a776fbf05136",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-08",
+      "paper_id": "adam",
+      "question": "What controls are used when comparing optimizers in the empirical study?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "使用相同的参数初始化，对学习率、动量等做密集网格搜索，报告各自最佳配置。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 24,
+          "bbox": [
+            104.95901489257812,
+            511.5745544433594,
+            490.32171630859375,
+            544.5849609375
+          ],
+          "char_start": 0,
+          "char_end": 248,
+          "text_sha256": "9f074b82abd66c1a5585e7c91d7efa04d3e0144222cbec3eb3626a0df2d592e9",
+          "section": "6"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-09",
+      "paper_id": "adam",
+      "question": "How is the MNIST logistic-regression experiment configured and which optimizers are compared?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "L2 正则多类逻辑回归，784 维图像输入，batch=128；比较 Adam、Nesterov SGD 和 AdaGrad。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 27,
+          "bbox": [
+            104.9590072631836,
+            577.4525756835938,
+            490.32159423828125,
+            622.185302734375
+          ],
+          "char_start": 0,
+          "char_end": 338,
+          "text_sha256": "a41ac5b53b3de892c34802955b84f74c4588d2514a55ca2419096e2bb76c50aa",
+          "section": "6.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 29,
+          "bbox": [
+            104.9590072631836,
+            610.5030517578125,
+            490.32177734375,
+            667.0339965820312
+          ],
+          "char_start": 0,
+          "char_end": 391,
+          "text_sha256": "84ce1bdbf1130db9aa1092cee534f332be439c2aea4d635a48247faf159c8c49",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-10",
+      "paper_id": "adam",
+      "question": "How are sparse IMDB review features constructed and what dropout setting is discussed?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "使用最高频 10000 词的稀疏词袋；讨论对特征施加 50% dropout 防止过拟合。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 31,
+          "bbox": [
+            104.95903778076172,
+            694.218505859375,
+            490.3217468261719,
+            748.5589599609375
+          ],
+          "char_start": 0,
+          "char_end": 475,
+          "text_sha256": "e5e95cf111d49a5fa15d31278a6b5833406f4be659232e1d4b4d8e052c14774f",
+          "section": "6.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 23,
+          "bbox": [
+            104.95906066894531,
+            330.0722351074219,
+            490.32171630859375,
+            384.4126892089844
+          ],
+          "char_start": 0,
+          "char_end": 410,
+          "text_sha256": "a709ee1a14e20a091065726bb8d2405cf72b3c98b5bcb4b9699b32750bef0a50",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-11",
+      "paper_id": "adam",
+      "question": "What VAE architecture is used to study the bias-correction ablation?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "单隐层 500 个 softplus 单元，50 维球形高斯潜变量；改变 beta1、beta2 和学习率。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 8,
+          "block_index": 9,
+          "bbox": [
+            104.95892333984375,
+            368.1098937988281,
+            490.3218688964844,
+            465.10748291015625
+          ],
+          "char_start": 0,
+          "char_end": 879,
+          "text_sha256": "6e9c42c9abed28dd7dc5912c0cab19a9d6267b2659882ad171879b9585f9a5f8",
+          "section": "6.4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-12",
+      "paper_id": "adam",
+      "question": "What norm defines AdaMax and which default hyperparameters are given?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "基于无穷范数；alpha=0.002，beta1=0.9，beta2=0.999。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 9,
+          "block_index": 1,
+          "bbox": [
+            104.95903015136719,
+            118.24166107177734,
+            490.3185119628906,
+            152.7554473876953
+          ],
+          "char_start": 0,
+          "char_end": 205,
+          "text_sha256": "6985eedf974a9c62abaf72b6b29f748d2ef4264ecab350a6da1db830642bbb93",
+          "section": "Algorithm 2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-13",
+      "paper_id": "adam",
+      "question": "How does the explanation of initialization bias relate to the VAE ablation when beta2 is close to one?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "零初始化使早期矩估计偏小；VAE 消融中 beta2 接近 1 且不修正时出现早期不稳定。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 12,
+          "bbox": [
+            104.95906829833984,
+            556.8114624023438,
+            490.3228759765625,
+            669.1171875
+          ],
+          "char_start": 0,
+          "char_end": 745,
+          "text_sha256": "e351c53d866d6f18457e3511ff29a4b6526ebdd90f4d7f99138e5b526726e090",
+          "section": "2"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 8,
+          "block_index": 9,
+          "bbox": [
+            104.95892333984375,
+            368.1098937988281,
+            490.3218688964844,
+            465.10748291015625
+          ],
+          "char_start": 0,
+          "char_end": 879,
+          "text_sha256": "6e9c42c9abed28dd7dc5912c0cab19a9d6267b2659882ad171879b9585f9a5f8",
+          "section": "6.4"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 8,
+          "block_index": 10,
+          "bbox": [
+            104.95890808105469,
+            469.9060363769531,
+            490.3216552734375,
+            524.2464599609375
+          ],
+          "char_start": 0,
+          "char_end": 481,
+          "text_sha256": "948747bf5935d64e6bbfec1089cf7a91f7471d585dc8129cc1bac48a9c0f6c9c",
+          "section": "6.4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "adam-14",
+      "paper_id": "adam",
+      "question": "Does the convex regret analysis by itself prove convergence for all deep-network experiments in the paper?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "不能；理论段讨论凸目标并作有界梯度、参数距离等假设，神经网络实验不能据此得到无条件收敛保证。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 2,
+          "bbox": [
+            104.9589614868164,
+            138.85409545898438,
+            490.32232666015625,
+            214.52359008789062
+          ],
+          "char_start": 0,
+          "char_end": 615,
+          "text_sha256": "4f30421f771de0c45d9a7fb6a1e3752f32ef4a2c0c83af9433a0a776fbf05136",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 16,
+          "bbox": [
+            104.95894622802734,
+            321.8230285644531,
+            490.3203125,
+            392.64111328125
+          ],
+          "char_start": 0,
+          "char_end": 367,
+          "text_sha256": "77ec8c9d4d011d3474f6dacf52a3faef7d77ddc6213a87628d86c18d9afaf987",
+          "section": "Theorem 4.1"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 5,
+          "block_index": 23,
+          "bbox": [
+            104.95901489257812,
+            463.0990905761719,
+            490.32183837890625,
+            506.7749938964844
+          ],
+          "char_start": 0,
+          "char_end": 327,
+          "text_sha256": "3143c975f4d86a279a4ef51feaab713f25dfb35adf99ce525b0868e104d13a76",
+          "section": "6"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "仅核对原文的分析范围，不将该早期理论陈述表述为后来已确立的普遍保证。"
+    },
+    {
+      "question_id": "adam-15",
+      "paper_id": "adam",
+      "question": "What GPU energy consumption in joules per MNIST training step is reported for Adam?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "未报告该设置的每步 GPU 能耗，优化迭代速度不能替代能耗。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "已检索 energy、joule、watt、power 并核查 MNIST 实验，未见该数值指标。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "已检索 energy、joule、watt、power 并核查 MNIST 实验，未见该数值指标。"
+      }
+    },
+    {
+      "question_id": "batchnorm-01",
+      "paper_id": "batchnorm",
+      "question": "How do the authors define internal covariate shift?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "作者将其定义为训练中参数变化引起的网络激活分布变化；应归属于本文解释。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 2,
+          "bbox": [
+            311.0394287109375,
+            80.94940185546875,
+            540.2100219726562,
+            273.64019775390625
+          ],
+          "char_start": 0,
+          "char_end": 893,
+          "text_sha256": "62a78c08ad0da15e32fb3cc6ecfde9ac2ab2cb7398b8ece7e1ed36f7773e1ef4",
+          "section": "2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-02",
+      "paper_id": "batchnorm",
+      "question": "Why does BatchNorm use per-feature mini-batch statistics instead of full whitening?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "完整协方差及其逆平方根计算昂贵；逐维均值方差更简单，batch 小于维数时联合协方差还可能奇异。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 11,
+          "bbox": [
+            72.0,
+            175.149169921875,
+            301.27764892578125,
+            296.0797119140625
+          ],
+          "char_start": 0,
+          "char_end": 568,
+          "text_sha256": "473b9b2659decf6e5b7e9ba15bfa489969e6f7dd0e054ea0d5969d5c564df731",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 3,
+          "block_index": 12,
+          "bbox": [
+            311.0400695800781,
+            149.2291259765625,
+            540.1978149414062,
+            317.9194641113281
+          ],
+          "char_start": 0,
+          "char_end": 810,
+          "text_sha256": "e4cac79e41c933f304a1d654cc2445673258109b4be0038fd6818a6481b0809a",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-03",
+      "paper_id": "batchnorm",
+      "question": "What do gamma and beta do and how do they help preserve representational capacity?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "对归一化激活进行可学习的缩放与平移，可恢复原始激活，避免强制归一化限制表达。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 0,
+          "bbox": [
+            311.04010009765625,
+            35.4693603515625,
+            540.2759399414062,
+            60.759525299072266
+          ],
+          "char_start": 0,
+          "char_end": 116,
+          "text_sha256": "209f1dfb3a2c620b0e8ff189467d0bfcff0213b48df22a6bf7f14050d1e3b6ca",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 3,
+          "block_index": 4,
+          "bbox": [
+            311.03997802734375,
+            89.4693603515625,
+            540.2496948242188,
+            126.63922119140625
+          ],
+          "char_start": 0,
+          "char_end": 149,
+          "text_sha256": "3c58c76427535080fb242bf5efed8fdc9b80814e2b30feeae7d7c40557388546",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 3,
+          "block_index": 7,
+          "bbox": [
+            311.0400390625,
+            113.3489990234375,
+            540.2120361328125,
+            150.519287109375
+          ],
+          "char_start": 0,
+          "char_end": 110,
+          "text_sha256": "497f34cc15a4ff16fcd0f907ba4375bf55747b10d8933db50f5372f20fec2e2c",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-04",
+      "paper_id": "batchnorm",
+      "question": "Why is epsilon added to the mini-batch variance?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "用于数值稳定。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 19,
+          "bbox": [
+            311.039794921875,
+            448.50946044921875,
+            540.1294555664062,
+            485.6797180175781
+          ],
+          "char_start": 0,
+          "char_end": 171,
+          "text_sha256": "0c9965c64ca6f0365e32d9f6496278fa256a3ddac464d2e6faffbf5bd92872fc",
+          "section": "3 / Algorithm 1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-05",
+      "paper_id": "batchnorm",
+      "question": "Why can training-time outputs depend on other batch examples while inference is deterministic?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "训练使用当前 batch 统计，带来样本间依赖和随机性；推理改用固定总体统计，只依赖当前输入。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 0,
+          "bbox": [
+            311.0393371582031,
+            35.4693603515625,
+            540.3295288085938,
+            108.51934814453125
+          ],
+          "char_start": 0,
+          "char_end": 305,
+          "text_sha256": "edaab6024c3d4ebf2d0d09181830fff16bf7c01693ae22525c7c06f10db04a1e",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 4,
+          "bbox": [
+            71.99974060058594,
+            35.4693603515625,
+            301.1707458496094,
+            205.42178344726562
+          ],
+          "char_start": 0,
+          "char_end": 668,
+          "text_sha256": "60a20dcd9d66e55a75fa38dfbb375165603b3aa99dee419148c503d81470d514",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 5,
+          "block_index": 20,
+          "bbox": [
+            311.04010009765625,
+            489.5491943359375,
+            540.3956298828125,
+            598.4796752929688
+          ],
+          "char_start": 0,
+          "char_end": 495,
+          "text_sha256": "dec0d24f06d876906623928819ad394d9cdf52aa5ac4bf8e11dc3456a4c9d46e",
+          "section": "3.4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-06",
+      "paper_id": "batchnorm",
+      "question": "How can the normalization and learned affine transform be combined at inference?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "固定均值方差后归一化为线性变换，可与 gamma 缩放和 beta 平移合并为一个线性变换。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 9,
+          "bbox": [
+            311.0401611328125,
+            197.34930419921875,
+            540.2103881835938,
+            294.27984619140625
+          ],
+          "char_start": 0,
+          "char_end": 447,
+          "text_sha256": "e543275a1db5730e6621fc7516243c2341fb1493b89c1606f0344a966bef2c3b",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-07",
+      "paper_id": "batchnorm",
+      "question": "Over which axes is convolutional BatchNorm computed and how many affine parameters are learned?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "同一特征图跨 batch 和全部空间位置共同归一化，有效样本数 m*p*q；每个特征图一对 gamma、beta。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 18,
+          "bbox": [
+            71.99943542480469,
+            361.5094299316406,
+            301.3282775878906,
+            530.1996459960938
+          ],
+          "char_start": 0,
+          "char_end": 800,
+          "text_sha256": "438264a6fc6a9a98b5aa4044694aa787360b10388dd75b4483ea2b6558838c8a",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-08",
+      "paper_id": "batchnorm",
+      "question": "Where is BatchNorm inserted relative to the linear transform and nonlinearity?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "对 Wu+b 归一化，放在非线性激活之前。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 12,
+          "bbox": [
+            72.00015258789062,
+            90.9091796875,
+            301.4499206542969,
+            247.59954833984375
+          ],
+          "char_start": 0,
+          "char_end": 737,
+          "text_sha256": "17c2023320c8168e815bcfa434eb62953b75fb5940d6a442dd75dd5cdc43a202",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-09",
+      "paper_id": "batchnorm",
+      "question": "Why can the bias before BatchNorm be omitted?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "减均值会抵消该偏置，其作用可由 beta 承担。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 13,
+          "bbox": [
+            71.9998779296875,
+            246.30938720703125,
+            301.3294677734375,
+            295.47967529296875
+          ],
+          "char_start": 0,
+          "char_end": 218,
+          "text_sha256": "954682959f470a4bdf8a25a5922a81c7c24048498f891a67dd48036ea81196fc",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-10",
+      "paper_id": "batchnorm",
+      "question": "What effect on Dropout do the authors report in their BatchNorm experiments?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "在文中设置中 Dropout 可以去掉或减弱；不是所有网络均可无条件移除。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 20,
+          "bbox": [
+            311.04010009765625,
+            489.5491943359375,
+            540.3956298828125,
+            598.4796752929688
+          ],
+          "char_start": 0,
+          "char_end": 495,
+          "text_sha256": "dec0d24f06d876906623928819ad394d9cdf52aa5ac4bf8e11dc3456a4c9d46e",
+          "section": "3.4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 21,
+          "bbox": [
+            311.0396728515625,
+            352.7492370605469,
+            540.0778198242188,
+            401.91949462890625
+          ],
+          "char_start": 0,
+          "char_end": 202,
+          "text_sha256": "61e21dca3d0cbf50b13f3ad5a2da8d0604f450e7253bd6da690d03ad6de1f086",
+          "section": "4.2.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-11",
+      "paper_id": "batchnorm",
+      "question": "What hidden layers, activation, training steps and batch size are used in the MNIST demonstration?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "3 个各 100 单元的全连接隐层，sigmoid；50000 步，batch=60。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 20,
+          "bbox": [
+            71.99967956542969,
+            224.70941162109375,
+            301.2901916503906,
+            369.51959228515625
+          ],
+          "char_start": 0,
+          "char_end": 665,
+          "text_sha256": "3b83046247c2cb4d2c94deab0c43d6ef8981ba8517ac140544502035402d33e5",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-12",
+      "paper_id": "batchnorm",
+      "question": "What training batch size and validation measure are used for the Inception baseline?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "batch=32；使用单裁剪的 ImageNet 验证集 top-1 正确率。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 14,
+          "bbox": [
+            311.03961181640625,
+            35.46954345703125,
+            540.1976318359375,
+            156.39947509765625
+          ],
+          "char_start": 0,
+          "char_end": 571,
+          "text_sha256": "7ab98b180887c96732b908fdf8ceec645ed720c79f419135f478b85e8642ff95",
+          "section": "4.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-13",
+      "paper_id": "batchnorm",
+      "question": "Why should the reported fourteen-fold training-step reduction not be attributed to BatchNorm alone?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "仅加 BN 的 baseline 少于一半步数；14 倍对应 BN-x5，还改变学习率、Dropout、L2 等多项设置。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 21,
+          "bbox": [
+            311.0396728515625,
+            352.7492370605469,
+            540.0778198242188,
+            401.91949462890625
+          ],
+          "char_start": 0,
+          "char_end": 202,
+          "text_sha256": "61e21dca3d0cbf50b13f3ad5a2da8d0604f450e7253bd6da690d03ad6de1f086",
+          "section": "4.2.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 23,
+          "bbox": [
+            311.0399169921875,
+            402.5492248535156,
+            540.1976928710938,
+            463.719482421875
+          ],
+          "char_start": 0,
+          "char_end": 264,
+          "text_sha256": "37d3387e24c1eda42ed72b74b48f9854b8ccf2127ac69d37cefbf0f584a72155",
+          "section": "4.2.1"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 7,
+          "block_index": 15,
+          "bbox": [
+            72.0,
+            335.7093505859375,
+            301.14166259765625,
+            396.8796081542969
+          ],
+          "char_start": 0,
+          "char_end": 258,
+          "text_sha256": "4690d0b6a25a7a78af73ba5fc473cc86ef8a110ce51ba8dacd3fe093cce80ef0",
+          "section": "4.2.2"
+        },
+        {
+          "evidence_id": "e4",
+          "page_number": 7,
+          "block_index": 23,
+          "bbox": [
+            71.99978637695312,
+            565.6292724609375,
+            301.15826416015625,
+            681.3238525390625
+          ],
+          "char_start": 0,
+          "char_end": 508,
+          "text_sha256": "38dea73341bf208f57c564a7e24f7f33ab2322d66d4db3d7312577b6ca62f086",
+          "section": "4.2.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-14",
+      "paper_id": "batchnorm",
+      "question": "Does independently normalizing features make them jointly uncorrelated?",
+      "language": "en",
+      "category": "limitation",
+      "answerable": true,
+      "reference_points": [
+        "不保证；本文的简化是逐维标准化，明确不要求像完整白化一样去相关。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 22,
+          "bbox": [
+            71.99966430664062,
+            463.9896545410156,
+            301.1575012207031,
+            561.0396118164062
+          ],
+          "char_start": 0,
+          "char_end": 426,
+          "text_sha256": "3dc9edc54d399bec51ce688032ae7ecdc459bfc23927f540307847875c8e7169",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 3,
+          "block_index": 40,
+          "bbox": [
+            72.00004577636719,
+            601.8690185546875,
+            301.0633239746094,
+            651.039306640625
+          ],
+          "char_start": 0,
+          "char_end": 199,
+          "text_sha256": "4840c880b39e93d229eb1576969659b26b4fce35533afd93f3ed57bf6dd0bf25",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "batchnorm-15",
+      "paper_id": "batchnorm",
+      "question": "What ImageNet top-1 accuracy is reported for BatchNorm trained with a mini-batch size of one?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "未报告该训练配置的 ImageNet 正确率；不能把推理可用单样本与训练配置混同。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "核查训练算法 m>1、ImageNet batch=32 与全文 batch 相关段落，未见 batch=1 的该实验结果。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "核查训练算法 m>1、ImageNet batch=32 与全文 batch 相关段落，未见 batch=1 的该实验结果。"
+      }
+    },
+    {
+      "question_id": "resnet-01",
+      "paper_id": "resnet",
+      "question": "Why is the degradation problem distinguished from ordinary overfitting?",
+      "language": "en",
+      "category": "limitation",
+      "answerable": true,
+      "reference_points": [
+        "加深普通网络时训练误差也升高，说明有优化困难，而不仅是验证集泛化变差。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 28,
+          "bbox": [
+            308.86199951171875,
+            499.04327392578125,
+            545.115234375,
+            591.6358032226562
+          ],
+          "char_start": 0,
+          "char_end": 447,
+          "text_sha256": "2ecb67b716cad007aac1b5ece2e186b71e67eeeb00e1f2429b2a54c3db334187",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-02",
+      "paper_id": "resnet",
+      "question": "How is a desired mapping H(x) rewritten in residual learning?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "学习 F(x)=H(x)-x，输出 F(x)+x。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 12,
+          "bbox": [
+            50.1119384765625,
+            208.30841064453125,
+            286.3664855957031,
+            360.67694091796875
+          ],
+          "char_start": 0,
+          "char_end": 704,
+          "text_sha256": "96408fff40f7fbd9bac7312d62e0285f27dd5e2e6931dbd873382560aaf516ca",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-03",
+      "paper_id": "resnet",
+      "question": "Do identity shortcuts introduce additional trainable weights?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "恒等 shortcut 不新增可训练权重，输出通过逐元素相加合并。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 14,
+          "bbox": [
+            50.11192321777344,
+            364.2030029296875,
+            286.3669738769531,
+            493.6278076171875
+          ],
+          "char_start": 0,
+          "char_end": 607,
+          "text_sha256": "8710a9620d5de1ae0f28c671579008dcb79d2bf933cf4f039c084f8dee18837d",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-04",
+      "paper_id": "resnet",
+      "question": "How can shortcuts handle a change in dimensions?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "可零填充或用 1×1 投影匹配维度；跨不同空间分辨率时使用步长 2。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 5,
+          "bbox": [
+            308.8619384765625,
+            206.232177734375,
+            545.114501953125,
+            251.97015380859375
+          ],
+          "char_start": 0,
+          "char_end": 215,
+          "text_sha256": "2f3e2b54b8c05a59e8c946afacdb01f110c2a40f64a2bf135fbb745b9f4e64d5",
+          "section": "3.2"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 29,
+          "bbox": [
+            308.86199951171875,
+            75.08882141113281,
+            545.1150512695312,
+            227.57708740234375
+          ],
+          "char_start": 0,
+          "char_end": 749,
+          "text_sha256": "a7b6cb2c9a4c876078fa135dfacfd2fc81fa228441d21ed83af40e0a25029c62",
+          "section": "3.3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-05",
+      "paper_id": "resnet",
+      "question": "Where is the second ReLU applied in the original residual block?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "原文设计在残差与 shortcut 相加后施加第二个非线性；不要套用后续 pre-activation 版本。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 1,
+          "bbox": [
+            308.86199951171875,
+            75.2083740234375,
+            545.1151123046875,
+            120.31871032714844
+          ],
+          "char_start": 0,
+          "char_end": 230,
+          "text_sha256": "c114e3b4fe8205e9031937483001d3645d75b73b48816bb86cff519a5f295420",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-06",
+      "paper_id": "resnet",
+      "question": "What is the three-layer bottleneck structure and what do the 1x1 layers do?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "依次 1×1、3×3、1×1；先降维、再恢复维度，降低中间 3×3 的成本。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 29,
+          "bbox": [
+            308.8619689941406,
+            440.7616882324219,
+            545.1170043945312,
+            557.3847045898438
+          ],
+          "char_start": 0,
+          "char_end": 570,
+          "text_sha256": "448c84b2706262defdc1a7670651563d64c101a833b1052aac499809299884e1",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-07",
+      "paper_id": "resnet",
+      "question": "How does the ImageNet architecture terminate after convolutional feature extraction?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "全局平均池化后接 1000 类全连接与 softmax。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 18,
+          "bbox": [
+            308.8617248535156,
+            524.5568237304688,
+            545.1148681640625,
+            665.0899658203125
+          ],
+          "char_start": 0,
+          "char_end": 670,
+          "text_sha256": "7d7274a692cc691ef285791421f8345eb995dbc2d47109d0b85688a1cf50dc2e",
+          "section": "3.3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-08",
+      "paper_id": "resnet",
+      "question": "What optimizer, batch size, initial learning rate, momentum and weight decay are used on ImageNet?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "SGD，batch=256，初始学习率 0.1，momentum=0.9，weight decay=1e-4。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 73,
+          "bbox": [
+            308.86199951171875,
+            255.7294921875,
+            545.1165771484375,
+            420.05291748046875
+          ],
+          "char_start": 0,
+          "char_end": 819,
+          "text_sha256": "4fdfa082cdb0509be14087cd9bae956f5e2e79c5eb6d0ae0f94ee4240ff9da6e",
+          "section": "3.4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-09",
+      "paper_id": "resnet",
+      "question": "What resize and crop augmentation is used in ImageNet training?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "短边随机取 256–480，随机 224×224 裁剪或水平翻转，并减像素均值。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 73,
+          "bbox": [
+            308.86199951171875,
+            255.7294921875,
+            545.1165771484375,
+            420.05291748046875
+          ],
+          "char_start": 0,
+          "char_end": 819,
+          "text_sha256": "4fdfa082cdb0509be14087cd9bae956f5e2e79c5eb6d0ae0f94ee4240ff9da6e",
+          "section": "3.4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-10",
+      "paper_id": "resnet",
+      "question": "What ImageNet split sizes and error measures are used?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "约 128 万训练图、5 万验证图、10 万测试图，报告 top-1 与 top-5 错误率。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 111,
+          "bbox": [
+            308.86199951171875,
+            530.895263671875,
+            545.1151123046875,
+            599.5778198242188
+          ],
+          "char_start": 0,
+          "char_end": 338,
+          "text_sha256": "2cf63cab477dc78390a08ba26a93faed28d4dd297c4628e1c889c2af02fca773",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-11",
+      "paper_id": "resnet",
+      "question": "How is the CIFAR network depth related to n and what are its three feature-map sizes?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "共 6n+2 个带权层；特征图空间尺寸为 32、16、8。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 12,
+          "bbox": [
+            50.111961364746094,
+            493.3263854980469,
+            286.3651123046875,
+            621.784912109375
+          ],
+          "char_start": 0,
+          "char_end": 649,
+          "text_sha256": "a45de090e8be9418c8bc6318c63f01adffdcc190c13cc90528b94650c5e5f140",
+          "section": "4.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-12",
+      "paper_id": "resnet",
+      "question": "How is the 110-layer CIFAR model warmed up before using learning rate 0.1?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "先用 0.01，约 400 次迭代使训练错误率低于 80%，再回到 0.1。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 14,
+          "bbox": [
+            308.8618469238281,
+            592.516845703125,
+            545.1149291992188,
+            685.82666015625
+          ],
+          "char_start": 0,
+          "char_end": 474,
+          "text_sha256": "551160a57a07dd63817681b6adf4c42f6d51bd3dc2e4782b4f66a44f7ec3e990",
+          "section": "4.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-13",
+      "paper_id": "resnet",
+      "question": "Why is parameter-free residual learning useful for a controlled plain-versus-residual comparison?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "可保持深度、宽度、参数量与主要计算量一致；最初的 ImageNet 对照用恒等和零填充 shortcut，避免额外投影参数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 4,
+          "bbox": [
+            308.8619689941406,
+            123.27044677734375,
+            545.1151733398438,
+            203.9080810546875
+          ],
+          "char_start": 0,
+          "char_end": 408,
+          "text_sha256": "3995df605cd464c1ef7854a3b18b74f5f78fb9f2c9b57520783e62e9aefed976",
+          "section": "3.2"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 123,
+          "bbox": [
+            308.8620300292969,
+            475.9317932128906,
+            545.1151123046875,
+            568.6438598632812
+          ],
+          "char_start": 0,
+          "char_end": 456,
+          "text_sha256": "7b46ac25e408d7110ff033fb650a7f55f00ff6f5b905cf98d6df50f8a0735de3",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-14",
+      "paper_id": "resnet",
+      "question": "Does solving degradation imply that arbitrarily deep CIFAR networks cannot overfit?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "不意味着；最初退化涉及训练误差，1202 层模型另有过拟合风险，作者认为该小数据集上模型过大。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 28,
+          "bbox": [
+            308.86199951171875,
+            499.04327392578125,
+            545.115234375,
+            591.6358032226562
+          ],
+          "char_start": 0,
+          "char_end": 447,
+          "text_sha256": "2ecb67b716cad007aac1b5ece2e186b71e67eeeb00e1f2429b2a54c3db334187",
+          "section": "1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 8,
+          "block_index": 51,
+          "bbox": [
+            308.86199951171875,
+            378.98638916015625,
+            545.1151123046875,
+            495.48883056640625
+          ],
+          "char_start": 0,
+          "char_end": 584,
+          "text_sha256": "292c921805a1b056905aa7556656ff5462e4e0a0c2fe07829e2ecc9ec253a1d4",
+          "section": "4.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "resnet-15",
+      "paper_id": "resnet",
+      "question": "What top-1 ImageNet error is reported for a 500-layer residual network?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "本文未报告 500 层 ImageNet 模型；不能挪用 CIFAR 深网络的结果。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "核查 ImageNet 18/34/50/101/152 层实验与全文 500-layer 关键词，未见所问配置。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "核查 ImageNet 18/34/50/101/152 层实验与全文 500-layer 关键词，未见所问配置。"
+      }
+    },
+    {
+      "question_id": "simcse-01",
+      "paper_id": "simcse",
+      "question": "How are positive pairs constructed in unsupervised SimCSE?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "同一句话经同一编码器处理两次，使用独立 dropout 掩码形成不同表示。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 7,
+          "bbox": [
+            304.6910095214844,
+            327.30364990234375,
+            524.5927734375,
+            418.35235595703125
+          ],
+          "char_start": 0,
+          "char_end": 346,
+          "text_sha256": "f7d0d3289270145620539197032f3a2ff079f6d64d0509d01c087aafef71df35",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-02",
+      "paper_id": "simcse",
+      "question": "Where do the negatives in unsupervised SimCSE come from?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "同一个 mini-batch 中的其他句子作为负例。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 8,
+          "bbox": [
+            305.7489929199219,
+            422.1486511230469,
+            526.3133544921875,
+            567.3933715820312
+          ],
+          "char_start": 0,
+          "char_end": 551,
+          "text_sha256": "c41a958ea9fb1d70c41f9fba249d99fa018c41eb9c8ba6adecc12ffc75efd2fb",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-03",
+      "paper_id": "simcse",
+      "question": "What happens when dropout is removed or the same dropout mask is used for both views?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "两种设置使正对表示相同，性能明显下降；文中观察到 alignment 退化。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 33,
+          "bbox": [
+            69.41500091552734,
+            401.628662109375,
+            291.0484924316406,
+            479.12738037109375
+          ],
+          "char_start": 0,
+          "char_end": 301,
+          "text_sha256": "1af49c0105da35666531e2937051c2feacbd573b1327d652862ae183fc7502e4",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 39,
+          "bbox": [
+            70.86599731445312,
+            482.74908447265625,
+            290.94952392578125,
+            736.5614013671875
+          ],
+          "char_start": 0,
+          "char_end": 927,
+          "text_sha256": "9af7260d3f65cdb30cc152e0f905bea09067b3db9ae1562ba989bf53a2ab97c7",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-04",
+      "paper_id": "simcse",
+      "question": "How are NLI entailment pairs used instead of a three-way NLI classification objective?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "将 premise 与 entailment hypothesis 直接用作对比学习正对，不仅训练三分类器。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 15,
+          "bbox": [
+            305.6289978027344,
+            573.9386596679688,
+            526.3174438476562,
+            773.3804321289062
+          ],
+          "char_start": 0,
+          "char_end": 735,
+          "text_sha256": "81e0d1fed32f3f2703e98a86ad92265539ead5ceb4deeabca746f141e903fc97",
+          "section": "1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 34,
+          "bbox": [
+            305.7489929199219,
+            364.3046569824219,
+            526.2203979492188,
+            510.3752136230469
+          ],
+          "char_start": 0,
+          "char_end": 521,
+          "text_sha256": "0e9e08a65577ab3fd6a43b1da26d1e937a19b8cc8a72e8a987436d1ef7af573b",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-05",
+      "paper_id": "simcse",
+      "question": "Which NLI relationship supplies hard negatives and how are they associated with a positive pair?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "同一 premise 对应的 contradiction hypothesis 作为 hard negative。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 9,
+          "bbox": [
+            70.52799987792969,
+            256.18170166015625,
+            291.0428161621094,
+            388.00836181640625
+          ],
+          "char_start": 0,
+          "char_end": 509,
+          "text_sha256": "27279f4d87b5f3243f3c7ed61ba35c7520fd8068c93902fa57756cb0c5920301",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-06",
+      "paper_id": "simcse",
+      "question": "Which two NLI datasets supply the supervised entailment pairs?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "SNLI 与 MNLI。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 37,
+          "bbox": [
+            305.7489929199219,
+            560.3140869140625,
+            526.3214111328125,
+            692.1843872070312
+          ],
+          "char_start": 0,
+          "char_end": 458,
+          "text_sha256": "94ff4f2e4e6e40370a76a3b122bc97fa6c306ee7a67b41ca5902163e2eae5b28",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 2,
+          "bbox": [
+            70.35299682617188,
+            74.42864227294922,
+            291.04150390625,
+            138.37840270996094
+          ],
+          "char_start": 0,
+          "char_end": 242,
+          "text_sha256": "de458ae4310039d7b96a50d570f85ef6910395e034ed4dc129dd102be19bd0e7",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-07",
+      "paper_id": "simcse",
+      "question": "What corpus and number of sentences are used for unsupervised training?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "从英文 Wikipedia 随机抽取 100 万句。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 57,
+          "bbox": [
+            305.6289978027344,
+            607.3796997070312,
+            526.2242431640625,
+            712.1073608398438
+          ],
+          "char_start": 0,
+          "char_end": 381,
+          "text_sha256": "c9dcba687f681949963221a6f4d5c92db6993229f7af7412073bf94835e5ee97",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-08",
+      "paper_id": "simcse",
+      "question": "Which seven semantic similarity tasks are used in evaluation?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "STS 2012–2016、STS Benchmark 和 SICK-Relatedness。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 50,
+          "bbox": [
+            305.6289978027344,
+            343.0197448730469,
+            526.3181762695312,
+            488.3953552246094
+          ],
+          "char_start": 0,
+          "char_end": 526,
+          "text_sha256": "0744f9fb77c0f90943f04445eb39c4577be76598a840867893279e47624dd91f",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-09",
+      "paper_id": "simcse",
+      "question": "Which correlation measure, aggregation setting and regression-head convention are used for STS?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "无额外回归器，使用 Spearman 相关与 all 聚合。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 50,
+          "bbox": [
+            305.6289978027344,
+            343.0197448730469,
+            526.3181762695312,
+            488.3953552246094
+          ],
+          "char_start": 0,
+          "char_end": 526,
+          "text_sha256": "0744f9fb77c0f90943f04445eb39c4577be76598a840867893279e47624dd91f",
+          "section": "6.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 56,
+          "bbox": [
+            306.1419982910156,
+            492.191650390625,
+            526.2222290039062,
+            596.7893676757812
+          ],
+          "char_start": 0,
+          "char_end": 382,
+          "text_sha256": "b79e78b0a93397bff1cc154ad5acd4ca1d87fd0ebadca68fbbe77bb441e854db",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-10",
+      "paper_id": "simcse",
+      "question": "Does supervised SimCSE train on the STS training sets in this evaluation?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "不使用 STS 训练集；supervised 指额外 NLI 标注，而非 STS 任务监督。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 18,
+          "bbox": [
+            305.6289978027344,
+            187.18463134765625,
+            526.3174438476562,
+            291.7823791503906
+          ],
+          "char_start": 0,
+          "char_end": 391,
+          "text_sha256": "6a233fde930d96a527b42f3676e83ef786e200cc9c28ca11d3bc852673ce722c",
+          "section": "6.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-11",
+      "paper_id": "simcse",
+      "question": "What average BERT-base STS correlations are reported for unsupervised and supervised SimCSE in the introduction?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "约为 76.3% 与 81.6% Spearman 相关；是论文结果，不是本项目结果。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 47,
+          "bbox": [
+            70.48400115966797,
+            587.4876708984375,
+            291.04156494140625,
+            773.3804321289062
+          ],
+          "char_start": 0,
+          "char_end": 695,
+          "text_sha256": "f424abe975e1264529ccf5d37b2bbac664e54083b0da91c34554c1225be0e4c6",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-12",
+      "paper_id": "simcse",
+      "question": "How is the CLS MLP handled differently at test time in unsupervised and supervised SimCSE?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "无监督版本训练时用 MLP、测试时去掉；有监督默认保留 CLS 上的 MLP。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 8,
+          "block_index": 28,
+          "bbox": [
+            70.59300231933594,
+            471.6557312011719,
+            290.94940185546875,
+            711.8754272460938
+          ],
+          "char_start": 0,
+          "char_end": 877,
+          "text_sha256": "6551a94b00ff3bf2713126fbefddd5a07913d4a8200dd63286936b071fae7773",
+          "section": "6.3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-13",
+      "paper_id": "simcse",
+      "question": "How does dropout-based augmentation relate to the alignment and uniformity observations?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "独立 dropout 避免正对完全相同导致的 alignment 退化；无监督对比学习改善 uniformity，同时保持较好 alignment。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 39,
+          "bbox": [
+            70.86599731445312,
+            482.74908447265625,
+            290.94952392578125,
+            736.5614013671875
+          ],
+          "char_start": 0,
+          "char_end": 927,
+          "text_sha256": "9af7260d3f65cdb30cc152e0f905bea09067b3db9ae1562ba989bf53a2ab97c7",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 8,
+          "block_index": 26,
+          "bbox": [
+            305.7489929199219,
+            400.3466491699219,
+            526.2256469726562,
+            586.2384033203125
+          ],
+          "char_start": 0,
+          "char_end": 675,
+          "text_sha256": "91bbbb062782016f0a8f68f2a271ba12f61fc80354863c5a8f6c9c3f62c400d5",
+          "section": "7"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-14",
+      "paper_id": "simcse",
+      "question": "How do NLI supervision and contrastive learning address different aspects of embedding geometry?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "对比学习将负例拉开以改善均匀性；NLI 正对监督进一步改善语义正对的 alignment。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 9,
+          "bbox": [
+            70.52799987792969,
+            256.18170166015625,
+            291.0428161621094,
+            388.00836181640625
+          ],
+          "char_start": 0,
+          "char_end": 509,
+          "text_sha256": "27279f4d87b5f3243f3c7ed61ba35c7520fd8068c93902fa57756cb0c5920301",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 28,
+          "bbox": [
+            306.1419982910156,
+            627.2676391601562,
+            526.2164916992188,
+            731.8654174804688
+          ],
+          "char_start": 0,
+          "char_end": 401,
+          "text_sha256": "132baae9e026b7a3c2a9abf6541d3aba9fdbc46e8a771446e1197c460bf5c292",
+          "section": "5"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 8,
+          "block_index": 26,
+          "bbox": [
+            305.7489929199219,
+            400.3466491699219,
+            526.2256469726562,
+            586.2384033203125
+          ],
+          "char_start": 0,
+          "char_end": 675,
+          "text_sha256": "91bbbb062782016f0a8f68f2a271ba12f61fc80354863c5a8f6c9c3f62c400d5",
+          "section": "7"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "simcse-15",
+      "paper_id": "simcse",
+      "question": "Which Chinese semantic similarity benchmark and numerical score are reported for SimCSE?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "本文没有报告所问中文基准及分数，不能将英文 STS 结果移用于中文。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "核查全部数据集说明和 Chinese、Chinese STS 等全文关键词；需独立确认没有中文评测。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "核查全部数据集说明和 Chinese、Chinese STS 等全文关键词；需独立确认没有中文评测。"
+      }
+    },
+    {
+      "question_id": "flashattention-01",
+      "paper_id": "flashattention",
+      "question": "Which two GPU memory levels does FlashAttention organize computation around?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "GPU 的高带宽显存 HBM 与片上 SRAM。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 10,
+          "bbox": [
+            70.83499908447266,
+            447.0708923339844,
+            540.3687133789062,
+            528.7644653320312
+          ],
+          "char_start": 0,
+          "char_end": 663,
+          "text_sha256": "76035a6c28f63112b08b16384c0daac7d6541e27ecd94bed6a51298b9681c01a",
+          "section": "2.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-02",
+      "paper_id": "flashattention",
+      "question": "Why can reducing attention FLOPs fail to improve wall-clock time?",
+      "language": "en",
+      "category": "limitation",
+      "answerable": true,
+      "reference_points": [
+        "内存访问等 IO 开销可能成为瓶颈，单看 FLOP 减少不保证真实加速。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 1,
+          "block_index": 14,
+          "bbox": [
+            72.0,
+            617.2498779296875,
+            541.389892578125,
+            686.9884643554688
+          ],
+          "char_start": 0,
+          "char_end": 599,
+          "text_sha256": "bd9ec3f91992029e145d6860c20b912186547d5e25ee2e978753b2aa0b4663f7",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-03",
+      "paper_id": "flashattention",
+      "question": "How does tiling move Q, K and V through memory?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "将输入分块，从 HBM 载入 SRAM，在片上完成对应注意力计算，减少中间结果写回。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 18,
+          "bbox": [
+            72.0,
+            584.306884765625,
+            539.9834594726562,
+            642.0905151367188
+          ],
+          "char_start": 0,
+          "char_end": 484,
+          "text_sha256": "f6503095d57a78a7aed5dcca0db57db59d216fc140d7a8045179aeb04f9e048e",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-04",
+      "paper_id": "flashattention",
+      "question": "Why does blocked softmax require normalization statistics rather than independent block softmaxes?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "softmax 在列方向耦合；不同块的结果需按正确归一化因子缩放合并，才能得到完整注意力。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 18,
+          "bbox": [
+            72.0,
+            584.306884765625,
+            539.9834594726562,
+            642.0905151367188
+          ],
+          "char_start": 0,
+          "char_end": 484,
+          "text_sha256": "f6503095d57a78a7aed5dcca0db57db59d216fc140d7a8045179aeb04f9e048e",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 19,
+          "bbox": [
+            72.0,
+            644.0828857421875,
+            539.9812622070312,
+            666.00048828125
+          ],
+          "char_start": 0,
+          "char_end": 197,
+          "text_sha256": "851a3a655ec7e844f13772bab7e6b4147f930a9b7ea606d1e837f453dd890f48",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-05",
+      "paper_id": "flashattention",
+      "question": "What is saved for backward recomputation instead of the full attention matrices?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "保留输出 O 和 softmax 归一化统计 m、ell；反向由 Q、K、V 块重新计算 S、P。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 20,
+          "bbox": [
+            72.0,
+            180.94918823242188,
+            541.934814453125,
+            275.0845031738281
+          ],
+          "char_start": 0,
+          "char_end": 811,
+          "text_sha256": "86844438b65fbe4a7135f297e672ca098527b159c105515edb7fc79b54a5b62d",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-06",
+      "paper_id": "flashattention",
+      "question": "How does CUDA kernel fusion reduce additional memory traffic?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "在同一个 kernel 中完成矩阵乘、softmax、可选 mask/dropout 与后续乘法，减少反复 HBM 读写。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 5,
+          "block_index": 21,
+          "bbox": [
+            72.0,
+            277.076904296875,
+            541.4166259765625,
+            322.9045104980469
+          ],
+          "char_start": 0,
+          "char_end": 394,
+          "text_sha256": "4eebe806595e4169761fa3fb6485add5302c02d267c530db45bfca57224802db",
+          "section": "3.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-07",
+      "paper_id": "flashattention",
+      "question": "Does the original FlashAttention replace exact attention with a sparse approximation?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "原版计算精确注意力；另行提出的 block-sparse 扩展属于近似注意力。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 41,
+          "bbox": [
+            71.64099884033203,
+            414.94390869140625,
+            541.9451293945312,
+            556.4135131835938
+          ],
+          "char_start": 0,
+          "char_end": 1252,
+          "text_sha256": "514e3c1fafbd7e777020555741451c6527a94e51a13e6c5635aad75526ddb428",
+          "section": "1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 2,
+          "block_index": 43,
+          "bbox": [
+            72.0,
+            630.1369018554688,
+            540.2583618164062,
+            699.87548828125
+          ],
+          "char_start": 0,
+          "char_end": 611,
+          "text_sha256": "2d7e5a5d17897efaedf903ef7dbeb693a7c2435d7ea43cab386497f9b521e469",
+          "section": "1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-08",
+      "paper_id": "flashattention",
+      "question": "Under which SRAM-size range does Theorem 2 compare HBM-access complexity?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "d≤M≤N*d；标准为 Theta(N*d+N^2)，FlashAttention 为 Theta(N^2*d^2/M)。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 24,
+          "bbox": [
+            71.34803009033203,
+            238.99037170410156,
+            541.5314331054688,
+            271.87664794921875
+          ],
+          "char_start": 0,
+          "char_end": 232,
+          "text_sha256": "a97aa44e620506565c0556fc0f34913ad874d0fcfa6fe1d0361f680050983c85",
+          "section": "3.2 / Theorem 2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-09",
+      "paper_id": "flashattention",
+      "question": "What hardware, number of runs and target MLM accuracy are used in the BERT-large speed comparison?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "8 张 A100，平均 10 次运行，MLM 目标正确率 72.0%；相同 MLPerf 初始化。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 13,
+          "bbox": [
+            71.50199890136719,
+            557.18994140625,
+            540.0089111328125,
+            624.4415283203125
+          ],
+          "char_start": 0,
+          "char_end": 529,
+          "text_sha256": "4762a9080d83440c39780d573e6371e8d0f314ee0d8e027976921e5c8866710f",
+          "section": "4.1"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-10",
+      "paper_id": "flashattention",
+      "question": "What happens when GPT-2 context length is increased from 1K to 4K in the long-context experiment?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "文中 4K FlashAttention 仍比 1K Megatron 快约 30%，困惑度改善约 0.7；比较中上下文长度不同。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 8,
+          "block_index": 5,
+          "bbox": [
+            71.66799926757812,
+            486.2218933105469,
+            540.4181518554688,
+            567.4094848632812
+          ],
+          "char_start": 0,
+          "char_end": 598,
+          "text_sha256": "77375ba71d333afc71081c3be237ffe86ab353a5ce030ffb9011d4063c632b55",
+          "section": "4.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-11",
+      "paper_id": "flashattention",
+      "question": "Which long sequence lengths are used for Path-X and Path-256, and which variant enables each?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "Path-X 为 16K、由 FlashAttention 支持；Path-256 为 64K、由 block-sparse 版本支持。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 10,
+          "bbox": [
+            71.99996948242188,
+            363.6029052734375,
+            541.8806762695312,
+            445.2965087890625
+          ],
+          "char_start": 0,
+          "char_end": 652,
+          "text_sha256": "7aa6e6d11412250826d682af9ad5bd597299a28b1c8ef987192549a6dff20930",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-12",
+      "paper_id": "flashattention",
+      "question": "How does increasing tile size affect runtime and what eventually limits it?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "减少 HBM 访问可降低耗时；块足够大后算术等因素成为瓶颈，且受到 SRAM 容量限制。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 31,
+          "bbox": [
+            72.00003051757812,
+            506.62884521484375,
+            541.9147338867188,
+            600.2774047851562
+          ],
+          "char_start": 0,
+          "char_end": 794,
+          "text_sha256": "f68d15485e496aed118a36ba0ff5e16d81d49d04857d4e2bb7f1886b5e5e87d2",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-13",
+      "paper_id": "flashattention",
+      "question": "How does the memory footprint differ from standard attention without claiming a linear exact-attention arithmetic cost?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "标准实现将 N×N 中间矩阵写入 HBM；FlashAttention 避免存储，观测内存占用随长度线性增长，但不能据此说精确注意力的算术复杂度线性。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 5,
+          "bbox": [
+            72.0,
+            200.34213256835938,
+            541.9378662109375,
+            246.65652465820312
+          ],
+          "char_start": 0,
+          "char_end": 353,
+          "text_sha256": "e39a8cf254ab9e1b515ff44bb2c7c5e0ba278971017be99aee5d80c306d1c28f",
+          "section": "2.2"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 20,
+          "bbox": [
+            72.0,
+            180.94918823242188,
+            541.934814453125,
+            275.0845031738281
+          ],
+          "char_start": 0,
+          "char_end": 811,
+          "text_sha256": "86844438b65fbe4a7135f297e672ca098527b159c105515edb7fc79b54a5b62d",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 7,
+          "block_index": 11,
+          "bbox": [
+            71.62100219726562,
+            451.2489013671875,
+            540.375244140625,
+            520.9874877929688
+          ],
+          "char_start": 0,
+          "char_end": 516,
+          "text_sha256": "a3a1fe7467916fca27b78860c421ef7b62f8ccbf8c45d9fd9d18b1f35c4472db",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-14",
+      "paper_id": "flashattention",
+      "question": "Why can backward recomputation increase FLOPs yet still accelerate execution?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "重算避免存取完整中间矩阵，减少 HBM 访问；内存受限条件下额外算术仍可换来更短运行时间。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 14,
+          "bbox": [
+            72.0,
+            630.48291015625,
+            541.3419189453125,
+            664.3565063476562
+          ],
+          "char_start": 0,
+          "char_end": 286,
+          "text_sha256": "d6507cfe0bad161cd688f65333728307123deeb79710d579f3d3341be53c4352",
+          "section": "2.1"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 5,
+          "block_index": 20,
+          "bbox": [
+            72.0,
+            180.94918823242188,
+            541.934814453125,
+            275.0845031738281
+          ],
+          "char_start": 0,
+          "char_end": 811,
+          "text_sha256": "86844438b65fbe4a7135f297e672ca098527b159c105515edb7fc79b54a5b62d",
+          "section": "3.1"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 6,
+          "block_index": 31,
+          "bbox": [
+            72.00003051757812,
+            506.62884521484375,
+            541.9147338867188,
+            600.2774047851562
+          ],
+          "char_start": 0,
+          "char_end": 794,
+          "text_sha256": "f68d15485e496aed118a36ba0ff5e16d81d49d04857d4e2bb7f1886b5e5e87d2",
+          "section": "3.2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "flashattention-15",
+      "paper_id": "flashattention",
+      "question": "What CPU-only speedup over standard attention is measured for FlashAttention?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "本文未报告所问 CPU-only 加速比，不能挪用 A100 GPU 的实验数据。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "核查运行时、硬件和附录实验，以及 CPU 关键词，未见 CPU-only 对照测量。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "核查运行时、硬件和附录实验，以及 CPU 关键词，未见 CPU-only 对照测量。"
+      }
+    },
+    {
+      "question_id": "calibration-01",
+      "paper_id": "calibration",
+      "question": "What does a reliability diagram show for a perfectly calibrated classifier?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "各置信度区间的正确率应落在置信度等于正确率的对角线上。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 2,
+          "block_index": 8,
+          "bbox": [
+            307.4398193359375,
+            205.7968292236328,
+            541.4447631835938,
+            286.5539855957031
+          ],
+          "char_start": 0,
+          "char_end": 404,
+          "text_sha256": "e588e8f48c2fa10488563d4633dd4c8975469d39b763f105069e59dbd8c285c2",
+          "section": "2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-02",
+      "paper_id": "calibration",
+      "question": "How are ECE and MCE distinguished in their treatment of calibration gaps?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "ECE 加权平均各 bin 的差距，MCE 取最大差距；完美校准时均为零。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 45,
+          "bbox": [
+            55.439971923828125,
+            527.0391845703125,
+            289.4415283203125,
+            571.811767578125
+          ],
+          "char_start": 0,
+          "char_end": 228,
+          "text_sha256": "d07d730d1b26fe034e053dd1024bdb3076e8d3bd9ed7e25ceaf42fb7a6f5e0c9",
+          "section": "2"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-03",
+      "paper_id": "calibration",
+      "question": "How many bins are used for the primary ECE comparison in Table 1?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "M=15。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 3,
+          "bbox": [
+            55.439998626708984,
+            287.5093078613281,
+            541.4385375976562,
+            306.6277160644531
+          ],
+          "char_start": 0,
+          "char_end": 191,
+          "text_sha256": "b0a4360af5b1fbbac83e546a32f7b8c4e7f5290140c48c0b632beb835edbcd0d",
+          "section": "Table 1 caption"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-04",
+      "paper_id": "calibration",
+      "question": "How does temperature scaling transform logits and how many parameters does it learn?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "将所有类别 logits 除以同一个正标量 T，再做 softmax；只学习一个参数。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 25,
+          "bbox": [
+            55.44001770019531,
+            665.8176879882812,
+            289.4453430175781,
+            699.4498291015625
+          ],
+          "char_start": 0,
+          "char_end": 174,
+          "text_sha256": "190e1f54d6e27526b947677bebf0e11bf67458ef625d721db11c5a458cdcc908",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 28,
+          "bbox": [
+            121.45401763916016,
+            705.6288452148438,
+            161.0469207763672,
+            715.9696044921875
+          ],
+          "char_start": 0,
+          "char_end": 9,
+          "text_sha256": "4a9f20f382054721ce2b6f8f107bd17a22b3329a095988592202a8ea20521a20",
+          "section": "Equation 9"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 6,
+          "block_index": 29,
+          "bbox": [
+            149.57101440429688,
+            703.5890502929688,
+            289.4403381347656,
+            720.3988037109375
+          ],
+          "char_start": 0,
+          "char_end": 19,
+          "text_sha256": "2e5cf2b305a784c934b58ee8c8a447bfb0614fd1072b131a6f1a6f376c563ff0",
+          "section": "Equation 9"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "公式和列顺序已目视核对；不能把逆温度误写成固定乘法系数。"
+    },
+    {
+      "question_id": "calibration-05",
+      "paper_id": "calibration",
+      "question": "On which data and objective is the temperature fitted?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "在保留的验证集上最小化 NLL，不在最终测试集上拟合。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 18,
+          "bbox": [
+            307.44000244140625,
+            580.8340454101562,
+            541.441650390625,
+            661.4716186523438
+          ],
+          "char_start": 0,
+          "char_end": 396,
+          "text_sha256": "107ea135daed599f4be39235ddab7bcf47612d585bcfd70d936d079e611c4876",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 4,
+          "bbox": [
+            307.4398193359375,
+            320.6398620605469,
+            541.4412841796875,
+            425.34771728515625
+          ],
+          "char_start": 0,
+          "char_end": 467,
+          "text_sha256": "23866382c1c530371b12620c3c0fefc10e7f77fad229e7b373dc86b2d7269ce0",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-06",
+      "paper_id": "calibration",
+      "question": "Why does positive-temperature scaling preserve classification accuracy?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "同除正 T 不改变 logits 的 argmax，因此类别预测保持不变；改变的是置信度。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 4,
+          "bbox": [
+            307.4398193359375,
+            320.6398620605469,
+            541.4412841796875,
+            425.34771728515625
+          ],
+          "char_start": 0,
+          "char_end": 467,
+          "text_sha256": "23866382c1c530371b12620c3c0fefc10e7f77fad229e7b373dc86b2d7269ce0",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 8,
+          "bbox": [
+            307.4398193359375,
+            416.4411926269531,
+            541.4402465820312,
+            437.0736083984375
+          ],
+          "char_start": 0,
+          "char_end": 96,
+          "text_sha256": "2c67e2da60f1e5f85f51de54f721d61e45b095bd0b9b44415ec85719cfdbfaec",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-07",
+      "paper_id": "calibration",
+      "question": "What does a temperature greater than one do to predicted probabilities?",
+      "language": "en",
+      "category": "fact",
+      "answerable": true,
+      "reference_points": [
+        "使 softmax 更平缓、熵更大；T 趋于无穷时趋向均匀分布，T=1 恢复原输出。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 4,
+          "bbox": [
+            307.4398193359375,
+            320.6398620605469,
+            541.4412841796875,
+            425.34771728515625
+          ],
+          "char_start": 0,
+          "char_end": 467,
+          "text_sha256": "23866382c1c530371b12620c3c0fefc10e7f77fad229e7b373dc86b2d7269ce0",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-08",
+      "paper_id": "calibration",
+      "question": "How do matrix scaling and vector scaling differ in parameterization?",
+      "language": "en",
+      "category": "method",
+      "answerable": true,
+      "reference_points": [
+        "matrix scaling 对 logits 做 Wz+b；vector scaling 将 W 限制为对角矩阵。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 15,
+          "bbox": [
+            55.44000244140625,
+            495.63470458984375,
+            289.44097900390625,
+            541.8016357421875
+          ],
+          "char_start": 0,
+          "char_end": 224,
+          "text_sha256": "c481bc7d6bb8c6d39a1f0ae5bacffcffaa9a1f9d653874dfcecc6fe37baa6b70",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 6,
+          "block_index": 23,
+          "bbox": [
+            55.44001770019531,
+            590.1077880859375,
+            289.442626953125,
+            646.9938354492188
+          ],
+          "char_start": 0,
+          "char_end": 260,
+          "text_sha256": "6f3b5f169787822fbf206baa0d245d1c5caec99b0b64886141e3f6b0a44d1adb",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-09",
+      "paper_id": "calibration",
+      "question": "What relation between increasing depth or width and calibration is observed on CIFAR-100?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "本文观察到分类误差可降低而 ECE 上升；是实验关联，不应推广为已证明的普遍因果。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 32,
+          "bbox": [
+            307.4399108886719,
+            274.53424072265625,
+            541.44140625,
+            355.1717224121094
+          ],
+          "char_start": 0,
+          "char_end": 371,
+          "text_sha256": "7556b77c65756e16cb4f9b2b881a92033c287692c3e0115bb3a003b932f11f1e",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 3,
+          "block_index": 49,
+          "bbox": [
+            307.43988037109375,
+            488.43109130859375,
+            541.4414672851562,
+            664.7106323242188
+          ],
+          "char_start": 0,
+          "char_end": 860,
+          "text_sha256": "3f5a7166bb11b07d873795e0498410ceb910103b96b98fa4298c18dbbc63cd62",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-10",
+      "paper_id": "calibration",
+      "question": "How does the BatchNorm experiment separate classification accuracy from calibration?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "文中 6 层 ConvNet 使用 BN 后正确率略升、校准却变差。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 4,
+          "block_index": 15,
+          "bbox": [
+            55.44001770019531,
+            410.90826416015625,
+            289.4415588378906,
+            515.4557495117188
+          ],
+          "char_start": 0,
+          "char_end": 528,
+          "text_sha256": "3336622a435c27c506bad2fb14bf7283510bfb583d911d2597961e771ed91d3c",
+          "section": "3"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-11",
+      "paper_id": "calibration",
+      "question": "Which dataset is specifically noted as not benefiting from temperature scaling and why?",
+      "language": "en",
+      "category": "experiment",
+      "answerable": true,
+      "reference_points": [
+        "Reuters；初始 ECE 已不超过 1%，改善空间有限，也可能受划分或分箱方式影响。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 7,
+          "block_index": 12,
+          "bbox": [
+            307.44000244140625,
+            624.6204223632812,
+            541.4415893554688,
+            717.2129516601562
+          ],
+          "char_start": 0,
+          "char_end": 455,
+          "text_sha256": "438c97c0e7cac63ab91dcf3fd07b07c735d800dd3e8c9c5f29d094d3b781c9b1",
+          "section": "5"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-12",
+      "paper_id": "calibration",
+      "question": "Why can matrix scaling fail with many classes and limited validation data?",
+      "language": "en",
+      "category": "limitation",
+      "answerable": true,
+      "reference_points": [
+        "参数随类别数平方增长，容易在小验证集过拟合；文中 ImageNet 的 matrix scaling 未收敛。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 8,
+          "block_index": 28,
+          "bbox": [
+            55.44000244140625,
+            258.94732666015625,
+            289.44158935546875,
+            339.5848083496094
+          ],
+          "char_start": 0,
+          "char_end": 400,
+          "text_sha256": "881ea2110324ee536b1a0d922c9fc7e868b4f7e3a7f6fe300fe346d875597392",
+          "section": "5"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-13",
+      "paper_id": "calibration",
+      "question": "Does better classification accuracy imply calibrated confidence, and why is a separate calibration procedure needed?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "不意味着；容量和 BN 实验中正确率与 ECE 可相反变化，校准后处理需用独立验证集估计置信度映射。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 3,
+          "block_index": 49,
+          "bbox": [
+            307.43988037109375,
+            488.43109130859375,
+            541.4414672851562,
+            664.7106323242188
+          ],
+          "char_start": 0,
+          "char_end": 860,
+          "text_sha256": "3f5a7166bb11b07d873795e0498410ceb910103b96b98fa4298c18dbbc63cd62",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 4,
+          "block_index": 15,
+          "bbox": [
+            55.44001770019531,
+            410.90826416015625,
+            289.4415588378906,
+            515.4557495117188
+          ],
+          "char_start": 0,
+          "char_end": 528,
+          "text_sha256": "3336622a435c27c506bad2fb14bf7283510bfb583d911d2597961e771ed91d3c",
+          "section": "3"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 4,
+          "block_index": 18,
+          "bbox": [
+            307.44000244140625,
+            580.8340454101562,
+            541.441650390625,
+            661.4716186523438
+          ],
+          "char_start": 0,
+          "char_end": 396,
+          "text_sha256": "107ea135daed599f4be39235ddab7bcf47612d585bcfd70d936d079e611c4876",
+          "section": "4"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-14",
+      "paper_id": "calibration",
+      "question": "Why can one-parameter temperature scaling be preferable to a more expressive matrix calibrator?",
+      "language": "en",
+      "category": "multi_section",
+      "answerable": true,
+      "reference_points": [
+        "文中温度缩放效果好且参数少；矩阵法参数随类别数平方增长，在有限验证数据上更容易过拟合。"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "page_number": 6,
+          "block_index": 25,
+          "bbox": [
+            55.44001770019531,
+            665.8176879882812,
+            289.4453430175781,
+            699.4498291015625
+          ],
+          "char_start": 0,
+          "char_end": 174,
+          "text_sha256": "190e1f54d6e27526b947677bebf0e11bf67458ef625d721db11c5a458cdcc908",
+          "section": "4"
+        },
+        {
+          "evidence_id": "e2",
+          "page_number": 7,
+          "block_index": 8,
+          "bbox": [
+            307.44000244140625,
+            475.1804504394531,
+            541.4417114257812,
+            615.5939331054688
+          ],
+          "char_start": 0,
+          "char_end": 696,
+          "text_sha256": "d036f16b1c36504584ad3a3a94ff4cf28c08acf257a8ade860a926755a0df19b",
+          "section": "5"
+        },
+        {
+          "evidence_id": "e3",
+          "page_number": 8,
+          "block_index": 28,
+          "bbox": [
+            55.44000244140625,
+            258.94732666015625,
+            289.44158935546875,
+            339.5848083496094
+          ],
+          "char_start": 0,
+          "char_end": 400,
+          "text_sha256": "881ea2110324ee536b1a0d922c9fc7e868b4f7e3a7f6fe300fe346d875597392",
+          "section": "5"
+        }
+      ],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": ""
+    },
+    {
+      "question_id": "calibration-15",
+      "paper_id": "calibration",
+      "question": "What numerical ECE guarantee under adversarial distribution shift is proved for temperature scaling?",
+      "language": "en",
+      "category": "unanswerable",
+      "answerable": false,
+      "reference_points": [
+        "本文没有给出这种分布漂移下的数值保证；其后处理实验假设训练、验证、测试同分布。"
+      ],
+      "evidence": [],
+      "annotation": {
+        "author": "AI assistant",
+        "source_check": "Checked against pinned PDF text; independent review required.",
+        "human_review": "pending"
+      },
+      "review_note": "核查理论补充与 shift、adversarial 段落；引用其他在线校准工作不等于本文温度缩放的保证。",
+      "absence_review": {
+        "scope": "Pinned full PDF including appendices",
+        "method": "Search full extracted text and inspect relevant methods/experiments; independent human confirmation required.",
+        "reason": "核查理论补充与 shift、adversarial 段落；引用其他在线校准工作不等于本文温度缩放的保证。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "manifest_version": "pdf-qa-candidates-v1",
+  "dataset_id": "research-pdf-qa-150-v2",
+  "final_test_ready": false,
+  "paper_count": 10,
+  "question_count": 150,
+  "splits": {
+    "dev": {
+      "papers": 3,
+      "questions": 45
+    },
+    "test": {
+      "papers": 7,
+      "questions": 105
+    }
+  },
+  "human_review_pending": 150,
+  "answerable": 140,
+  "evidence_locators": 205,
+  "artifacts_sha256": {
+    "selection.json": "13f2170bd361ed9c39f05f16b85e7b0604ba28f9ea6c1addb729495c1122dba3",
+    "corpus.json": "7c496efd6555ca07f3cbcfd4191ddd9e62aa14c0dcfa052e072f9ef2785d5c0b",
+    "development.json": "249d35e4f707b05625a38d755e196a0f111e3a484a256945c46ab855827feaaa",
+    "test_candidates.json": "db1e0f4426fcd2ca0bb01d56f40ada893c18749e0d7e3a7656d1e810384fd4e0",
+    "development_protocol.json": "6272b8c833d34376dc420a8fe032a5b33afeb5caf42f88670a040e8819239d82"
+  },
+  "review_policy": "AI source checking is not independent human review. Any annotation correction requires a new candidate release and updated hashes; do not tune or prune labels by test results.",
+  "split_dataset_ids": {
+    "dev": "research-pdf-qa-150-v1-dev",
+    "test": "research-pdf-qa-150-v2-test"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "scope": "Generated four-format lifecycle fixtures, not research answer-quality metrics",
+  "generation": "live DeepSeek",
+  "run_id": "run-eddsv_fs",
+  "processes": [
+    {
+      "phase": "build",
+      "pid": 14620,
+      "indexed_formats": [
+        "pdf",
+        "docx",
+        "md",
+        "txt"
+      ],
+      "selected_documents": 2,
+      "history_turns": 1,
+      "scope_bindings": {
+        "doc_a6fd7beb5485c50e50a30c6770d8d0324b089335d6f2aa37a50aaeafca50d2b9": "c7725169446741108743c20329d98f6b",
+        "doc_f992d171b2ee845015f28c0fce559807d3237aeaf285383756714a3e14439d00": "acc6a6aa8ffc4174b1e8c91494382b55"
+      },
+      "restored_without_document_encoding": true,
+      "query_encoding_calls": 1,
+      "live_api_calls": 2,
+      "scripted_calls": 0,
+      "returned_usage": [
+        {
+          "prompt_tokens": 668,
+          "completion_tokens": 118,
+          "total_tokens": 786,
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 668
+        },
+        {
+          "prompt_tokens": 2405,
+          "completion_tokens": 113,
+          "total_tokens": 2518,
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 2277
+        }
+      ],
+      "model_config": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "base_url": "https://api.deepseek.com",
+        "temperature": 0.0,
+        "max_output_tokens": 700,
+        "context_window": 32768,
+        "safety_margin": 512,
+        "supports_tools": true,
+        "stream": false
+      },
+      "cited_numbers": [
+        1,
+        2
+      ],
+      "source_numbers_stable": true,
+      "unselected_document_excluded": true,
+      "request_idempotency": true,
+      "export_sha256": "52a7050117b533225beaf44ea9a73cd1951745bb32d0a63c86b97e18247d7e04"
+    },
+    {
+      "phase": "restore",
+      "pid": 23160,
+      "indexed_formats": [
+        "pdf",
+        "docx",
+        "md",
+        "txt"
+      ],
+      "selected_documents": 2,
+      "history_turns": 2,
+      "scope_bindings": {
+        "doc_a6fd7beb5485c50e50a30c6770d8d0324b089335d6f2aa37a50aaeafca50d2b9": "c7725169446741108743c20329d98f6b",
+        "doc_f992d171b2ee845015f28c0fce559807d3237aeaf285383756714a3e14439d00": "acc6a6aa8ffc4174b1e8c91494382b55"
+      },
+      "restored_without_document_encoding": true,
+      "query_encoding_calls": 1,
+      "live_api_calls": 2,
+      "scripted_calls": 0,
+      "returned_usage": [
+        {
+          "prompt_tokens": 2924,
+          "completion_tokens": 71,
+          "total_tokens": 2995,
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 2156
+        },
+        {
+          "prompt_tokens": 4714,
+          "completion_tokens": 81,
+          "total_tokens": 4795,
+          "prompt_cache_hit_tokens": 2944,
+          "prompt_cache_miss_tokens": 1770
+        }
+      ],
+      "model_config": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "base_url": "https://api.deepseek.com",
+        "temperature": 0.0,
+        "max_output_tokens": 700,
+        "context_window": 32768,
+        "safety_margin": 512,
+        "supports_tools": true,
+        "stream": false
+      },
+      "cited_numbers": [
+        1,
+        2
+      ],
+      "source_numbers_stable": true,
+      "unselected_document_excluded": true,
+      "request_idempotency": true,
+      "export_sha256": "f56a82646f721c997ea8dad9eb98380bba8bb77de95473900b8a82637d2b67ca",
+      "backup_restore_preserves_export": true,
+      "document_removal_invalidates_cached_scope": true,
+      "reindex_preserves_history_and_requires_new_chat": true,
+      "conversation_rename_delete": true
+    }
+  ],
+  "http": {
+    "loopback_health": true,
+    "port": 50819,
+    "scope": "HTTP startup only; page rendering covered separately by AppTest"
+  },
+  "total_live_api_calls": 4,
+  "source_sha256": {
+    "scripts/acceptance_workflow.py": "08b892e57b1f880a0cf313e3284b92114d2cd7e29ae149aa5a079b592943da74",
+    "src/storage/conversations.py": "4723d21a3512e69ebb5f30a7182c043238f7fbd346d103ce6974b1d687362815",
+    "src/chat_service.py": "586b07fc88534bd6168d5753c606a88e716b14aa13d405c2c6a9976a9c0c4c35",
+    "src/agent/research_agent.py": "33c51af65a2a69e906e7253f64ac6748c34577ec8552ef65b5b77e3c1e6427e1",
+    "src/ingestion/parsers.py": "3cf53846ce7992e74ca715766b753b69226401ab17c307a0f5f31ba2e179d302",
+    "src/llm/provider.py": "254f53ecc714e6e97267c78bfb478e30529b35f96fdce4ceb606a071404f74ca"
+  },
+  "ocr": "Not exercised: requires separately prepared local OCR models/language data",
+  "browser_interactions": "Not automated; rendering and controls covered separately by Streamlit AppTest"
+}

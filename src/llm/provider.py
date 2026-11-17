@@ -95,6 +95,7 @@ class Completion:
     usage: dict = field(default_factory=dict)
     finish_reason: str | None = None
     provider_state: dict = field(default_factory=dict)
+    response_metadata: dict = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -177,11 +178,15 @@ class OpenAICompatibleProvider:
                 raise ModelError("incomplete_tool_call", "工具调用输出被截断，未执行工具")
             usage = {}
             if response.usage:
-                for name in ("prompt_tokens", "completion_tokens", "total_tokens"):
+                for name in ("prompt_tokens", "completion_tokens", "total_tokens",
+                             "prompt_cache_hit_tokens", "prompt_cache_miss_tokens"):
                     value = getattr(response.usage, name, None)
                     if isinstance(value, int) and value >= 0:
                         usage[name] = value
-            return Completion(message.content or "", calls, usage, response.choices[0].finish_reason)
+            metadata = {name: value for name in ("id", "model", "system_fingerprint")
+                        if isinstance(value := getattr(response, name, None), str)}
+            return Completion(message.content or "", calls, usage, response.choices[0].finish_reason,
+                              response_metadata=metadata)
         except APITimeoutError:
             raise ModelError("model_timeout", "模型请求超时，请稍后重试") from None
         except APIConnectionError:

@@ -30,8 +30,11 @@ def test_chat_history_is_browsable_without_key_or_embedding(monkeypatch, tmp_pat
     monkeypatch.setattr(embedding, "load_embedding_resources", loader)
     app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "pages" / "2_research_chat.py"), default_timeout=30).run()
     assert not app.exception and not app.error
+    assert next(item for item in app.checkbox if item.label == "证据不足时补检一次").value is False
     loader.assert_not_called()
     if existing_chat:
+        selector=next(item for item in app.selectbox if item.label=='多文档证据顺序')
+        assert selector.disabled and selector.value=='rrf'
         assert len(app.chat_message) >= 2
         regenerate = next(button for button in app.button if button.label == "重新生成最近回答")
         retry = next(button for button in app.button if button.label == "重试最近未完成问题")

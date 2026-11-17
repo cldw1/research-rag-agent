@@ -1,0 +1,28 @@
+{
+  "rubric_version": "pdf-answer-source-review-v1",
+  "scope": "45 development questions; one existing generator; anchor_first context",
+  "correctness": {
+    "2": "Answers all required reference points without a substantive error; on an unanswerable question explicitly declines to invent the missing value.",
+    "1": "Provides some required information but omits or gets another material point wrong.",
+    "0": "Does not answer the required information, contradicts a central reference point, or invents an answer to an unanswerable question. An appropriate refusal on an answerable question may be faithful but is still incomplete."
+  },
+  "faithfulness": {
+    "2": "All substantive assertions are supported by the provided retrieved context, or the answer accurately reports that this context is insufficient.",
+    "1": "Some assertions are unsupported, although substantial parts are grounded.",
+    "0": "A central assertion is unsupported by or contradicts the provided context. Truth elsewhere in the full paper does not by itself establish faithfulness."
+  },
+  "citation_support": {
+    "2": "Every cited source supports its associated substantive claims.",
+    "1": "Some citation-claim associations are only partly supported.",
+    "0": "No supporting citation, an invalid reference number, or a central cited claim is unsupported.",
+    "null": "No substantive paper-content assertion needing a citation, such as a pure insufficiency response."
+  },
+  "citation_coverage": {
+    "2": "All substantive paper-content assertions have a supporting citation.",
+    "1": "Some substantive assertions have supporting citations and others do not.",
+    "0": "No substantive assertion has a supporting citation.",
+    "null": "No substantive paper-content assertions requiring a citation."
+  },
+  "failure_categories": ["retrieval_miss", "incomplete_context", "generation_error", "unsupported_claim", "citation_mismatch", "citation_missing", "incorrect_abstention", "truncated_output", "request_failed", "annotation_ambiguity"],
+  "review_policy": "Record answer hash, reviewer type, reference points, cited sources and reasoning. AI source review is provisional, not independent human judgment. Keep human review pending. Citation-number validity and gold-source overlap are diagnostics, not semantic citation accuracy."
+}

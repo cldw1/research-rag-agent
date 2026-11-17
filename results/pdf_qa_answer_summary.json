@@ -1,0 +1,816 @@
+{
+  "schema_version": "pdf-answer-run-v1",
+  "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+  "manifest_sha256": "8b3caa13bd4f14b1cabfbe900a9ef60c7da26e35c2c1cb3d5e5cd1afda987d0f",
+  "question_count": 45,
+  "status_counts": {
+    "succeeded": 45
+  },
+  "generation_api_attempts": 45,
+  "sdk_max_retries": 0,
+  "known_returned_usage": {
+    "prompt_tokens": 96312,
+    "completion_tokens": 6159,
+    "total_tokens": 102471,
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 96312
+  },
+  "usage_complete_for_returned_responses": true,
+  "estimated_returned_cost_usd_upper_at_published_peak_rates": 0.036284399999999994,
+  "cost_note": "Estimate for returned responses only; cache discounts/off-peak may lower it. Failed/uncertain request usage is unknown. Not an account bill.",
+  "response_seconds": {
+    "n": 45,
+    "mean": 1.8787902822213558,
+    "p50": 1.3552511000016239,
+    "p95": 6.171025640005232
+  },
+  "answers_with_citations": 43,
+  "answers_with_invalid_citation_numbers": 0,
+  "answer_quality_metrics": null,
+  "review_status": "ai_source_audited_human_pending",
+  "run_id": "20261115T171727Z-a10a57a1",
+  "variant": "anchor_first",
+  "generation_source_snapshot_verified": true,
+  "model_config": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0.0,
+    "max_output_tokens": 800,
+    "context_window": 32768,
+    "safety_margin": 512,
+    "supports_tools": false,
+    "stream": false
+  },
+  "thinking": "disabled",
+  "retrieval_run_id": "20261115T165227Z-1bd0349b",
+  "dataset_sha256": "249d35e4f707b05625a38d755e196a0f111e3a484a256945c46ab855827feaaa",
+  "observed_response_models": [
+    "deepseek-flash"
+  ],
+  "price_reference": {
+    "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "checked_date": "2026-11-16",
+    "peak_usd_per_million": {
+      "input_cache_miss": 0.3,
+      "output": 1.2
+    }
+  },
+  "transport": {
+    "environment_proxy": true,
+    "follow_redirects": false
+  },
+  "answerable_count": 42,
+  "unanswerable_count": 3,
+  "source_review": {
+    "reviewed_count": 45,
+    "complete": true,
+    "reviewer_type": "ai_source_audit",
+    "independent_human_review": false,
+    "metrics": {
+      "correctness": {
+        "applicable": 45,
+        "score_0": 2,
+        "score_1": 5,
+        "score_2": 38,
+        "mean_0_2": 1.8
+      },
+      "faithfulness": {
+        "applicable": 45,
+        "score_0": 0,
+        "score_1": 2,
+        "score_2": 43,
+        "mean_0_2": 1.9555555555555555
+      },
+      "citation_support": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 3,
+        "score_2": 40,
+        "mean_0_2": 1.930232558139535
+      },
+      "citation_coverage": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 3,
+        "score_2": 40,
+        "mean_0_2": 1.930232558139535
+      }
+    },
+    "unanswerable_reviewed": 3,
+    "unanswerable_fully_correct": 3,
+    "human_metrics": null,
+    "note": "AI source-audit scores, when present, are provisional judgments against AI-authored labels; not a human-verified answer accuracy."
+  },
+  "artifacts_sha256": {
+    "manifest.json": "730c23036c0b5e6e14764b2fbeccdfe3d76acbf924d8091cd3517c4b3fb67a66",
+    "requests.json": "759cc5411091d3ef55b09ba4d5bdf92f6fbb33ab402c9d32e0a320db9c44ab0a",
+    "dataset.json": "249d35e4f707b05625a38d755e196a0f111e3a484a256945c46ab855827feaaa"
+  },
+  "attempt_result_sha256": {
+    "attention-01": "fb6777d119561ffaadbff16303351c13ca95def85902c79943c11c2ab4a7601c",
+    "attention-02": "4fc614799e618d23e92af3acee3597c256f09c21b4da7f3212405d5d3554fc9c",
+    "attention-03": "2ffb1c00ce10e845962eda7f4ef1d32c13dc0442bb801a97f82b64abdb6bc64c",
+    "attention-04": "8a236113bc2c8907d1298ab3bd5fda2b64a589967d7f0eaa52f79699560c0f3e",
+    "attention-05": "8e8a6bd1f854b75894999ff091b5e4a42c7982c1c70635adf0b8f22b4dd1c5fd",
+    "attention-06": "2fadcb16462c7739ae8aa91f6abd90eef2f2e3c03e158598c9482988880a776e",
+    "attention-07": "73d3dc26f25dffa17ab8957dde76e2102ba78ec1fcae3fc41b9a4bce99bdbce1",
+    "attention-08": "abb0ad4b68ca19d0ad78fb208c3654f4b0a8cbca5272b739c6daf07b9d609e59",
+    "attention-09": "676d9fac2afecea1839282ae5ec4b19e98391741b672712a71d0cc5f1b51a44e",
+    "attention-10": "8c12f493051ec3d77cdb6cf36d433f9a0f4de465c88ed83bd6a18ad31c8c9058",
+    "attention-11": "ef93d2799c5fddc0ee36d90c834710e5dd8864c9caf8739c2f452d3b897fa557",
+    "attention-12": "ba1d13381f3ead9eb7d58bcff989969440a46970cc41bcb6ee02c1e3234c17c6",
+    "attention-13": "0bc4ba715183fa1aa4bfb9754bc8b8461bb55c42d99d6113dfd781c486c4b2af",
+    "attention-14": "d459d9c843793bf8bcda0b772cb66796d3d1087afd39a66b1760b132fbf9f7a3",
+    "attention-15": "e4b713eea37f8f5a0b9677ea842a3336335d688e8b4839c8d254fe1342f023ca",
+    "rag-01": "f65a833b4505a9b85de4bf704034762942e500032b6e6fdf233f77701e114c0f",
+    "rag-02": "667e5fafef433918c091baf4a63097ea1641bf6a22e407fdfd82503ba0256ba3",
+    "rag-03": "356cc32451d18418045723afd06d9443e1cbee5661acac1d721e6d3bd393dff8",
+    "rag-04": "048319e82fb090b5a8bed3ebb209e333b1aa476f2e05d9c40bcda724338b111b",
+    "rag-05": "0225da956c10efbf96e9fd971ca60271ad9ec22cadb638cb7c14c31869afa091",
+    "rag-06": "fef4dcb319503af5614eddb97470d822b48981e85336d2bd86be300389a56c32",
+    "rag-07": "5176440859c91498703e6c73cf9da75c09e1c58485c51a0e8ab1e56598fe5aa1",
+    "rag-08": "28f0a15a51e15e6617c71c4378d955c2767dc10b3b2862059fb1db7b23975f97",
+    "rag-09": "64a5836977ca3ff7608c1033ebb15507dd3ff9ecb856478abc11424dc5555d7a",
+    "rag-10": "5a7e52749514ab8984db19a3a6a8dbf7b15abb38010bdbdbbd79fb12ee4a10e0",
+    "rag-11": "32fe14293727c559545d9559450211c57a8273e0f5e08e391f158cef0cb819e6",
+    "rag-12": "05300b58143aabf7e2127d0633588fd28f0f9a73743bb0d7c95c31c58474e596",
+    "rag-13": "2f1dbc59e507f8be9b65b6183dee70f76ed115f0d8dcbcffdb67cdd39dc4cd7e",
+    "rag-14": "2dcb64a4638a987f9c84532ee1f833a434f055cb89a0d13553e85256705e1d01",
+    "rag-15": "c1a920c5d198be593f481549cb57ddab4c50d811e41075cc8c32087a9a5226df",
+    "lora-01": "5f3f238e80bc453a2182c32df262674b5d48b875cac8ad5b6f6d571731a47489",
+    "lora-02": "990d01af3b7b3a500aec661bed383f5fa88c481fd79a56384d75a499614e0080",
+    "lora-03": "e6153b3dd5b6f0ccfcf7798e3cd7740274d5f99c5a1ba9298ecd139f6496cc48",
+    "lora-04": "78a2d2fa1d0a270f14f7287119e0af83d812fef2c7e0e35f9c9ca3b5194f941f",
+    "lora-05": "30f57584070a42feedd5ae9b1cb00c6258aa39ab19095daaefd23cba226745c5",
+    "lora-06": "11b15ecd507302070416fa9a3aad657b59445f5ab3223f5a95aede843bd2ea11",
+    "lora-07": "488946dbba4bde775b1ee0a9d6cd1679b47bfc73ec6002d7860d336ac5a66ad4",
+    "lora-08": "3f8a23d90d2feeea791635169e048921494f764a933151b4fe5598bdeeebdeb7",
+    "lora-09": "81c7c4df2746969ce2d4f34b195669f5736592a36dcbd1bd456915b8568a077c",
+    "lora-10": "794a5368fe6ca2fc0f48ab12f05ad97ef6eeec6308da3cbf064b1e62400b4dfc",
+    "lora-11": "096a31de5291adf311911cef3f92dfc58192b5308bea32d80f112c7f32111b58",
+    "lora-12": "489ae5e8a21665b94ce2d79f29a04f0037aa66715d4c23fdbfdadae72bf0a47d",
+    "lora-13": "a95cf0db6b07cec2dd38bdc8a89a2f37250a3c1d9480c55a6c65580906933293",
+    "lora-14": "4687fcde0e1b5db35c0c713b01044be5b91d49a5cc065414300ee9173edfd6b3",
+    "lora-15": "fbabfa2c42fb3351a5066c8be96893e20f5c698c9578f504022a7b0acf671d9e"
+  },
+  "reviews_sha256": "fd362dbbcdad9b113b843fc88093aa4b729602514e987f44780d0549e5953904",
+  "rubric_sha256": "fc215ea304c605bbaecbeaeb3772f918662a68308fee764980125cc1bbc44e5a",
+  "review_records": [
+    {
+      "question_id": "attention-01",
+      "answer_sha256": "cd29b3c0822e8c3613d369086f4e611fa16f14ee0bc20946dc35a82843c5e019",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 明确给出编码器 6 层和输出维度 512，回答覆盖两个要点。"
+    },
+    {
+      "question_id": "attention-02",
+      "answer_sha256": "dd71d20818e5b776f748408b582f47a6231b719587a9f64f4c49b1432cacf55f",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2
+      ],
+      "failure_categories": [],
+      "reason": "引用 [2] 给出 8 头和每头 dk=dv=64，数值与来源一致。"
+    },
+    {
+      "question_id": "attention-03",
+      "answer_sha256": "308f36e3cdf8869163456177be11d1aa49d9d4bada858445d77cf02c0a75cb62",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 同时给出输入输出 512、内部 2048。"
+    },
+    {
+      "question_id": "attention-04",
+      "answer_sha256": "3bebdc274b30e31f89b274f0d6265bda5a999c32cf53d28eabc81249ae518149",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 支持 softmax 前屏蔽非法连接，[2] 支持移位输出和不访问未来位置；保留原文 leftward 用语。"
+    },
+    {
+      "question_id": "attention-05",
+      "answer_sha256": "cd7ef8550eb91da1630dd816ac7e60811d1b97e7cecd602eec9bcb793c282ca5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持缩放点积计算，[2] 支持 softmax 小梯度解释，[3] 支持点积方差说明。"
+    },
+    {
+      "question_id": "attention-06",
+      "answer_sha256": "394587b4e8ade7d0532ab8e674be7fcd626b4170b343dac6029f29d96af2b1d1",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[4] 支持拼接、输出投影及多子空间关注；额外单头 BLEU 说明由 [5] 支持。"
+    },
+    {
+      "question_id": "attention-07",
+      "answer_sha256": "6c70f98638266e685119aa301c92d71ca2be644dc5691994807764f6b4b15da9",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[2] 支持顺序信息需求；[1] 区分外推假设与已观察结果，[3] 支持两种编码表现接近。"
+    },
+    {
+      "question_id": "attention-08",
+      "answer_sha256": "37c507bd7627ed0fdf5d9c1e2f050264e8c302fcf5185d25133185a8f870cc29",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 直接给出两种语言数据量与对应词表，未混用 BPE 和 word-piece。"
+    },
+    {
+      "question_id": "attention-09",
+      "answer_sha256": "49493c3fdf66614ba2286c172240bd45e22db297695129c5024652ec9c89bc76",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[1] 完整支持 P100 数量、两种模型步数和时长；[3] 再次支持 big 训练时长。"
+    },
+    {
+      "question_id": "attention-10",
+      "answer_sha256": "0f28844a762e12a7a33fd06f07f579aa43524f6412873d3c0dae586fe7080e41",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持 Adam 参数和预热公式，4000 步及逆平方根衰减均准确。"
+    },
+    {
+      "question_id": "attention-11",
+      "answer_sha256": "663eb2002435d2b8cc275a505418fc08b5e37aedb4c1a0ccf18f09a63f0ff30e",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持 checkpoint 与翻译 beam 设置；[3] 被清楚限定为 parsing 的另一配置，[4] 支持消融不平均 checkpoint。"
+    },
+    {
+      "question_id": "attention-12",
+      "answer_sha256": "94eede3d6938c91a5b5577f6145ebb266fc16ed37110c5c39e37d7b04a4baa70",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 包含 base/big 表格行及英德正文 28.4，回答数字与原文表格对应。"
+    },
+    {
+      "question_id": "attention-13",
+      "answer_sha256": "7167051dc9b624fb592382b2f4d5db2e04ea13d041089da7c07332d66d6b7305",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[2] 与跨页延续 [1] 联合支持 n<d 条件；[1] 明确将局部窗口描述为后续研究。"
+    },
+    {
+      "question_id": "attention-14",
+      "answer_sha256": "3721b44dcc117fa56ed12db334c553a31de5d7e54efed132b4c815d22a24af3b",
+      "correctness": 1,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        2,
+        3
+      ],
+      "failure_categories": [
+        "incomplete_context",
+        "unsupported_claim"
+      ],
+      "reason": "仅完整覆盖 3 处 Gold 的 1 处，回答正确提取表 2 数值，但未识别 41.8/41.0 冲突；将检索到的 6.1 节片段误说成该节只有英德内容，超出了片段支持范围。"
+    },
+    {
+      "question_id": "attention-15",
+      "answer_sha256": "c540e66eccfefbfdecb1c891c22c5afd64e5c261ecabb107f1e35031f7d27656",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "正确限定为检索证据没有 batch=1 的推理延迟，没有把训练耗时当成推理延迟；[1][2] 支持其附带的训练/结果背景。"
+    },
+    {
+      "question_id": "rag-01",
+      "answer_sha256": "011bf4bd3bca3f593c70e5ac41108e20a56267cc75f3f375772c9b379b6951f0",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[3] 支持 DPR；[1] 明确 BART-large 与 400M，覆盖所问模型和规模。"
+    },
+    {
+      "question_id": "rag-02",
+      "answer_sha256": "240e225ed1c1c65b5a247c16e3bec3fe8d1246a36860819fa833ee98f78f1338",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[1][2] 支持整序列与逐 token 潜变量差异，附带单 token 分类等价性也见 [2]。"
+    },
+    {
+      "question_id": "rag-03",
+      "answer_sha256": "60bc52ac1962d4db2d7221c06f16e5033570b77777d50e6b1142af47278084cd",
+      "correctness": 0,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "retrieval_miss"
+      ],
+      "reason": "提供上下文没有 BERT 编码与 MIPS 核心细节，回答承认不足；其附带 top-K、FEVER 覆盖和实验 k 值均有 [1][3][5] 支持，但未回答必要机制。"
+    },
+    {
+      "question_id": "rag-04",
+      "answer_sha256": "c54314a986f0b8655c57aca21157fe709ff59ff4e7e5f28ffdc4d7cca3735e5c",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        3,
+        6
+      ],
+      "failure_categories": [
+        "retrieval_miss"
+      ],
+      "reason": "缺少冻结组件的证据，回答只给出共同训练的概括，没有区分 query/document 编码器及成本原因；明确限定证据不足，没有臆造冻结方案。"
+    },
+    {
+      "question_id": "rag-05",
+      "answer_sha256": "3a875eef4f52a25f96fb7e5977e4275da51edb9e2fd5700844054dda8e4d1125",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[5] 另一段明确说 RAG 不需中间检索监督，[3] 支持边缘似然训练，能够正确回答。固定 Gold 位置没有覆盖这处等价证据，需复核证据标注是否穷尽。"
+    },
+    {
+      "question_id": "rag-06",
+      "answer_sha256": "b375cefed49f2fd82197a4b53898921ca1acee41e8801265233d49fc085467f5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[4] 支持语料年份、100 词、21M 与 FAISS/HNSW；[2] 被限定为换索引对照。附带 728 维按 [5] 原文表述，未替论文纠错。"
+    },
+    {
+      "question_id": "rag-07",
+      "answer_sha256": "0b540bbe3ffaee0452f120ded4aede2803fc5b693abfea5357bee21db8a11d7d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持四个数据集与 EM 指标。"
+    },
+    {
+      "question_id": "rag-08",
+      "answer_sha256": "85a32b30ae84a502daa42f23fa7f33b33b977ab31a585cbb3a277d8ce5f2b06f",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[1] 支持单输出 token、三类与二类标签；[2] 支持重生成 claim 后分类的实现。开头将任务称分类与原文一致，题目的 generation 表述应在人工复核时澄清。"
+    },
+    {
+      "question_id": "rag-09",
+      "answer_sha256": "26dccb1bcf1f3d0b4e3e115f30f001277d8faaa252ba5e27ba0f93878a033711",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 直接支持 FEVER 与实体词重叠的解释，并保留 perhaps 的推测性质。"
+    },
+    {
+      "question_id": "rag-10",
+      "answer_sha256": "9d813b79d1e9b16045091427b529b893911c9d1ed2f45a7cc18b3dedf9dffd0e",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "citation_mismatch"
+      ],
+      "reason": "两个年份、人数及四个正确率均准确。模板 Who is position 实际在 [1] 的跨页续文，该句却只引用 [2]，因此引用关联部分不完整；事实本身在提供上下文中。"
+    },
+    {
+      "question_id": "rag-11",
+      "answer_sha256": "8dca60e4d85d205950045d2b5b54be2d52b5203ffdc12f90e12884959e9bb4e3",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持两种模型不同趋势及指标取舍，[5] 支持报告时使用 15/50 篇；没有把结果推广到所有配置。"
+    },
+    {
+      "question_id": "rag-12",
+      "answer_sha256": "9203427aec496871addfaadb5e0dd685fc098cd4793c61a3ac07b71729dac0c7",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        6
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "[1] 只包含长证据的结尾概括，回答给出了检索引导参数知识的方向，但缺少书名起始 token 与后续补全这一具体机制；[6] 是正确背景但未补足。"
+    },
+    {
+      "question_id": "rag-13",
+      "answer_sha256": "232c14f211ab11112a71b672d62256e7f47c360f8f32f2c11970e6478a8b9b68",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[3] 明确不保证事实无误或无偏，[2] 只说明相对减少幻觉，回答正确区分改进与保证。"
+    },
+    {
+      "question_id": "rag-14",
+      "answer_sha256": "5f72547816832b91582e5a52446dc43ac646651684c57b8be8e97488e31fdbcb",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[4] 支持固定文档编码器/索引的训练原因，[3] 支持测试时换非参数索引；区分训练和推理完整正确。缺少 Gold 的第三处数字实验不妨碍回答所问，需分清最小充分证据与全部标注覆盖。"
+    },
+    {
+      "question_id": "rag-15",
+      "answer_sha256": "4f86a690319d9a3d9f00b512e478304be31a5c35d8184f08ce86abac5fdd0e40",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": null,
+      "citation_coverage": null,
+      "checked_citations": [],
+      "failure_categories": [],
+      "reason": "明确限定检索证据未报告该具体延迟，并拒绝编造；纯不足说明，无需强制引用一个不存在的数值。"
+    },
+    {
+      "question_id": "lora-01",
+      "answer_sha256": "678859ae198abd3bcee22c4dd9786656aaff4e0bce3bfac20942bd55a7fd9366",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[2][3] 明确冻结原始模型并只训练低秩矩阵，[1][5] 支持注意力/MLP 范围。虽固定 Gold 位置未命中，其他等价段落足以回答。"
+    },
+    {
+      "question_id": "lora-02",
+      "answer_sha256": "a2c7cc8a3737bdc04cb93e9ed8f6c0a13639470f540f5d7fc519481e4511db69",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 完整支持 W0+BA、B 的 d×r 与 A 的 r×k 形状及冻结关系。"
+    },
+    {
+      "question_id": "lora-03",
+      "answer_sha256": "49d04f0da82eb337714b4029e3f13ed1a12cb0f6f86439ede86641ecd6c48e3d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        4,
+        6
+      ],
+      "failure_categories": [],
+      "reason": "[4] 图中文字和 [6] 解释支持高斯 A、零 B 与初始更新为零，推导初始映射不变合理。"
+    },
+    {
+      "question_id": "lora-04",
+      "answer_sha256": "58f9ff1dddf9d4bf3eaca041af08128e08191a964ec6f3721cdf4156203d6fb7",
+      "correctness": 0,
+      "faithfulness": 2,
+      "citation_support": null,
+      "citation_coverage": null,
+      "checked_citations": [],
+      "failure_categories": [
+        "retrieval_miss"
+      ],
+      "reason": "输入上下文缺少 alpha/r 及其目的；模型纯粹说明不足，没有编造缩放数值，但没有完成可回答问题。"
+    },
+    {
+      "question_id": "lora-05",
+      "answer_sha256": "5477d370a3c633ae1f8f1830262af19d72ef2ba5909951386b958674a03d17ef",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持仅研究注意力权重、冻结 MLP，并将 MLP/LayerNorm/bias 适配列为未来研究。"
+    },
+    {
+      "question_id": "lora-06",
+      "answer_sha256": "aa08486b57148d331f3de5248a422b6f11895f16efa1a85473bdf8cd0b40a9bb",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 明确给出多数实验仅适配 Wq 与 Wv。"
+    },
+    {
+      "question_id": "lora-07",
+      "answer_sha256": "be215e3e1e081e8cab2e45d3f50ab0f603cbd71419d9bf71d40655b01ae26dc9",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 支持合并 W0+BA 和任务切换，[1][2] 支持 adapter 对照，[4] 支持结论。跨页保证句未完整进入 Gold 覆盖不妨碍机制答案。"
+    },
+    {
+      "question_id": "lora-08",
+      "answer_sha256": "1dfd7cb2803db3d5a7fd14709fcbf429d313be6285530ff2af8a9d7aa0558aca",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[2] 支持训练显存 1.2TB/350GB 与 r=4 Q/V checkpoint 350GB/35MB，未混同任务增量与完整模型。"
+    },
+    {
+      "question_id": "lora-09",
+      "answer_sha256": "966b58f7cb6afcbc80ebb2a0971806a6b9aa846ff33865743a55865d76cb3b6e",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "retrieval_miss"
+      ],
+      "reason": "命中 GPT-2/3 及若干零散材料但缺少主实验模型和基准清单，回答保守地不列全，遗漏 RoBERTa、DeBERTa、GLUE 等核心项。"
+    },
+    {
+      "question_id": "lora-10",
+      "answer_sha256": "967e629537463244883ede356ef6a2bdc3c4a256bbbc6def17a44754b7b0f95a",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[2] 附录与 [4] 表 1 均支持 RTX8000 和平均 100 次测量。"
+    },
+    {
+      "question_id": "lora-11",
+      "answer_sha256": "60efc9978b1f69a40f1c725050b92df57ed13d5ba8a5347561a816d4f918d7e3",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[1] 精确支持 32.5/43.1 token/s 及分片条件；附带 25% 来自 [3] 原文说法，应在人工复核时区分吞吐增长与时间节省口径。"
+    },
+    {
+      "question_id": "lora-12",
+      "answer_sha256": "f39fb7059ba10a4e36087aaa101f1af64bde9334b02bebe3dee2e502f9c942de",
+      "correctness": 1,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        4
+      ],
+      "failure_categories": [
+        "unsupported_claim",
+        "generation_error"
+      ],
+      "reason": "[4] 只说混合任务批处理不方便，模型随后将其改写为 prevents，绝对化了原文限制；未合并并动态选择模块的替代方案正确。"
+    },
+    {
+      "question_id": "lora-13",
+      "answer_sha256": "1ac59f03cb5706f3dd21ccab1b51cf7a25eae0c618fb2cbf0015958d61bc9886",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[1][2] 支持任务参数之外仍需基础权重，正确拒绝小 checkpoint 替代基础模型的误解。固定 Gold 没列这些充分证据，需复核标注穷尽性。"
+    },
+    {
+      "question_id": "lora-14",
+      "answer_sha256": "96e585da7503136a3e42851f517658f29b14df05debe27502a84ddfbc93833c5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[3] 支持合并降低额外计算，[4] 支持混合任务与不合并时的动态选择，延迟取舍的解释合理。"
+    },
+    {
+      "question_id": "lora-15",
+      "answer_sha256": "62d6a23dc2e0e60cafd2a2bb05ea0f38504e75e5007a4a76762e222e0e30c296",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "正确指出未报告 joule/token，没有从显存或 token/s 换算能耗；附带背景引用 [1][2][3] 都能对应来源。"
+    }
+  ],
+  "reviewer_type": "ai_source_audit"
+}

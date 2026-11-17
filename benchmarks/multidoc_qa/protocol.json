@@ -1,0 +1,21 @@
+{
+  "schema_version": "multidoc-qa-dev-v1",
+  "source_dataset": "benchmarks/pdf_qa/development.json",
+  "source_dataset_sha256": "249d35e4f707b05625a38d755e196a0f111e3a484a256945c46ab855827feaaa",
+  "status": "development_candidate",
+  "human_review": "pending",
+  "candidate_k_per_branch_per_document": 50,
+  "rrf_k": 60,
+  "top_k": 5,
+  "max_chars": 7400,
+  "neighbor_window": 1,
+  "variants": [
+    "global_top5",
+    "global_anchor_first",
+    "balanced_top5",
+    "balanced_anchor_first"
+  ],
+  "generation": "disabled",
+  "scope": "Exploratory development questions derived from previously inspected single-paper cases; no blind test or generalization CI.",
+  "review": "Gold reference coordinates inherited unchanged. Attribution assertions require a reviewer to label claims; structural ownership checks do not prove semantic support."
+}

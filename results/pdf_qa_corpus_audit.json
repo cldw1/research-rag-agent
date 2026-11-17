@@ -1,0 +1,99 @@
+{
+  "papers": [
+    {
+      "paper_id": "attention",
+      "pages": 15,
+      "blocks": 539,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "rag",
+      "pages": 19,
+      "blocks": 406,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "lora",
+      "pages": 26,
+      "blocks": 628,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "bert",
+      "pages": 16,
+      "blocks": 437,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "adam",
+      "pages": 15,
+      "blocks": 766,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "resnet",
+      "pages": 12,
+      "blocks": 535,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "batchnorm",
+      "pages": 11,
+      "blocks": 328,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "simcse",
+      "pages": 17,
+      "blocks": 607,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "flashattention",
+      "pages": 34,
+      "blocks": 1010,
+      "engine": "pymupdf-2.0"
+    },
+    {
+      "paper_id": "calibration",
+      "pages": 14,
+      "blocks": 613,
+      "engine": "pymupdf-2.0"
+    }
+  ],
+  "questions": 150,
+  "verified_evidence_locators": 205,
+  "candidate_release": {
+    "papers": 10,
+    "questions": 150,
+    "pages": 179,
+    "splits": {
+      "dev": {
+        "papers": 3,
+        "questions": 45
+      },
+      "test": {
+        "papers": 7,
+        "questions": 105
+      }
+    },
+    "answerable": 140,
+    "evidence_locators": 205,
+    "human_review_pending": 150,
+    "final_test_ready": false
+  },
+  "dataset_sha256": "7c496efd6555ca07f3cbcfd4191ddd9e62aa14c0dcfa052e072f9ef2785d5c0b",
+  "answerable": 140,
+  "unanswerable": 10,
+  "categories": {
+    "fact": 27,
+    "method": 48,
+    "experiment": 39,
+    "limitation": 8,
+    "source_conflict": 1,
+    "unanswerable": 10,
+    "multi_section": 17
+  },
+  "human_review_pending": 150,
+  "generation_api_calls": 0
+}

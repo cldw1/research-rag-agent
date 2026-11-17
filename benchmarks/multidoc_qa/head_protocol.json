@@ -1,0 +1,20 @@
+{
+  "version": "branch-head-priority-v1",
+  "query_run_id": "20261116T081839Z-8cc4be13",
+  "question_count": 12,
+  "variants": [
+    "rrf",
+    "bm25_first",
+    "dense_first"
+  ],
+  "top_k": 5,
+  "max_chars": 7400,
+  "candidate_k_per_branch_per_document": 50,
+  "rrf_k": 60,
+  "queries": "Original composite question only; no new decomposition or model call.",
+  "selection": "Within each selected paper, place the two branch leaders first (deduplicated), then remaining RRF candidates. Rotate papers in unchanged selected order until five anchors. For more than two papers the five-slot limit can prevent keeping all leaders.",
+  "controls": "BM25-first and Dense-first are both fixed in advance and both reported; no per-question winner selection. Candidate pool, vectors, questions, gold and character budget unchanged.",
+  "scope": "Exploratory fixed development comparison motivated by failure inspection, not a blind test. Query/document order can affect the final odd slot.",
+  "generation": "disabled",
+  "adoption": "Do not alter production defaults from one small development experiment."
+}

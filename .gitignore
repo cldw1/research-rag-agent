@@ -9,6 +9,7 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+.pytest_tmp/
 .mypy_cache/
 
 # ===== IDE =====
@@ -68,6 +69,22 @@ models/
 !/results/qasper_chunking_validation.json
 !/results/qasper_chunking_validation_per_question.csv
 !/results/qasper_chunking_validation_contexts.csv
+!/results/pdf_qa_pilot_summary.json
+!/results/pdf_qa_development_summary.json
+!/results/pdf_qa_corpus_audit.json
+!/results/pdf_qa_answer_summary.json
+!/results/pdf_qa_retry_summary.json
+!/results/pdf_qa_retry_v2_plan.json
+!/results/pdf_qa_retry_v2_summary.json
+!/results/multidoc_qa_development.json
+!/results/multidoc_query_comparison.json
+!/results/multidoc_stage_audit.json
+!/results/multidoc_head_comparison.json
+!/results/multidoc_answer_comparison.json
+!/results/answer_policy_v1_comparison.json
+!/results/answer_policy_v2_comparison.json
+!/results/workflow_acceptance.json
+!/results/workflow_ui_acceptance.json
 
 # ===== Local reports =====
 /reports/
@@ -126,3 +143,18 @@ token.json
 /docs/source_quick_reference.md
 /docs/project_brief.md
 /docs/v2_*.md
+
+# Local detailed analysis; public methods and results are in docs/evaluation.md
+/docs/answer_evaluation.md
+/docs/answer_grounding.md
+/docs/branch_head_experiment.md
+/docs/case_studies.md
+/docs/chunking_experiment.md
+/docs/evidence_retry.md
+/docs/experiment_summary.md
+/docs/multidoc_answers.md
+/docs/multidoc_benchmark.md
+/docs/multidoc_diagnostics.md
+/docs/pdf_benchmark.md
+/docs/retrieval_analysis.md
+/docs/workflow_acceptance.md

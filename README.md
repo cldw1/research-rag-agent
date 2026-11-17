@@ -1,74 +1,68 @@
 # Research RAG Agent
 
-**面向科研文献的可追溯问答助手：多格式文档 · 混合检索 · 工具调用 · 持久化会话。**
+**面向科研文献的可追溯问答助手：多格式文档、混合检索、工具调用与持久化会话。**
 
-上传论文、Word 或 Markdown 文档，解析并建立知识索引后，通过多轮对话查找研究方法、实验结论和原文证据。系统将回答与文档位置关联，支持查看引用片段、恢复历史会话和导出 Markdown；同时提供 QASPER 数据集检索与章节感知实验。
+上传论文、Word 或 Markdown 文档，建立本地文献库，围绕单篇或多篇论文进行多轮问答、方法比较与研究结论分析。回答关联原文片段、文档名称和真实位置，支持恢复历史会话及导出 Markdown。
 
-科研对话可选择 **1–5 篇已索引文档**，围绕单篇提问或比较多篇文献。每个会话固定所选文档及各自索引版本，引用按文件名区分来源。
-
-[快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [实验结论](docs/experiment_summary.md) · [检索评测](docs/benchmark.md)
+[快速开始](#快速开始) · [使用指南](docs/user_guide.md) · [系统架构](docs/architecture.md) · [评测结果](docs/evaluation.md) · [QASPER 协议](docs/benchmark.md)
 
 ## 核心功能
 
-| 模块 | 功能 |
+| 模块 | 能力 |
 |---|---|
-| 文档工作台 | 批量上传 PDF、DOCX、MD、TXT，搜索文档、查看解析状态与处理任务 |
-| 结构化分块 | Fixed、Recursive、Structure、Adaptive 策略，结合原文结构、字符与 Embedding Token 预算 |
-| 混合检索 | BM25 + BGE-small-en-v1.5 + FAISS，RRF 融合排名，Anchor-First 组织上下文 |
-| 科研 Agent | 论文目录与正文检索工具，参数和文档范围校验、工具预算与停止条件 |
-| 多文档问答 | 会话多选文档、统一混合检索、按论文分配证据、分文档引用与覆盖提示 |
-| 多轮对话 | 完整回合滑动窗口、历史恢复、流式输出、停止、重新生成和失败重试 |
-| 模型配置 | DeepSeek、OpenAI、Claude、Gemini、阿里云百炼及自定义兼容服务的适配入口 |
-| 来源追踪 | 稳定数字引用、论文与章节信息、真实 PDF 页码或段落/行号、原文片段 |
-| 持久化 | SQLite 保存文档、Chunk、会话和引用；本地保存原文件与不可变 FAISS 索引版本 |
-| 数据管理 | 文件哈希去重、索引复用与重建、可恢复的文档移出、备份与恢复 |
-| 检索实验 | QASPER 证据级检索评测，以及指定 HMC PDF 的 Section-Aware 章节检索 |
+| 文献管理 | 批量上传 PDF、DOCX、MD、TXT，预览解析结构、来源位置、Chunk 与任务状态 |
+| 文档解析 | PyMuPDF 文本提取、OOXML 结构解析；可选 Tesseract 或 Docling/RapidOCR 处理扫描文档 |
+| 结构化分块 | Fixed、Recursive、Structure、Adaptive 与可选 HybridChunker，结合结构和 Embedding Token 预算 |
+| 混合检索 | BM25 + BGE-small-en-v1.5 + FAISS，等权 RRF 融合与 Anchor-First 证据组织 |
+| 多文献问答 | 选择 1–5 篇已索引文档，按论文分配候选，区分不同文献的证据与引用 |
+| 科研 Agent | 原生 Python Tool Calling，目录查询与正文检索，工具参数、文档范围和执行预算校验 |
+| 上下文管理 | 按输入预算选择完整历史回合，保留工具调用及返回消息的配对关系 |
+| 对话体验 | 流式生成、停止、重新生成、历史恢复、重命名、Markdown 导出 |
+| 模型适配 | DeepSeek、OpenAI Responses、Claude、Gemini、百炼和自定义 OpenAI-compatible 服务 |
+| 引用追踪 | 会话内稳定编号，关联具体文档、索引版本、Chunk、PDF 页码或段落/行号 |
+| 持久化 | SQLAlchemy + SQLite 保存文档、Chunk、任务、会话和引用；本地文件保存原文与版本化 FAISS 索引 |
+| 数据维护 | 文件哈希去重、索引复用与重建、可恢复的文档移出、备份与恢复 |
 
-PDF 默认采用 PyMuPDF 文本提取；需要 OCR 或更复杂版面处理时，可配置 Tesseract 或可选的 Docling/RapidOCR 后端。配置与处理提示见 [文档解析](docs/user_guide.md#文档解析与分块)。
+生成模型与 Embedding 分开配置。API Key 使用密码输入框，用户输入默认只保存在当前会话或服务内存中。原始文档与索引保存在本地；生成时向所选供应商发送本轮问题、选中的历史与证据。
 
 ## 系统架构
 
 ```mermaid
 flowchart TD
-    UI["Streamlit 交互"] --> DOC["文档管理服务"]
-    UI --> CHAT["科研对话服务"]
-    UI --> EXP["数据集与章节检索"]
-    DOC --> PARSE["统一解析与结构分块"]
-    PARSE --> EMB["BGE 编码与版本化索引"]
-    DOC <--> STORE["SQLite 与本地文件"]
-    EMB --> STORE
+    UI["Streamlit 文档工作台与科研对话"] --> INGEST["统一解析与结构化分块"]
+    UI --> CHAT["会话与生成任务服务"]
+    INGEST --> INDEX["BGE 编码与版本化索引"]
+    INDEX --> STORE["SQLite 与本地文件"]
     CHAT <--> STORE
-    CHAT --> AGENT["单 Agent 与上下文窗口"]
-    AGENT <--> LLM["模型适配层"]
-    AGENT <--> TOOLS["目录与正文工具"]
-    TOOLS --> RAG["混合检索与证据组织"]
-    EXP --> RAG
+    CHAT --> AGENT["Agent Loop 与上下文预算"]
+    AGENT <--> MODEL["模型协议适配"]
+    AGENT <--> TOOL["目录查询与正文检索"]
+    TOOL --> RAG["混合检索与证据组织"]
     STORE --> RAG
+    RAG --> CITE["引用注册与来源定位"]
+    CITE --> CHAT
 ```
 
-Python 应用服务按解析、存储、检索、生成和会话职责划分。文档处理与向量搜索在本地运行，生成模型通过独立适配层调用。
+文档处理、存储、检索、模型协议和会话编排采用独立模块。完整数据流、版本关系与代码入口见 [系统架构](docs/architecture.md)。
 
 ### 检索与证据组织
 
-1. 查询限定在当前选择的论文与索引版本内。
-2. BM25 与 Dense 分别产生候选；Dense 使用归一化 BGE 向量和 FAISS IndexFlatIP。
-3. RRF 根据排名融合，常数 `k=60`：
-
-$$
-\operatorname{RRF}(d)=\sum_{r\in R}\frac{1}{60+\operatorname{rank}_r(d)}
-$$
-
-4. Anchor-First 优先保留命中的证据，再补充同组邻段；上下文按预算选择完整证据块。
-5. Agent 注册来源编号，将工具结果回传模型，再保存回答、消息与引用关系。
+1. 将查询限定在当前会话选择的文档及对应索引版本中。
+2. BM25 与 Dense 分别召回；Dense 使用归一化 BGE 向量和 FAISS IndexFlatIP。
+3. 等权 RRF 融合排名，默认常数为 60。
+4. 多文档检索按论文分配候选；Anchor-First 优先保留命中证据，再按预算扩展相邻段落。
+5. 为证据注册稳定引用，生成回答后保存本轮配置、消息和来源关系。
 
 ### Agent 与上下文
 
 | 工具 | 输入 | 输出 |
 |---|---|---|
-| `get_paper_outline` | 会话范围 ID 或所选文档 ID | 按文档区分的标题、章节/页码标签与 Chunk 统计 |
-| `search_research_paper` | 会话范围 ID 或所选文档 ID、检索问题 | 证据正文、来源位置、引用元数据与文档覆盖情况 |
+| `get_paper_outline` | 会话范围 ID 或其中一篇文档 ID | 按文档区分的章节/页面标签与 Chunk 统计 |
+| `search_research_paper` | 会话范围、检索问题及可选文档 ID | 证据文本、来源位置、排名与文档覆盖信息 |
 
-Agent 由 Python 校验并执行工具；单次问答最多进行五轮模型请求、两次工具尝试。每次请求前，根据输入预算选择完整历史回合，保持工具调用与返回消息配对。生成输入采用明确标记的预算估算，Embedding 分块使用 BGE 的实际 tokenizer。
+Agent 负责调用模型、校验工具参数、执行工具并回传结果。单轮问答最多进行五轮模型请求和两次工具尝试；可选证据补检最多增加一次生成请求。每次请求前按预算选择完整历史回合，避免拆散工具请求与返回消息。生成上下文采用带封装余量的预算估算，Embedding 分块使用 BGE 的真实 tokenizer。
+
+多文档证据顺序、证据不足时补检一次、强调来源与实验条件均可在界面选择；默认使用 RRF，后两项默认关闭。配置、作用范围和成本见 [使用指南](docs/user_guide.md)。
 
 ## 快速开始
 
@@ -86,99 +80,69 @@ Copy-Item .env.example .env
 
 打开 [本地应用](http://localhost:8501)：
 
-1. 进入 **文档工作台**，上传文档，点击“保存并解析上传文档”。
-2. 查看解析结果和分块来源，点击“构建或复用持久化索引”。
-3. 进入 **科研对话**，选择 1–5 篇已索引文档并新建会话。
-4. 选择模型供应商、填写 API Key 和参数，开始问答；历史与引用自动保存。
-5. 需要运行数据集或章节实验时，使用首页的 QASPER / PDF 检索区域。
+1. 进入 **文档工作台**，批量上传文件并保存解析结果。
+2. 检查结构与来源，选择分块策略，构建或复用持久化索引。
+3. 进入 **科研对话**，选择 1–5 篇文档并新建会话。
+4. 选择模型供应商，填写模型名、API Key 和参数，开始问答。
+5. 展开引用查看原文，或恢复历史会话、导出 Markdown。
 
-BGE 首次使用会下载到 `models/embedding_cache/`；已有完整缓存后可离线运行文档编码和检索。API Key 可直接在科研对话页面输入，也可使用 `.env` 中的可选默认配置。文档解析与建索引不需要生成模型 Key。
+BGE 首次使用会下载到 `models/embedding_cache/`，有缓存后可离线处理与检索。文档建索引不需要生成模型 Key。默认数据目录为 `data/copilot_v2/`，可通过 `COPILOT_DATA_DIR` 配置。
 
-已有单文档会话库可继续使用。页面出现“备份并启用多文档会话”时，点击后先完整备份，再新增文档关联表并保留原会话、消息和引用，详见 [数据管理](docs/user_guide.md#数据管理与备份)。
+扫描文档可选用 OCR；依赖、模型目录与语言配置见 [文档解析与分块](docs/user_guide.md#文档解析与分块)。备份、恢复和已有数据库兼容操作见 [数据管理与备份](docs/user_guide.md#数据管理与备份)。
 
 ### QASPER 数据准备
 
-交互式 QASPER 示例使用固定种子选出的 30 篇 Validation 论文，每篇一道问题；此示例与完整 Test 检索评测分别保存。
+首页保留 QASPER 论文检索与指定 PDF 的章节检索入口。交互示例使用固定种子选择的 30 篇 Validation 论文，每篇一个问题；与 Test 评测产物分别保存。
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/prepare_validation_sample.py
 .\.venv\Scripts\python.exe scripts/build_validation_faiss.py
 ```
 
-生成的 Chunk、向量和索引保存在 `data/processed/`。上传自己的文档无需执行这两步。
+生成文件保存在 `data/processed/`。上传自己的文档可直接使用文档工作台。
 
-## 检索评测
+## 评测结果
 
-### QASPER 文本证据检索
+### QASPER 证据级检索
 
-主实验采用官方 Test 的 416 篇论文、1451 个问题，按预先固定规则纳入可唯一对齐正文的文本证据题。相同分块和 BGE 模型下比较 BM25、Dense、Hybrid，另以相同上下文预算比较 Top-5 与 Anchor-First。
-
-纳入 **1216 个问题、400 篇评分论文**，索引共 **17474 个 Chunk**。结果如下：
+使用官方 Test 数据建立 416 篇论文、17,474 个 Chunk 的索引；按固定规则纳入 400 篇论文的 1,216 道文本证据题。三种方法使用相同分块、问题与论文范围。
 
 | 方法 | Hit@5 | Recall@5 | MRR@5 | nDCG@5 |
 |---|---:|---:|---:|---:|
 | BM25 | 64.72% | 51.04% | 0.3908 | 0.3767 |
 | Dense | 66.94% | 54.29% | 0.4279 | 0.4098 |
-| Hybrid | 73.77% | 60.05% | 0.4723 | 0.4507 |
+| Hybrid | **73.77%** | **60.05%** | **0.4723** | **0.4507** |
 
-Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，按论文聚类的配对 95% bootstrap 区间为 **[4.42, 9.26] 个百分点**。同一证据预算下，Anchor-First 的段落覆盖从 60.05% 增至 64.37%。配置、筛选、完整指标和上下文长度见 [实验报告](docs/benchmark.md) 与 [结构化结果](results/qasper_test_summary.json)。
+Hybrid 相对 Dense 的 Hit@5 提高 **6.83 个百分点**，论文级配对 bootstrap 95% 区间为 **[4.42, 9.26] 个百分点**。同一证据预算下，Anchor-First 将来源段落覆盖从 60.05% 提高至 64.37%。完整协议、指标和耗时见 [QASPER 评测](docs/benchmark.md)，原始汇总见 [结构化结果](results/qasper_test_summary.json)。
 
-Validation 的同一批 **841 题**分别用于融合参数和分块策略对照。融合验证支持保留等权 RRF、常数 60；分块对照结果如下：
+### 分块与多文献实验
 
-| 策略 | Hybrid Hit@5 | 来源 Recall@5 | Anchor-First 完整段落 Recall | Chunk 数 |
-|---|---:|---:|---:|---:|
-| 自适应 | 73.72% | 61.86% | 61.37% | 11,956 |
-| 结构化 | 68.25% | 54.00% | 58.70% | 17,588 |
+| 对照 | 数据范围 | 结果 |
+|---|---|---|
+| 自适应 / 结构分块 | QASPER Validation，同一批 841 题 | Hybrid Hit@5 为 73.72% / 68.25%；Chunk 数为 11,956 / 17,588 |
+| 全局 / 按论文分配证据 | 3 篇论文的跨文档开发题，10 道有 Gold 的问题 | 目标论文出现率 77.78% / 100%；完整证据 Recall 为 32.50% / 44.17% |
+| Hybrid / Section-Aware | 指定 HMC PDF，7 道章节问题 | Hit@5 为 6/7 / 7/7；MRR@5 为 0.786 / 0.929 |
 
-在当前模型、检索参数与证据上限下保留自适应分块。完整 [实验结论](docs/experiment_summary.md) 汇总数据范围与采用依据；[分块报告](docs/chunking_experiment.md) 提供配对区间和实际成本，[误差分析](docs/retrieval_analysis.md) 与 [六个原文案例](docs/case_studies.md) 区分原始排名、证据扩展和回答判断。
+真实 PDF 评测集包含 **10 篇论文、150 道候选题、205 处证据定位**，按论文划分为 45 道开发题与 105 道预留测试题。开发集已完成 45 次 DeepSeek 回答及来源初审；参考标注与回答审核状态随结果保留，预留测试集未用于报告成绩。
 
-### HMC 章节感知检索
-
-在 *MCMC Using Hamiltonian Dynamics* 的指定 50 页 PDF 上，使用 247 个 V3 Chunk 和 7 道章节级问题比较两种检索策略：
-
-| 指标 | Hybrid | Section-Aware |
-|---|---:|---:|
-| Hit@5 | 85.7%（6/7） | 100.0%（7/7） |
-| MRR@5 | 0.786 | 0.929 |
-| 人工证据充分率 | 85.7%（6/7） | 85.7%（6/7） |
-
-该实验展示章节元数据对排序的作用，范围为同一篇论文的七题。完整逐题结果、指标口径与复现命令见 [章节实验报告](docs/experiments.md) 和 [结构化摘要](results/hmc_v3_public_summary.json)。
+多文献回答、证据顺序、补检和提示约束另有固定协议与逐题对照，包含改善与退步案例。数据划分、Token 用量、审核口径和结果解释统一见 [评测结果与复现](docs/evaluation.md)。
 
 ## 数据存储
 
-默认目录为 `data/copilot_v2/`，可通过 `COPILOT_DATA_DIR` 配置：
+SQLite 保存文档、Chunk、任务、会话、消息与引用，本地文件系统保存原始文档、向量与 FAISS 索引。
 
-| 内容 | 保存方式 |
-|---|---|
-| 文档与解析版本、Chunk、任务 | SQLite `catalog.sqlite` |
-| 会话、回合、消息、引用关系 | 同一 SQLite 数据库 |
-| 原始文档 | `objects/<SHA256>` |
-| 向量与 FAISS 索引 | `indexes/<索引ID>/vectors.npy`、`index.faiss` |
-| 模型、Chunk 和文件对应关系 | 索引配置与 `manifest.json` 校验清单 |
-
-新索引写入并校验后，再在事务中切换活动版本。重启时读取已保存的解析结果、Chunk 和索引；会话与引用绑定具体版本，保证历史来源可追溯。备份和 CLI 管理见 [使用指南](docs/user_guide.md#数据管理与备份)。
+新索引写入并通过校验后，再事务性切换活动版本。重启后复用已保存的解析和索引；会话与引用绑定具体版本，文档重建后通过新会话使用新索引。数据维护命令见 [使用指南](docs/user_guide.md#数据管理与备份)。
 
 ## 功能截图
 
-**论文选择与问答**
+<details>
+<summary>展开查看问答、工具调用与引用展示</summary>
 
 ![QASPER 论文选择与问答](docs/images/main.png)
-
-**PDF 文献检索与引用**
-
 ![PDF Hybrid 问答](docs/images/pdf-qa.png)
-
-**章节感知检索**
-
-![指定 HMC 文献的 Section-Aware 问答](docs/images/section-aware.png)
-
-<details>
-<summary>查看 Hybrid 问答、工具调用与原文证据</summary>
-
+![章节感知问答](docs/images/section-aware.png)
 ![HMC Hybrid 问答](docs/images/hmc-hybrid-qa.png)
-
 ![Agent 工具调用记录](docs/images/agent-tools.png)
-
 ![引用与原文定位](docs/images/citations.png)
 
 </details>
@@ -186,40 +150,31 @@ Validation 的同一批 **841 题**分别用于融合参数和分块策略对照
 ## 测试与复现
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe scripts/check_github_safety.py
+.\.venv\Scripts\python.exe scripts/run_qasper_benchmark.py --split test --threads 8
 ```
 
-测试覆盖文档解析、来源与分块预算、混合检索、RRF、索引与会话恢复、完整回合窗口、工具调用、引用、流式状态、删除与重建、备份及界面启动。生成协议使用 Mock 验证；真实 BGE 的跨进程持久化检查可通过下列脚本运行：
+自动化测试使用固定样本与 Mock，覆盖文档解析、分块、存储、检索融合、Agent Loop、工具消息配对、引用和会话恢复。有本地冻结数据或模型缓存的集成检查按条件运行。
 
-```powershell
-.\.venv\Scripts\python.exe scripts/smoke_conversations.py --output results/chat_check.json
-.\.venv\Scripts\python.exe scripts/smoke_multidoc.py
-```
-
-检索实验与功能测试分别报告，便于区分证据排名、软件行为和生成回答质量。
-
-多文档检查使用两篇固定合成文档、真实缓存 BGE、SQLite 和 FAISS，在两个进程中验证文档范围、历史、引用及备份恢复；生成响应使用固定脚本。QASPER 指标仍对应 [单论文内的文本证据基线](docs/benchmark.md)。
+[完整流程检查](scripts/acceptance_workflow.py) 验证四种文档入库、跨进程历史恢复、引用导出、备份和索引失效；默认使用固定响应，显式添加 `--live` 才调用生成模型。复现各组检索和回答实验的命令见 [评测文档](docs/evaluation.md)。
 
 ## 项目结构
 
 ```text
-research-rag-agent/
-├── app.py                  # 应用入口、QASPER / PDF 检索
-├── pages/                  # 文档工作台、科研对话
-├── src/
-│   ├── ingestion/          # 多格式解析与结构分块
-│   ├── storage/            # 数据库、原始文件、索引、会话、备份
-│   ├── retrieval/          # BM25、Dense、RRF、章节策略与证据扩展
-│   ├── generation/         # RAG Pipeline 与证据上下文
-│   ├── agent/              # 工具调用循环、上下文窗口、引用
-│   ├── llm/                # 模型配置与供应商协议适配
-│   └── evaluation/         # 证据匹配、指标与统计区间
-├── scripts/                # 数据准备、评测、管理与集成检查
-├── tests/                  # 离线单元和集成测试
-├── results/                # 可公开的结构化实验结果
-└── docs/                   # 使用指南、架构、实验与截图
+app.py                    # QASPER 与 PDF 检索入口
+pages/                    # 文档工作台、科研对话
+src/
+├── ingestion/            # 统一文档结构、解析与分块
+├── storage/              # SQLAlchemy 持久化与文件管理
+├── retrieval/            # BM25、FAISS、融合与多文档检索
+├── generation/           # 证据上下文、回答规则与引用
+├── agent/                # Agent Loop、工具与上下文预算
+├── llm/                  # 模型供应商协议适配
+└── evaluation/           # 评测指标、证据对齐与结果审核
+benchmarks/               # 固定问题、Gold 与实验协议
+results/                  # 公开指标、逐题记录与统计汇总
+scripts/                  # 数据准备、评测与维护命令
+tests/                    # 单元测试和集成检查
+docs/                     # 使用指南、架构与评测说明
 ```
-
-技术栈：Python、Streamlit、SQLAlchemy、SQLite、PyMuPDF、Sentence-Transformers / BGE、BM25、FAISS、NumPy、Hugging Face Datasets、LLM API、pytest。

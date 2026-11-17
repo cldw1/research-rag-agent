@@ -1,0 +1,26 @@
+{
+  "protocol_version": "pdf-evidence-retry-v1",
+  "purpose": "Exploratory development-only comparison motivated by baseline failures; not a blind test.",
+  "baseline_answer_run": "20261115T171727Z-a10a57a1",
+  "baseline_retrieval_run": "20261115T165227Z-1bd0349b",
+  "population": "All unchanged 45 development questions; reuse the saved first answer when no retry is triggered.",
+  "gate_inputs": ["saved successful baseline answer"],
+  "gate_excludes": ["gold evidence", "answerability", "reference answers", "AI scores", "question IDs"],
+  "max_retry_rounds": 1,
+  "policy": {
+    "enabled": true,
+    "max_chars": 7400,
+    "branch_top_k": 12,
+    "candidate_k": 50,
+    "retained_anchors": 2,
+    "max_new_chunks": 4,
+    "version": "explicit-insufficiency-branch-diversity-v1"
+  },
+  "queries": "The original user question, independently retrieved with dense then BM25; no answer-derived query and no rewriting model.",
+  "context": "Retain first two baseline sources, alternate new dense/BM25 branch candidates, fill with remaining old sources; whole chunks within 7400 characters; rebuild citation numbering.",
+  "generation": "Same baseline DeepSeek model configuration and prompt template; only context changes. Baseline answer is excluded from generation input.",
+  "acceptance": "Use retry response if nonempty, nontruncated and without invalid citation numbers; otherwise retain baseline. No semantic-score-based winner selection.",
+  "review": "Same 0/1/2 answer rubric, source-audited AI judgments with independent human review pending. Untouched answers retain their original review.",
+  "cost": "Report incremental retrieval and model attempts, returned tokens and response latency, including unsuccessful retries; reuse is not a fresh 45-call control run.",
+  "adoption": "Keep optional until development evidence shows a useful tradeoff; do not alter production defaults or score the 105 test candidates."
+}

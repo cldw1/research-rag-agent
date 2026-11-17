@@ -11,8 +11,6 @@ Research RAG Pipeline
 默认行为保持兼容。
 """
 
-import re
-
 from src.retrieval.context_expander import (
     expand_anchors_first
 )
@@ -25,9 +23,9 @@ from src.generation.strict_context_builder import (
     build_strict_context
 )
 
-from src.generation.context_builder import (
-    build_qa_prompt
-)
+from src.generation.answer_policy import build_grounded_qa_prompt, policy_version
+from src.generation.context_builder import build_qa_prompt
+from src.generation.citations import extract_citation_numbers
 
 from src.generation.answer_generator import (
     generate_answer
@@ -47,11 +45,15 @@ class ResearchRAGPipeline:
     def __init__(
         self,
         retriever,
-        max_chars=8000
+        max_chars=8000,
+        *,
+        answer_policy='legacy'
     ):
 
         self.retriever = retriever
         self.max_chars = max_chars
+        self.answer_policy = answer_policy
+        self.answer_policy_version = policy_version(answer_policy)
 
     # ======================================
     # 1. 是否启用智能章节扩展
@@ -390,7 +392,8 @@ class ResearchRAGPipeline:
         # F. 构建问答 Prompt
         # ----------------------------------
 
-        prompt = build_qa_prompt(
+        build_prompt = build_grounded_qa_prompt if self.answer_policy == 'grounded' else build_qa_prompt
+        prompt = build_prompt(
             question=question,
             context=context
         )
@@ -416,6 +419,7 @@ class ResearchRAGPipeline:
 
         return {
             "paper_id": str(paper_id),
+            "answer_policy_version": self.answer_policy_version,
             "selected_document_ids": sorted(allowed_ids),
             "selected_documents": paper_data.get("documents", []),
             "covered_document_ids": sorted({str(item["paper_id"]) for item in sources}),
@@ -446,13 +450,7 @@ class ResearchRAGPipeline:
             prepared["prompt"]
         )
 
-        cited_numbers = sorted({
-            int(number)
-            for number in re.findall(
-                r"\[(\d+)\]",
-                answer
-            )
-        })
+        cited_numbers = extract_citation_numbers(answer)
 
         source_map = {
             int(source["citation"]): source

@@ -1,0 +1,94 @@
+{
+  "protocol_version": "pdf-qa-pilot-v1",
+  "dataset": "benchmarks/pdf_qa/development.json",
+  "stage": "development_diagnostic",
+  "target": {
+    "papers": 10,
+    "questions_per_paper": 15,
+    "dev_papers": 3,
+    "test_papers": 7
+  },
+  "current": {
+    "papers": 3,
+    "questions": 45,
+    "split": "dev",
+    "human_review": "pending"
+  },
+  "selection": {
+    "unit": "paper",
+    "policy": "Paper allocation fixed in selection.json before any retrieval on the 8 new papers. Only development.json is scored; test_candidates.json remains unscored pending independent review and final freeze.",
+    "exclude": "QASPER train/validation/test paper IDs, existing HMC development paper, and duplicate arXiv versions.",
+    "report": "Paper titles/versions/hashes, topics, layouts, exclusions, question categories, and reviewer provenance. Do not infer generator pretraining independence."
+  },
+  "embedding": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "device": "cpu",
+    "normalize": true,
+    "dimension": 384
+  },
+  "parsing": {
+    "backend": "lightweight",
+    "ocr": false,
+    "max_pages": 80
+  },
+  "chunking": {
+    "strategy": "adaptive",
+    "max_tokens": 480,
+    "max_chars": 1200,
+    "overlap_chars": 0
+  },
+  "retrieval": {
+    "methods": [
+      "bm25",
+      "dense",
+      "hybrid"
+    ],
+    "candidate_k": 50,
+    "rrf_k": 60,
+    "k_values": [
+      1,
+      5,
+      10
+    ]
+  },
+  "contexts": {
+    "variants": [
+      "top5",
+      "anchor_first"
+    ],
+    "max_chars": 7400,
+    "neighbor_window": 1
+  },
+  "metrics": {
+    "answerable_only": [
+      "hit",
+      "precision",
+      "mrr",
+      "ndcg",
+      "evidence_recall",
+      "full_evidence_recall",
+      "all_evidence_covered"
+    ],
+    "primary_retrieval": "hybrid full_evidence_recall@5",
+    "primary_context": "anchor_first full_evidence_recall",
+    "missing_parse_evidence": "Keep in denominator as zero; report missing/ambiguous mappings separately.",
+    "unanswerable": "Exclude from retrieval metrics; assess refusal separately after generating and reviewing answers.",
+    "aggregation": "Question macro means plus per-paper/category results. Three development papers have no inferential CI; final comparisons will use paired paper-cluster bootstrap."
+  },
+  "generation": {
+    "default": "disabled",
+    "plan": "Use one existing provider/model for all variants; record exact model, prompt hash, temperature, output limit, context budget, request failures and actual API usage. Human answer review must precede reporting answer scores.",
+    "comparison": [
+      "plain_rag",
+      "single_agent_rag"
+    ],
+    "rating": {
+      "correctness": "0 incorrect / 1 partly correct / 2 fully correct",
+      "faithfulness": "0 unsupported claim / 1 partly supported / 2 all substantive claims supported",
+      "abstention": "For unanswerable questions: explicit absence with no invented value",
+      "citations": "Review claim-source support and coverage; valid citation numbers alone do not establish correctness"
+    }
+  },
+  "test_gate": "Only development data are accepted by this runner. Test candidates require independent human verification and a separate final frozen protocol before any scoring.",
+  "baseline_policy": "Keep existing QASPER and HMC artifacts unchanged. This pilot is a new PDF-pipeline diagnostic, not a new score on either benchmark."
+}

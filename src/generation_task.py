@@ -12,6 +12,7 @@ class GenerationTask:
         self.token, self.lock = CancellationToken(), Lock()
         self.status, self.text, self.phase, self.error = "running", "", "准备生成", ""
         self.result = None
+        self.retrying = False
         self.future = None
 
     def update(self, event):
@@ -19,7 +20,14 @@ class GenerationTask:
             if self.status != "running" or self.token.event.is_set():
                 return
             if event["kind"] == "model_start":
-                self.text, self.phase = "", "模型正在生成"
+                self.text, self.phase = "", "正在生成补答" if self.retrying else "模型正在生成"
+            elif event["kind"] == "retry_start":
+                self.retrying = True
+                self.text, self.phase = "", "证据不足，正在补检"
+            elif event["kind"] == "retry_end":
+                self.retrying = False
+                self.text = event["text"]
+                self.phase = "已采用补答" if event["status"] == "accepted" else "保留原回答"
             elif event["kind"] == "text_delta":
                 self.text += event["text"]
             elif event["kind"] == "tool_start":

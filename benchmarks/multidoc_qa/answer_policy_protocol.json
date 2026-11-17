@@ -1,0 +1,17 @@
+{
+  "schema_version": "answer-policy-check-v1",
+  "scope": "Six selected development regression cases, three known source/condition failures and three controls; fresh paired generations, not a held-out benchmark.",
+  "source_run": "20261116T124957Z-914040f8",
+  "source_variant": "rrf",
+  "question_ids": ["md-03", "md-05", "md-06", "md-09", "md-11", "md-12"],
+  "known_failure_ids": ["md-05", "md-09", "md-11"],
+  "control_ids": ["md-03", "md-06", "md-12"],
+  "variants": ["legacy", "grounded"],
+  "max_api_calls": 12,
+  "model": "deepseek-flash",
+  "temperature": 0,
+  "max_output_tokens": 1200,
+  "thinking": "disabled",
+  "evidence": "Reuse the exact frozen RRF question, five passages and source numbering for each pair; no additional retrieval, tools or retry.",
+  "review": "Provisional AI source audit against actual provided passages and reference points; independent human review remains pending. Report all cases and regressions."
+}

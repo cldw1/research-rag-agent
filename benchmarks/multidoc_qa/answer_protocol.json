@@ -1,0 +1,17 @@
+{
+  "version": "multidoc-answer-comparison-v1",
+  "head_run": "20261116T083848Z-5daefc85",
+  "variants": [
+    "rrf",
+    "bm25_first"
+  ],
+  "selection": "Both fixed before answer generation; no selecting a winner per question. Dense-first not generated to avoid another 12 calls.",
+  "question_count": 12,
+  "max_generation_calls": 24,
+  "model": "deepseek-flash",
+  "temperature": 0,
+  "max_output_tokens": 1200,
+  "thinking": "disabled",
+  "retry": "none",
+  "scope": "Fixed development plain RAG prompts, single turn, no Agent/tool loop or evidence retry. Candidate labels and AI review awaiting independent human verification."
+}

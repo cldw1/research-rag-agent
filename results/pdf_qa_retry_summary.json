@@ -1,0 +1,1598 @@
+{
+  "schema_version": "pdf-evidence-retry-report-v1",
+  "run_id": "20261115T174721Z-ffd45f73",
+  "scope": "Exploratory 45-question development policy comparison; saved control answers reused; independent human review pending.",
+  "question_count": 45,
+  "baseline_answer_run": "20261115T171727Z-a10a57a1",
+  "retrieval_run": "20261115T165227Z-1bd0349b",
+  "policy": {
+    "enabled": true,
+    "max_chars": 7400,
+    "branch_top_k": 12,
+    "candidate_k": 50,
+    "retained_anchors": 2,
+    "max_new_chunks": 4,
+    "version": "explicit-insufficiency-branch-diversity-v1"
+  },
+  "model_config": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0.0,
+    "max_output_tokens": 800,
+    "context_window": 32768,
+    "safety_margin": 512,
+    "supports_tools": false,
+    "stream": false
+  },
+  "gate_reason_counts": {
+    "no_explicit_insufficiency": 36,
+    "explicit_insufficiency_pattern_5": 1,
+    "explicit_insufficiency_pattern_1": 2,
+    "explicit_insufficiency_pattern_3": 3,
+    "explicit_insufficiency_pattern_2": 2,
+    "explicit_insufficiency_pattern_4": 1
+  },
+  "retried_questions": [
+    "attention-09",
+    "attention-14",
+    "attention-15",
+    "rag-03",
+    "rag-04",
+    "rag-15",
+    "lora-04",
+    "lora-09",
+    "lora-15"
+  ],
+  "retrieval_calls": 18,
+  "retrieval_seconds": 0.18471570004476234,
+  "incremental_generation": {
+    "schema_version": "pdf-answer-run-v1",
+    "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+    "manifest_sha256": "9b5329ad489f8d33f32d6e732f34594d5b0d71f9b7625b5b5592f125cb5fad0f",
+    "question_count": 9,
+    "status_counts": {
+      "succeeded": 9
+    },
+    "generation_api_attempts": 9,
+    "sdk_max_retries": 0,
+    "known_returned_usage": {
+      "prompt_tokens": 21728,
+      "completion_tokens": 1225,
+      "total_tokens": 22953,
+      "prompt_cache_hit_tokens": 7168,
+      "prompt_cache_miss_tokens": 14560
+    },
+    "usage_complete_for_returned_responses": true,
+    "estimated_returned_cost_usd_upper_at_published_peak_rates": 0.0079884,
+    "cost_note": "Estimate for returned responses only; cache discounts/off-peak may lower it. Failed/uncertain request usage is unknown. Not an account bill.",
+    "response_seconds": {
+      "n": 9,
+      "mean": 2.9085954555581943,
+      "p50": 1.514037200016901,
+      "p95": 8.61239922000095
+    },
+    "answers_with_citations": 7,
+    "answers_with_invalid_citation_numbers": 0,
+    "answer_quality_metrics": null,
+    "review_status": "pending"
+  },
+  "baseline_generation": {
+    "schema_version": "pdf-answer-run-v1",
+    "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+    "manifest_sha256": "8b3caa13bd4f14b1cabfbe900a9ef60c7da26e35c2c1cb3d5e5cd1afda987d0f",
+    "question_count": 45,
+    "status_counts": {
+      "succeeded": 45
+    },
+    "generation_api_attempts": 45,
+    "sdk_max_retries": 0,
+    "known_returned_usage": {
+      "prompt_tokens": 96312,
+      "completion_tokens": 6159,
+      "total_tokens": 102471,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 96312
+    },
+    "usage_complete_for_returned_responses": true,
+    "estimated_returned_cost_usd_upper_at_published_peak_rates": 0.036284399999999994,
+    "cost_note": "Estimate for returned responses only; cache discounts/off-peak may lower it. Failed/uncertain request usage is unknown. Not an account bill.",
+    "response_seconds": {
+      "n": 45,
+      "mean": 1.8787902822213558,
+      "p50": 1.3552511000016239,
+      "p95": 6.171025640005232
+    },
+    "answers_with_citations": 43,
+    "answers_with_invalid_citation_numbers": 0,
+    "answer_quality_metrics": null,
+    "review_status": "pending"
+  },
+  "total_known_tokens_with_baseline": 125424,
+  "final_answer_selection_counts": {
+    "baseline": 36,
+    "retry": 9
+  },
+  "baseline_context_metrics": {
+    "evidence_recall": 0.7857142857142857,
+    "full_evidence_recall": 0.7619047619047619,
+    "all_evidence_covered": 0.7142857142857143
+  },
+  "policy_context_metrics": {
+    "evidence_recall": 0.8571428571428571,
+    "full_evidence_recall": 0.8333333333333334,
+    "all_evidence_covered": 0.7857142857142857
+  },
+  "baseline_ai_review": {
+    "reviewed_count": 45,
+    "complete": true,
+    "reviewer_type": "ai_source_audit",
+    "independent_human_review": false,
+    "metrics": {
+      "correctness": {
+        "applicable": 45,
+        "score_0": 2,
+        "score_1": 5,
+        "score_2": 38,
+        "mean_0_2": 1.8
+      },
+      "faithfulness": {
+        "applicable": 45,
+        "score_0": 0,
+        "score_1": 2,
+        "score_2": 43,
+        "mean_0_2": 1.9555555555555555
+      },
+      "citation_support": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 3,
+        "score_2": 40,
+        "mean_0_2": 1.930232558139535
+      },
+      "citation_coverage": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 3,
+        "score_2": 40,
+        "mean_0_2": 1.930232558139535
+      }
+    },
+    "unanswerable_reviewed": 3,
+    "unanswerable_fully_correct": 3,
+    "human_metrics": null,
+    "note": "AI source-audit scores, when present, are provisional judgments against AI-authored labels; not a human-verified answer accuracy."
+  },
+  "policy_ai_review": {
+    "reviewed_count": 45,
+    "complete": true,
+    "reviewer_type": "ai_source_audit",
+    "independent_human_review": false,
+    "metrics": {
+      "correctness": {
+        "applicable": 45,
+        "score_0": 1,
+        "score_1": 3,
+        "score_2": 41,
+        "mean_0_2": 1.8888888888888888
+      },
+      "faithfulness": {
+        "applicable": 45,
+        "score_0": 0,
+        "score_1": 1,
+        "score_2": 44,
+        "mean_0_2": 1.9777777777777779
+      },
+      "citation_support": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 2,
+        "score_2": 41,
+        "mean_0_2": 1.9534883720930232
+      },
+      "citation_coverage": {
+        "applicable": 43,
+        "score_0": 0,
+        "score_1": 2,
+        "score_2": 41,
+        "mean_0_2": 1.9534883720930232
+      }
+    },
+    "unanswerable_reviewed": 3,
+    "unanswerable_fully_correct": 3,
+    "human_metrics": null,
+    "note": "AI source-audit scores, when present, are provisional judgments against AI-authored labels; not a human-verified answer accuracy."
+  },
+  "independent_human_metrics": null,
+  "selections": [
+    {
+      "question_id": "attention-01",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "cd29b3c0822e8c3613d369086f4e611fa16f14ee0bc20946dc35a82843c5e019"
+    },
+    {
+      "question_id": "attention-02",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "dd71d20818e5b776f748408b582f47a6231b719587a9f64f4c49b1432cacf55f"
+    },
+    {
+      "question_id": "attention-03",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "308f36e3cdf8869163456177be11d1aa49d9d4bada858445d77cf02c0a75cb62"
+    },
+    {
+      "question_id": "attention-04",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "3bebdc274b30e31f89b274f0d6265bda5a999c32cf53d28eabc81249ae518149"
+    },
+    {
+      "question_id": "attention-05",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "cd7ef8550eb91da1630dd816ac7e60811d1b97e7cecd602eec9bcb793c282ca5"
+    },
+    {
+      "question_id": "attention-06",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "394587b4e8ade7d0532ab8e674be7fcd626b4170b343dac6029f29d96af2b1d1"
+    },
+    {
+      "question_id": "attention-07",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "6c70f98638266e685119aa301c92d71ca2be644dc5691994807764f6b4b15da9"
+    },
+    {
+      "question_id": "attention-08",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "37c507bd7627ed0fdf5d9c1e2f050264e8c302fcf5185d25133185a8f870cc29"
+    },
+    {
+      "question_id": "attention-09",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "00994ed023f513ba0f8de887c4a253e4a6ddfb5b15058457a49b912d6483a61f"
+    },
+    {
+      "question_id": "attention-10",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "0f28844a762e12a7a33fd06f07f579aa43524f6412873d3c0dae586fe7080e41"
+    },
+    {
+      "question_id": "attention-11",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "663eb2002435d2b8cc275a505418fc08b5e37aedb4c1a0ccf18f09a63f0ff30e"
+    },
+    {
+      "question_id": "attention-12",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "94eede3d6938c91a5b5577f6145ebb266fc16ed37110c5c39e37d7b04a4baa70"
+    },
+    {
+      "question_id": "attention-13",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "7167051dc9b624fb592382b2f4d5db2e04ea13d041089da7c07332d66d6b7305"
+    },
+    {
+      "question_id": "attention-14",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "32398de50a8f1b59d5e27c4a5468de2f023695017d3fa04a031fa377a011dfd7"
+    },
+    {
+      "question_id": "attention-15",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "095b83baf68a9a5c4168d68e5ee10a6c6e43d50fb9d55d9028ed10ba22efce36"
+    },
+    {
+      "question_id": "rag-01",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "011bf4bd3bca3f593c70e5ac41108e20a56267cc75f3f375772c9b379b6951f0"
+    },
+    {
+      "question_id": "rag-02",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "240e225ed1c1c65b5a247c16e3bec3fe8d1246a36860819fa833ee98f78f1338"
+    },
+    {
+      "question_id": "rag-03",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "245dcacbb3cddcdfa117245478eb1b82ad807f2fde7b313b7157c8612216f98c"
+    },
+    {
+      "question_id": "rag-04",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "f30a40c13334c62d81f47d0252127fd83c8a8a000e7e4d6a3d77d322028bcdc2"
+    },
+    {
+      "question_id": "rag-05",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "3a875eef4f52a25f96fb7e5977e4275da51edb9e2fd5700844054dda8e4d1125"
+    },
+    {
+      "question_id": "rag-06",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "b375cefed49f2fd82197a4b53898921ca1acee41e8801265233d49fc085467f5"
+    },
+    {
+      "question_id": "rag-07",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "0b540bbe3ffaee0452f120ded4aede2803fc5b693abfea5357bee21db8a11d7d"
+    },
+    {
+      "question_id": "rag-08",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "85a32b30ae84a502daa42f23fa7f33b33b977ab31a585cbb3a277d8ce5f2b06f"
+    },
+    {
+      "question_id": "rag-09",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "26dccb1bcf1f3d0b4e3e115f30f001277d8faaa252ba5e27ba0f93878a033711"
+    },
+    {
+      "question_id": "rag-10",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "9d813b79d1e9b16045091427b529b893911c9d1ed2f45a7cc18b3dedf9dffd0e"
+    },
+    {
+      "question_id": "rag-11",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "8dca60e4d85d205950045d2b5b54be2d52b5203ffdc12f90e12884959e9bb4e3"
+    },
+    {
+      "question_id": "rag-12",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "9203427aec496871addfaadb5e0dd685fc098cd4793c61a3ac07b71729dac0c7"
+    },
+    {
+      "question_id": "rag-13",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "232c14f211ab11112a71b672d62256e7f47c360f8f32f2c11970e6478a8b9b68"
+    },
+    {
+      "question_id": "rag-14",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "5f72547816832b91582e5a52446dc43ac646651684c57b8be8e97488e31fdbcb"
+    },
+    {
+      "question_id": "rag-15",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "1c7fb4ca99c419f8d74f3cce02279a1257c98543b03c2aa831841f481c64469e"
+    },
+    {
+      "question_id": "lora-01",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "678859ae198abd3bcee22c4dd9786656aaff4e0bce3bfac20942bd55a7fd9366"
+    },
+    {
+      "question_id": "lora-02",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "a2c7cc8a3737bdc04cb93e9ed8f6c0a13639470f540f5d7fc519481e4511db69"
+    },
+    {
+      "question_id": "lora-03",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "49d04f0da82eb337714b4029e3f13ed1a12cb0f6f86439ede86641ecd6c48e3d"
+    },
+    {
+      "question_id": "lora-04",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "821b7461f8c328d8df56d51f235e245b8870eb35a1048e5ebc97823743ba9f19"
+    },
+    {
+      "question_id": "lora-05",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "5477d370a3c633ae1f8f1830262af19d72ef2ba5909951386b958674a03d17ef"
+    },
+    {
+      "question_id": "lora-06",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "aa08486b57148d331f3de5248a422b6f11895f16efa1a85473bdf8cd0b40a9bb"
+    },
+    {
+      "question_id": "lora-07",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "be215e3e1e081e8cab2e45d3f50ab0f603cbd71419d9bf71d40655b01ae26dc9"
+    },
+    {
+      "question_id": "lora-08",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "1dfd7cb2803db3d5a7fd14709fcbf429d313be6285530ff2af8a9d7aa0558aca"
+    },
+    {
+      "question_id": "lora-09",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "975f6816bcdf278a1c93781bfce15f5462aadc09c48489099bf8e0dbc36f07f0"
+    },
+    {
+      "question_id": "lora-10",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "967e629537463244883ede356ef6a2bdc3c4a256bbbc6def17a44754b7b0f95a"
+    },
+    {
+      "question_id": "lora-11",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "60efc9978b1f69a40f1c725050b92df57ed13d5ba8a5347561a816d4f918d7e3"
+    },
+    {
+      "question_id": "lora-12",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "f39fb7059ba10a4e36087aaa101f1af64bde9334b02bebe3dee2e502f9c942de"
+    },
+    {
+      "question_id": "lora-13",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "1ac59f03cb5706f3dd21ccab1b51cf7a25eae0c618fb2cbf0015958d61bc9886"
+    },
+    {
+      "question_id": "lora-14",
+      "selected": "baseline",
+      "retry_status": "not_requested",
+      "answer_sha256": "96e585da7503136a3e42851f517658f29b14df05debe27502a84ddfbc93833c5"
+    },
+    {
+      "question_id": "lora-15",
+      "selected": "retry",
+      "retry_status": "succeeded",
+      "answer_sha256": "600069e394f9d35e664064614572206e8464922f0d5f548d774e8ae0d307cd89"
+    }
+  ],
+  "decisions": [
+    {
+      "question_id": "attention-01",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-02",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-03",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-04",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-05",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-06",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-07",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-08",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-09",
+      "reason": "explicit_insufficiency_pattern_5",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000025",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000008",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000046",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000036"
+      ],
+      "dropped_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000026",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000034",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000035"
+      ]
+    },
+    {
+      "question_id": "attention-10",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-11",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-12",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-13",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "attention-14",
+      "reason": "explicit_insufficiency_pattern_1",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000027",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000023",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000000",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000028"
+      ],
+      "dropped_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000026",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000029",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000031"
+      ]
+    },
+    {
+      "question_id": "attention-15",
+      "reason": "explicit_insufficiency_pattern_3",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000046",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000047",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000008",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000021"
+      ],
+      "dropped_chunk_ids": [
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000034",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000002",
+        "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697:39a4cdac6ed38563318f2a258f1904af0f4b69b72492297164b1165a1065fd5e:000004"
+      ]
+    },
+    {
+      "question_id": "rag-01",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-02",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-03",
+      "reason": "explicit_insufficiency_pattern_2",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000012",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000009",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000029",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000040"
+      ],
+      "dropped_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000084",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000076"
+      ]
+    },
+    {
+      "question_id": "rag-04",
+      "reason": "explicit_insufficiency_pattern_1",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000071",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000070",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000081",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000062"
+      ],
+      "dropped_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000034",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000078",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000006"
+      ]
+    },
+    {
+      "question_id": "rag-05",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-06",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-07",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-08",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-09",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-10",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-11",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-12",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-13",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-14",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "rag-15",
+      "reason": "explicit_insufficiency_pattern_3",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000015",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000038",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000002",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000086"
+      ],
+      "dropped_chunk_ids": [
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000010",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000078",
+        "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233:8eab935b331247c69f7344779e481415619ef24a5d6872e848b4d71af6cb9e12:000036"
+      ]
+    },
+    {
+      "question_id": "lora-01",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-02",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-03",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-04",
+      "reason": "explicit_insufficiency_pattern_3",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000015",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000030",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000049",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000004"
+      ],
+      "dropped_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000045",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000020",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000046"
+      ]
+    },
+    {
+      "question_id": "lora-05",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-06",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-07",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-08",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-09",
+      "reason": "explicit_insufficiency_pattern_2",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000008",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000020",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000052",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000079"
+      ],
+      "dropped_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000021",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000016",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000060"
+      ]
+    },
+    {
+      "question_id": "lora-10",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-11",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-12",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-13",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-14",
+      "reason": "no_explicit_insufficiency",
+      "retry": false,
+      "retrieval_calls": 0,
+      "new_chunk_ids": [],
+      "dropped_chunk_ids": []
+    },
+    {
+      "question_id": "lora-15",
+      "reason": "explicit_insufficiency_pattern_4",
+      "retry": true,
+      "retrieval_calls": 2,
+      "new_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000038",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000089",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000047",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000091"
+      ],
+      "dropped_chunk_ids": [
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000021",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000020",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000110",
+        "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a:91342a06dbe5f0bd213b71081545fdcec5c08a865efba584127416601cd6d363:000109"
+      ]
+    }
+  ],
+  "manifest_sha256": "29a38400c035fc11026d55e7832dd53781067525a4bfa4eed49d8c8aab126274",
+  "attempt_result_sha256": {
+    "attention-09": "0769c7ba92d3f0851ffee1db2cb11ed9226c49bbe3491e380c78b6e603aca86b",
+    "attention-14": "7276e38e6d30af024be2fd9cf5c5cb62f304a5bd6507b7087a426e03632b4ef5",
+    "attention-15": "4faef6b2eaaf388ef5a3d0da3dddf337e001f88edb3585bb5e78238d6b8fbd60",
+    "rag-03": "2b00828567e6229119d133153ec58effe6bd74d29033ec9b6cb40bc2ba0554d1",
+    "rag-04": "8987e1ec9f5d10f1e845188fb3db0fbc55e2107546060ca2f0eaa9963cf01d59",
+    "rag-15": "cdb44978eedd3ddaccc76178f58b65b775ea0ddf4845382e644e8278d193686c",
+    "lora-04": "e274e07a259b4e38304662651a9c1eacdfbce0e1dc030503373b0c5c72159597",
+    "lora-09": "342e1ec4e2a382896a1f4cbd40f363c7400b03af0080d2006675812a38911d5f",
+    "lora-15": "239ed6716244c3354dc65a2f01fc2fc7cf3e48264a6bca8a5e24d1676395d716"
+  },
+  "quality_note": "Answer-level 0/1/2 AI source-audit ratings are provisional, not a human-verified accuracy or a blind evaluation.",
+  "correctness_changes": {
+    "improved": 3,
+    "unchanged": 41,
+    "worsened": 1
+  },
+  "review_records": [
+    {
+      "question_id": "attention-01",
+      "answer_sha256": "cd29b3c0822e8c3613d369086f4e611fa16f14ee0bc20946dc35a82843c5e019",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 明确给出编码器 6 层和输出维度 512，回答覆盖两个要点。"
+    },
+    {
+      "question_id": "attention-02",
+      "answer_sha256": "dd71d20818e5b776f748408b582f47a6231b719587a9f64f4c49b1432cacf55f",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2
+      ],
+      "failure_categories": [],
+      "reason": "引用 [2] 给出 8 头和每头 dk=dv=64，数值与来源一致。"
+    },
+    {
+      "question_id": "attention-03",
+      "answer_sha256": "308f36e3cdf8869163456177be11d1aa49d9d4bada858445d77cf02c0a75cb62",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 同时给出输入输出 512、内部 2048。"
+    },
+    {
+      "question_id": "attention-04",
+      "answer_sha256": "3bebdc274b30e31f89b274f0d6265bda5a999c32cf53d28eabc81249ae518149",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "引用 [1] 支持 softmax 前屏蔽非法连接，[2] 支持移位输出和不访问未来位置；保留原文 leftward 用语。"
+    },
+    {
+      "question_id": "attention-05",
+      "answer_sha256": "cd7ef8550eb91da1630dd816ac7e60811d1b97e7cecd602eec9bcb793c282ca5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持缩放点积计算，[2] 支持 softmax 小梯度解释，[3] 支持点积方差说明。"
+    },
+    {
+      "question_id": "attention-06",
+      "answer_sha256": "394587b4e8ade7d0532ab8e674be7fcd626b4170b343dac6029f29d96af2b1d1",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[4] 支持拼接、输出投影及多子空间关注；额外单头 BLEU 说明由 [5] 支持。"
+    },
+    {
+      "question_id": "attention-07",
+      "answer_sha256": "6c70f98638266e685119aa301c92d71ca2be644dc5691994807764f6b4b15da9",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[2] 支持顺序信息需求；[1] 区分外推假设与已观察结果，[3] 支持两种编码表现接近。"
+    },
+    {
+      "question_id": "attention-08",
+      "answer_sha256": "37c507bd7627ed0fdf5d9c1e2f050264e8c302fcf5185d25133185a8f870cc29",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 直接给出两种语言数据量与对应词表，未混用 BPE 和 word-piece。"
+    },
+    {
+      "question_id": "attention-09",
+      "answer_sha256": "00994ed023f513ba0f8de887c4a253e4a6ddfb5b15058457a49b912d6483a61f",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "Source [1] directly gives eight P100 GPUs, base 100,000 steps/12 hours and big 300,000 steps/3.5 days. Checkpoint averaging is also supported by [2]. The initial response already completed the required points; this retry does not improve its correctness grade."
+    },
+    {
+      "question_id": "attention-10",
+      "answer_sha256": "0f28844a762e12a7a33fd06f07f579aa43524f6412873d3c0dae586fe7080e41",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持 Adam 参数和预热公式，4000 步及逆平方根衰减均准确。"
+    },
+    {
+      "question_id": "attention-11",
+      "answer_sha256": "663eb2002435d2b8cc275a505418fc08b5e37aedb4c1a0ccf18f09a63f0ff30e",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持 checkpoint 与翻译 beam 设置；[3] 被清楚限定为 parsing 的另一配置，[4] 支持消融不平均 checkpoint。"
+    },
+    {
+      "question_id": "attention-12",
+      "answer_sha256": "94eede3d6938c91a5b5577f6145ebb266fc16ed37110c5c39e37d7b04a4baa70",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 包含 base/big 表格行及英德正文 28.4，回答数字与原文表格对应。"
+    },
+    {
+      "question_id": "attention-13",
+      "answer_sha256": "7167051dc9b624fb592382b2f4d5db2e04ea13d041089da7c07332d66d6b7305",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[2] 与跨页延续 [1] 联合支持 n<d 条件；[1] 明确将局部窗口描述为后续研究。"
+    },
+    {
+      "question_id": "attention-14",
+      "answer_sha256": "32398de50a8f1b59d5e27c4a5468de2f023695017d3fa04a031fa377a011dfd7",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "The new context contains the 41.0 body-text value in [3], but the abstract chunk [5] only reaches the Abstract heading and table chunk [2] omits the Transformer row. The response accurately limits its conclusion to that context; it still cannot establish the original 41.8 versus 41.0 conflict. The fixed budget dropped previously supplied table evidence."
+    },
+    {
+      "question_id": "attention-15",
+      "answer_sha256": "095b83baf68a9a5c4168d68e5ee10a6c6e43d50fb9d55d9028ed10ba22efce36",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": null,
+      "citation_coverage": null,
+      "checked_citations": [],
+      "failure_categories": [],
+      "reason": "Correctly declines to give an unreported batch-size-one inference latency. The answer gives no numerical substitute or substantive scientific claim needing a source-level citation score."
+    },
+    {
+      "question_id": "rag-01",
+      "answer_sha256": "011bf4bd3bca3f593c70e5ac41108e20a56267cc75f3f375772c9b379b6951f0",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[3] 支持 DPR；[1] 明确 BART-large 与 400M，覆盖所问模型和规模。"
+    },
+    {
+      "question_id": "rag-02",
+      "answer_sha256": "240e225ed1c1c65b5a247c16e3bec3fe8d1246a36860819fa833ee98f78f1338",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[1][2] 支持整序列与逐 token 潜变量差异，附带单 token 分类等价性也见 [2]。"
+    },
+    {
+      "question_id": "rag-03",
+      "answer_sha256": "245dcacbb3cddcdfa117245478eb1b82ad807f2fde7b313b7157c8612216f98c",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "New source [3] explicitly provides the two BERT_BASE encoders, their document/query representations and the maximum-inner-product top-k search. The DPR and marginalization background in [1] and [4] also matches the actual input. Both required points are now answered."
+    },
+    {
+      "question_id": "rag-04",
+      "answer_sha256": "f30a40c13334c62d81f47d0252127fd83c8a8a000e7e4d6a3d77d322028bcdc2",
+      "correctness": 0,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "failure_categories": [
+        "retrieval_miss",
+        "incomplete_context"
+      ],
+      "reason": "The answer truthfully reports insufficient evidence but provides none of the requested update/freeze policy. The new input adds bibliographic and preprocessing passages while dropping the old high-level jointly-learned description; the relevant frozen-document-encoder passage is still absent. This is a correctness regression from partial completion, despite remaining faithful."
+    },
+    {
+      "question_id": "rag-05",
+      "answer_sha256": "3a875eef4f52a25f96fb7e5977e4275da51edb9e2fd5700844054dda8e4d1125",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[5] 另一段明确说 RAG 不需中间检索监督，[3] 支持边缘似然训练，能够正确回答。固定 Gold 位置没有覆盖这处等价证据，需复核证据标注是否穷尽。"
+    },
+    {
+      "question_id": "rag-06",
+      "answer_sha256": "b375cefed49f2fd82197a4b53898921ca1acee41e8801265233d49fc085467f5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[4] 支持语料年份、100 词、21M 与 FAISS/HNSW；[2] 被限定为换索引对照。附带 728 维按 [5] 原文表述，未替论文纠错。"
+    },
+    {
+      "question_id": "rag-07",
+      "answer_sha256": "0b540bbe3ffaee0452f120ded4aede2803fc5b693abfea5357bee21db8a11d7d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持四个数据集与 EM 指标。"
+    },
+    {
+      "question_id": "rag-08",
+      "answer_sha256": "85a32b30ae84a502daa42f23fa7f33b33b977ab31a585cbb3a277d8ce5f2b06f",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[1] 支持单输出 token、三类与二类标签；[2] 支持重生成 claim 后分类的实现。开头将任务称分类与原文一致，题目的 generation 表述应在人工复核时澄清。"
+    },
+    {
+      "question_id": "rag-09",
+      "answer_sha256": "26dccb1bcf1f3d0b4e3e115f30f001277d8faaa252ba5e27ba0f93878a033711",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 直接支持 FEVER 与实体词重叠的解释，并保留 perhaps 的推测性质。"
+    },
+    {
+      "question_id": "rag-10",
+      "answer_sha256": "9d813b79d1e9b16045091427b529b893911c9d1ed2f45a7cc18b3dedf9dffd0e",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "citation_mismatch"
+      ],
+      "reason": "两个年份、人数及四个正确率均准确。模板 Who is position 实际在 [1] 的跨页续文，该句却只引用 [2]，因此引用关联部分不完整；事实本身在提供上下文中。"
+    },
+    {
+      "question_id": "rag-11",
+      "answer_sha256": "8dca60e4d85d205950045d2b5b54be2d52b5203ffdc12f90e12884959e9bb4e3",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持两种模型不同趋势及指标取舍，[5] 支持报告时使用 15/50 篇；没有把结果推广到所有配置。"
+    },
+    {
+      "question_id": "rag-12",
+      "answer_sha256": "9203427aec496871addfaadb5e0dd685fc098cd4793c61a3ac07b71729dac0c7",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        6
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "[1] 只包含长证据的结尾概括，回答给出了检索引导参数知识的方向，但缺少书名起始 token 与后续补全这一具体机制；[6] 是正确背景但未补足。"
+    },
+    {
+      "question_id": "rag-13",
+      "answer_sha256": "232c14f211ab11112a71b672d62256e7f47c360f8f32f2c11970e6478a8b9b68",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[3] 明确不保证事实无误或无偏，[2] 只说明相对减少幻觉，回答正确区分改进与保证。"
+    },
+    {
+      "question_id": "rag-14",
+      "answer_sha256": "5f72547816832b91582e5a52446dc43ac646651684c57b8be8e97488e31fdbcb",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[4] 支持固定文档编码器/索引的训练原因，[3] 支持测试时换非参数索引；区分训练和推理完整正确。缺少 Gold 的第三处数字实验不妨碍回答所问，需分清最小充分证据与全部标注覆盖。"
+    },
+    {
+      "question_id": "rag-15",
+      "answer_sha256": "1c7fb4ca99c419f8d74f3cce02279a1257c98543b03c2aa831841f481c64469e",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": null,
+      "citation_coverage": null,
+      "checked_citations": [],
+      "failure_categories": [],
+      "reason": "Correctly refuses to invent the paper-unreported RAG-Sequence NQ k=5 millisecond latency. No numerical substitute or other substantive scientific conclusion is supplied."
+    },
+    {
+      "question_id": "lora-01",
+      "answer_sha256": "678859ae198abd3bcee22c4dd9786656aaff4e0bce3bfac20942bd55a7fd9366",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[2][3] 明确冻结原始模型并只训练低秩矩阵，[1][5] 支持注意力/MLP 范围。虽固定 Gold 位置未命中，其他等价段落足以回答。"
+    },
+    {
+      "question_id": "lora-02",
+      "answer_sha256": "a2c7cc8a3737bdc04cb93e9ed8f6c0a13639470f540f5d7fc519481e4511db69",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 完整支持 W0+BA、B 的 d×r 与 A 的 r×k 形状及冻结关系。"
+    },
+    {
+      "question_id": "lora-03",
+      "answer_sha256": "49d04f0da82eb337714b4029e3f13ed1a12cb0f6f86439ede86641ecd6c48e3d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        4,
+        6
+      ],
+      "failure_categories": [],
+      "reason": "[4] 图中文字和 [6] 解释支持高斯 A、零 B 与初始更新为零，推导初始映射不变合理。"
+    },
+    {
+      "question_id": "lora-04",
+      "answer_sha256": "821b7461f8c328d8df56d51f235e245b8870eb35a1048e5ebc97823743ba9f19",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        3
+      ],
+      "failure_categories": [],
+      "reason": "New source [3] explicitly contains alpha/r and explains reduced retuning when varying rank, together with the stated Adam/learning-rate qualification. The answer now covers both required points with matching citation."
+    },
+    {
+      "question_id": "lora-05",
+      "answer_sha256": "5477d370a3c633ae1f8f1830262af19d72ef2ba5909951386b958674a03d17ef",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1
+      ],
+      "failure_categories": [],
+      "reason": "[1] 支持仅研究注意力权重、冻结 MLP，并将 MLP/LayerNorm/bias 适配列为未来研究。"
+    },
+    {
+      "question_id": "lora-06",
+      "answer_sha256": "aa08486b57148d331f3de5248a422b6f11895f16efa1a85473bdf8cd0b40a9bb",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 明确给出多数实验仅适配 Wq 与 Wv。"
+    },
+    {
+      "question_id": "lora-07",
+      "answer_sha256": "be215e3e1e081e8cab2e45d3f50ab0f603cbd71419d9bf71d40655b01ae26dc9",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "[5] 支持合并 W0+BA 和任务切换，[1][2] 支持 adapter 对照，[4] 支持结论。跨页保证句未完整进入 Gold 覆盖不妨碍机制答案。"
+    },
+    {
+      "question_id": "lora-08",
+      "answer_sha256": "1dfd7cb2803db3d5a7fd14709fcbf429d313be6285530ff2af8a9d7aa0558aca",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2
+      ],
+      "failure_categories": [],
+      "reason": "[2] 支持训练显存 1.2TB/350GB 与 r=4 Q/V checkpoint 350GB/35MB，未混同任务增量与完整模型。"
+    },
+    {
+      "question_id": "lora-09",
+      "answer_sha256": "975f6816bcdf278a1c93781bfce15f5462aadc09c48489099bf8e0dbc36f07f0",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        4,
+        6
+      ],
+      "failure_categories": [],
+      "reason": "New source [4] supplies RoBERTa, DeBERTa, GPT-2, GPT-3 and the main GLUE/WikiSQL/SAMSum setup. The listed GLUE tasks are supported by [6]. The reference-required evaluation scope is now covered."
+    },
+    {
+      "question_id": "lora-10",
+      "answer_sha256": "967e629537463244883ede356ef6a2bdc3c4a256bbbc6def17a44754b7b0f95a",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[2] 附录与 [4] 表 1 均支持 RTX8000 和平均 100 次测量。"
+    },
+    {
+      "question_id": "lora-11",
+      "answer_sha256": "60efc9978b1f69a40f1c725050b92df57ed13d5ba8a5347561a816d4f918d7e3",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3
+      ],
+      "failure_categories": [],
+      "reason": "[1] 精确支持 32.5/43.1 token/s 及分片条件；附带 25% 来自 [3] 原文说法，应在人工复核时区分吞吐增长与时间节省口径。"
+    },
+    {
+      "question_id": "lora-12",
+      "answer_sha256": "f39fb7059ba10a4e36087aaa101f1af64bde9334b02bebe3dee2e502f9c942de",
+      "correctness": 1,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        4
+      ],
+      "failure_categories": [
+        "unsupported_claim",
+        "generation_error"
+      ],
+      "reason": "[4] 只说混合任务批处理不方便，模型随后将其改写为 prevents，绝对化了原文限制；未合并并动态选择模块的替代方案正确。"
+    },
+    {
+      "question_id": "lora-13",
+      "answer_sha256": "1ac59f03cb5706f3dd21ccab1b51cf7a25eae0c618fb2cbf0015958d61bc9886",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "[1][2] 支持任务参数之外仍需基础权重，正确拒绝小 checkpoint 替代基础模型的误解。固定 Gold 没列这些充分证据，需复核标注穷尽性。"
+    },
+    {
+      "question_id": "lora-14",
+      "answer_sha256": "96e585da7503136a3e42851f517658f29b14df05debe27502a84ddfbc93833c5",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "[3] 支持合并降低额外计算，[4] 支持混合任务与不合并时的动态选择，延迟取舍的解释合理。"
+    },
+    {
+      "question_id": "lora-15",
+      "answer_sha256": "600069e394f9d35e664064614572206e8464922f0d5f548d774e8ae0d307cd89",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "failure_categories": [],
+      "reason": "The response correctly states that joules per generated token are not reported. Its supporting descriptions of memory/checkpoint and throughput benefits [1], hyperparameters and benchmark results [2]-[6] match the supplied passages, without deriving energy from unrelated metrics."
+    }
+  ],
+  "reviews_sha256": "d1085fc374ce7c013fd5f6b1f63657e2c6c8287496f218cc1bc4ee726fe1ec15",
+  "rubric_sha256": "fc215ea304c605bbaecbeaeb3772f918662a68308fee764980125cc1bbc44e5a"
+}

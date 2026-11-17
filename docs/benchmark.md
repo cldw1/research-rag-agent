@@ -85,9 +85,9 @@ Evidence F1 对所选 Chunk 涉及的正文段落集合与每份参考证据集�
 
 案例文件保存题目 ID、论文 ID 与 Chunk 排名，便于回到官方数据逐题核查，不自动将检索失败归因为解析、公式或语义错误。
 
-这两组失败案例的来源覆盖、原始排名复现及独立 Validation 参数对照，见 [检索误差分析](retrieval_analysis.md)。
+这两组失败案例的来源覆盖、原始排名复现及独立 Validation 参数对照，见 [检索误差分析](evaluation.md#分块与融合参数)。
 
-相同 Validation 问题与 Embedding 配置下的段落合并对照，见 [分块实验](chunking_experiment.md)。
+相同 Validation 问题与 Embedding 配置下的段落合并对照，见 [分块实验](evaluation.md#分块与融合参数)。
 
 ## 工程耗时
 

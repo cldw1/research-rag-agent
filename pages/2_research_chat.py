@@ -18,9 +18,11 @@ from src.llm.provider import ModelConfig, ModelError
 from src.llm.factory import CATALOG, create_provider
 from src.generation_task import GenerationPool
 from src.storage.artifacts import StorageError
-from src.storage.conversations import ConversationStore
+from src.storage.conversations import ConversationStore, source_location_label
 from src.storage.database import catalog_version, upgrade_chat_schema, upgrade_multidoc_schema
 from src.storage.document_store import LocalDocumentStore, default_data_root
+from src.retrieval.evidence_retry import EvidenceRetryPolicy
+from src.retrieval.session import EVIDENCE_ORDERS
 
 
 st.set_page_config(page_title="Research RAG Agent · 科研对话", page_icon="💬", layout="wide")
@@ -97,6 +99,10 @@ with st.sidebar:
     if preset["provider"] in ("openai", "anthropic"):
         st.caption("此原生适配模式不发送温度参数，避免与推理模型参数约束冲突。")
     streaming = st.checkbox("流式输出", value=True)
+    retry_enabled = st.checkbox("证据不足时补检一次", value=False)
+    st.caption("开启后，明确表示证据不足的回答可再检索并补答一次；多文档会逐篇补检，可能增加耗时和模型用量。")
+    grounding_enabled = st.checkbox("强调来源与实验条件", value=False)
+    st.caption("可选提示：区分背景与本文实验、保留数值适用条件；引用仍需结合原文核对。")
     output = st.number_input("最大输出 Token", min_value=16, max_value=32768, value=1500)
     context = st.number_input("应用上下文预算", min_value=4096, max_value=1048576, value=32768, step=1024)
     st.caption("当前按 UTF-8 序列化字节估算输入，包含工具和证据；会额外预留输出及安全余量。")
@@ -133,6 +139,12 @@ selected_names = {item["document_id"]: item["filename"] for item in details["doc
 st.caption("当前会话文档范围：" + "、".join(selected_names.values()))
 if len(selected_names) > 1:
     st.caption("多文档检索使用统一排名并按论文分配证据；比较结论请结合各篇原文引用。")
+with st.sidebar:
+    selected_order=st.selectbox('多文档证据顺序',list(EVIDENCE_ORDERS),
+        format_func=lambda value:EVIDENCE_ORDERS[value],disabled=len(selected_names)<2,
+        key='research_evidence_order')
+    st.caption('首位优先可能挤掉其他相关片段。仅用于多篇联合检索，单篇取证和补检沿用各自规则。')
+evidence_order=selected_order if len(selected_names)>1 else 'rrf'
 task = st.session_state.get("research_generation_task")
 busy = task is not None and task.snapshot()["status"] == "running"
 notice = st.session_state.pop("research_generation_notice", None)
@@ -171,25 +183,52 @@ for turn in history:
             st.info(f"本轮尚无已保存回答（{turn['status']}）。失败或中断的工具序列不会进入后续模型历史。")
             continue
         result = turn["result"]
+        settings=result.get('retrieval_settings')
+        if settings:
+            st.caption('本轮多文档设置：'+EVIDENCE_ORDERS.get(settings['multi_document_order'],settings['multi_document_order']))
+            actual_orders=list(dict.fromkeys(call['evidence_order'] for call in settings['body_searches']))
+            actual_labels={**EVIDENCE_ORDERS,'dense':'语义单路检索','bm25':'关键词单路检索'}
+            st.caption('实际正文检索：'+'、'.join(actual_labels.get(value,value) for value in actual_orders) if actual_orders else '本轮未执行正文检索')
         st.markdown(result["answer"].replace("![", "\\!["))  # No automatic external image fetch from generated text.
         if result.get("invalid_citations") or result.get("missing_citations"):
             st.warning("本轮存在缺失或未注册的引用，请核对原文。编号有效也不等于结论已经通过事实核验。")
         if result.get("truncated"):
             st.warning("模型因输出上限停止，回答可能不完整。")
+        retry = result.get("evidence_retry")
+        if retry:
+            retry_labels = {"accepted": "已采用补答", "fallback": "补答未采用，保留原回答",
+                            "skipped": "未执行补答，保留原回答", "not_triggered": "未触发补检"}
+            st.caption("证据补检：" + retry_labels.get(retry["status"], "保留原回答"))
+            with st.expander("补检记录与新增来源"):
+                st.write("额外模型请求：", retry["model_attempts"])
+                if retry.get("retrieval_mode") == "per_document":
+                    st.write("补检方式：逐篇检索，按论文轮流分配新增证据")
+                    st.write("本地检索次数：", retry.get("retrieval_calls", 0))
+                    for did, count in retry.get("new_evidence_counts", {}).items():
+                        st.write(f"{selected_names.get(did, did)}：新增 {count} 个片段")
+                for source in retry["new_sources"]:
+                    saved_source = all_sources.get(source["citation"], source)
+                    st.write(f"[{source['citation']}] {selected_names.get(source['paper_id'], source.get('title', ''))}")
+                    st.code(saved_source.get("text", ""), language=None)
+                if retry.get("initial_answer"):
+                    st.markdown("首答：")
+                    st.markdown(retry["initial_answer"].replace("![", "\\!["))
         if len(selected_names) > 1 and result.get("missing_document_ids"):
             missing = "、".join(selected_names.get(did, did) for did in result["missing_document_ids"])
             st.warning("本次工具证据尚未覆盖：" + missing + "。涉及这些文档的结论需补充取证。")
         for number in result["cited_numbers"]:
             source = all_sources.get(number)
             if source:
-                location = f"PDF 第 {source['page_number']} 页" if source.get("page_number") else source.get("section", "原文段落")
+                location = source_location_label(source)
                 filename = selected_names.get(source["paper_id"], source.get("title", ""))
                 with st.expander(f"[{number}] {filename} · {source.get('title', '')} · {location}"):
                     st.code(source["text"], language=None)
                     st.json(source.get("source_metadata", {}), expanded=False)
         with st.expander("本轮上下文和用量"):
             st.json({"context": result["context_selections"], "usage": result["request_usage"],
-                     "model_calls": result["model_calls"], "tool_calls": result["tool_calls"]}, expanded=False)
+                     "model_calls": result["model_calls"], "tool_calls": result["tool_calls"],
+                     "answer_policy_version":result.get("answer_policy_version"),
+                     'retrieval_settings':settings}, expanded=False)
 
 if not key:
     st.info("填写当前服务的 API Key 后可继续提问；已有历史仍可查看和导出。")
@@ -238,13 +277,19 @@ if question:
     try:
         with st.spinner("加载本地检索资源…"):
             model, counter, profile = embedding_resources()
-            retriever = documents.load_scoped_retriever([item["document_id"] for item in details["documents"]], model, profile)
+            retriever = documents.load_scoped_retriever([item["document_id"] for item in details["documents"]], model, profile,
+                evidence_order=evidence_order)
             provider = create_provider(config, key)
         # Freeze all arguments: Streamlit reruns must not retarget a running job.
         def work(token, callback, service=ResearchChatService(conversations), cid=selected_id,
-                 prompt=question, llm=provider, source=retriever, request=uuid.uuid4().hex):
+                 prompt=question, llm=provider, source=retriever, request=uuid.uuid4().hex,
+                 answer_policy='grounded' if grounding_enabled else 'legacy',
+                 retry_policy=EvidenceRetryPolicy(enabled=retry_enabled, preserve_citations=True,
+                      balance_novel=True, per_document_search=len(selected_names)>1,
+                      version="per-document-cited-evidence-v3" if len(selected_names)>1 else "cited-evidence-novel-balance-v2")):
             try:
-                return service.ask(cid, prompt, llm, source, request, cancellation=token, on_event=callback)
+                return service.ask(cid, prompt, llm, source, request, cancellation=token, on_event=callback,
+                                   retry_policy=retry_policy, answer_policy=answer_policy)
             finally:
                 llm.close()
         st.session_state["research_generation_task"] = generation_pool().start(selected_id, work)

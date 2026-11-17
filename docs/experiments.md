@@ -1,4 +1,4 @@
-# HMC V3 章节检索实验
+# HMC 章节感知检索实验
 
 本实验考察真实章节元数据对科研文献检索排序的作用，以同一份 HMC 文档和固定七题比较 Hybrid 与 Section-Aware。多论文证据级检索结果见 [QASPER 评测](benchmark.md)。
 

@@ -3,13 +3,17 @@
 from src.agent.research_agent import ResearchAgent
 from src.storage.artifacts import StorageError
 from src.llm.control import GenerationCancelled
+from src.retrieval.session import RetrievalSession
+from src.generation.answer_policy import policy_version
 
 
 class ResearchChatService:
     def __init__(self, conversations):
         self.conversations = conversations
 
-    def ask(self, conversation_id, question, provider, retriever, request_id, *, cancellation=None, on_event=None):
+    def ask(self, conversation_id, question, provider, retriever, request_id, *, cancellation=None, on_event=None,
+            retry_policy=None, answer_policy='legacy'):
+        policy_version(answer_policy)  # Reject invalid choices before creating a turn.
         if cancellation:
             cancellation.check()
         details = self.conversations.details(conversation_id, require_active=True)
@@ -37,10 +41,16 @@ class ResearchChatService:
                 else:
                     messages = turn["messages"]
                 history.append(messages)
-            agent = ResearchAgent(provider, retriever, sources=self.conversations.sources(conversation_id))
+            retrieval_session=RetrievalSession(retriever)
+            agent = ResearchAgent(provider, retrieval_session, sources=self.conversations.sources(conversation_id),
+                                  answer_policy=answer_policy)
             result = agent.run(question, history, cancellation=cancellation, on_event=on_event)
+            if retry_policy and retry_policy.enabled:
+                from src.agent.evidence_retry import apply_evidence_retry
+                result = apply_evidence_retry(agent, result, history, retry_policy)
             if cancellation:
                 cancellation.check()
+            result['retrieval_settings']=retrieval_session.snapshot()
             self.conversations.complete(conversation_id, turn_id, result)
             return result
         except Exception as exc:

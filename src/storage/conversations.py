@@ -19,6 +19,30 @@ from src.storage.models import (ChunkRecord, CitationRecord, ConversationDocumen
 MAX_CONVERSATION_DOCUMENTS = 5
 
 
+def source_location_label(source):
+    """Display saved locations without assigning page numbers to Word or text."""
+    if source.get('page_number'):
+        return f"PDF 第 {source['page_number']} 页"
+    spans = source.get('source_metadata', {}).get('spans', [])
+    starts = [s['line_start'] for s in spans if s.get('line_start') is not None]
+    ends = [s.get('line_end') or s['line_start'] for s in spans if s.get('line_start') is not None]
+    if starts:
+        first, last = min(starts), max(ends)
+        return f"原文第 {first} 行" if first == last else f"原文第 {first}–{last} 行"
+    blocks = list(dict.fromkeys(s['block_id'] for s in spans if s.get('block_id')))
+    section = source.get('section') or ''
+    if blocks:
+        return (section+' · ' if section else '')+'结构块 '+', '.join(blocks)
+    return section or '段落定位'
+
+
+def _verbatim_markdown(text):
+    # A longer fence preserves code fences and literal Markdown inside evidence.
+    length = max([len(match[0]) for match in re.finditer(r'`+', text)] + [2]) + 1
+    fence = '`' * length
+    return f'{fence}text\n{text}\n{fence}'
+
+
 class ConversationStore:
     def __init__(self, documents):
         self.documents, self.engine = documents, documents.engine
@@ -262,6 +286,7 @@ class ConversationStore:
     def export_markdown(self, conversation_id):
         details = self.details(conversation_id)
         sources = {item["citation"]: item for item in self.sources(conversation_id)}
+        filenames = {item['document_id']:item['filename'] for item in details['documents']}
         parts = [f"# {details['title']}"]
         parts.append("文档范围：" + "、".join(item["filename"] for item in details["documents"]))
         for turn in self.history(conversation_id):
@@ -270,9 +295,17 @@ class ConversationStore:
                 parts.append(f"状态：{turn['status']}")
                 continue
             parts.append("## 助手\n\n" + turn["result"]["answer"])
+            settings=turn['result'].get('retrieval_settings')
+            if settings:
+                from src.retrieval.session import EVIDENCE_ORDERS
+                mode=settings['multi_document_order']
+                parts.append('本轮多文档设置：'+EVIDENCE_ORDERS.get(mode,mode))
             for number in turn["result"]["cited_numbers"]:
                 source = sources.get(number)
                 if source:
-                    location = f"PDF 第 {source['page_number']} 页" if source.get("page_number") else source.get("section", "段落定位")
-                    parts.append(f"[{number}] {source.get('title', '')} · {location}\n\n" + source["text"])
+                    location = source_location_label(source)
+                    filename = filenames.get(source['paper_id'], source.get('source_metadata', {}).get('filename', source['paper_id']))
+                    if list(filenames.values()).count(filename) > 1:
+                        filename += ' · '+source['paper_id'].removeprefix('doc_')[:12]
+                    parts.append(f"[{number}] {filename} · {source.get('title', '')} · {location}\n\n" + _verbatim_markdown(source['text']))
         return "\n\n".join(parts) + "\n"

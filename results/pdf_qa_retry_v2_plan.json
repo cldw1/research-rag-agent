@@ -1,0 +1,586 @@
+{
+  "scope": "Offline planned-context coverage only; no completed new generation outputs and no new answer scores.",
+  "run_id": "20261116T073656Z-0c9a5e5d",
+  "population": 45,
+  "answerable_questions": 42,
+  "planned_retries": 9,
+  "baseline_context": {
+    "evidence_recall": 0.7857142857142857,
+    "full_evidence_recall": 0.7619047619047619,
+    "all_evidence_covered": 0.7142857142857143
+  },
+  "v1_executed_context": {
+    "evidence_recall": 0.8571428571428571,
+    "full_evidence_recall": 0.8333333333333334,
+    "all_evidence_covered": 0.7857142857142857
+  },
+  "v2_planned_context": {
+    "evidence_recall": 0.8650793650793651,
+    "full_evidence_recall": 0.8412698412698413,
+    "all_evidence_covered": 0.7857142857142857
+  },
+  "new_answer_metrics": null,
+  "generation_results_saved": 0,
+  "generation_intents_saved": 1,
+  "policy": {
+    "enabled": true,
+    "max_chars": 7400,
+    "branch_top_k": 12,
+    "candidate_k": 50,
+    "retained_anchors": 2,
+    "max_new_chunks": 4,
+    "version": "cited-evidence-novel-balance-v2",
+    "preserve_citations": true,
+    "balance_novel": true
+  },
+  "manifest_sha256": "a53a09a114bb98c7caa856ca689624ad8575be7abbc7148270cbb4f5a1281771",
+  "records": [
+    {
+      "question_id": "attention-01",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-02",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-03",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-04",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-05",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-06",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-07",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-08",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-09",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-10",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-11",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-12",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-13",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "attention-14",
+      "baseline": {
+        "evidence_recall": 0.3333333333333333,
+        "full_evidence_recall": 0.3333333333333333,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.6666666666666666,
+        "full_evidence_recall": 0.6666666666666666,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "rag-01",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-02",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-03",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-04",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "rag-05",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "rag-06",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-07",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-08",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-09",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-10",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-11",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-12",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "rag-13",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "rag-14",
+      "baseline": {
+        "evidence_recall": 0.6666666666666666,
+        "full_evidence_recall": 0.6666666666666666,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.6666666666666666,
+        "full_evidence_recall": 0.6666666666666666,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "lora-01",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "lora-02",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-03",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-04",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-05",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-06",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-07",
+      "baseline": {
+        "evidence_recall": 0.5,
+        "full_evidence_recall": 0.5,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.5,
+        "full_evidence_recall": 0.5,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "lora-08",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-09",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-10",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-11",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-12",
+      "baseline": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      },
+      "planned_v2": {
+        "evidence_recall": 1.0,
+        "full_evidence_recall": 1.0,
+        "all_evidence_covered": 1.0
+      }
+    },
+    {
+      "question_id": "lora-13",
+      "baseline": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.0,
+        "full_evidence_recall": 0.0,
+        "all_evidence_covered": 0.0
+      }
+    },
+    {
+      "question_id": "lora-14",
+      "baseline": {
+        "evidence_recall": 0.5,
+        "full_evidence_recall": 0.5,
+        "all_evidence_covered": 0.0
+      },
+      "planned_v2": {
+        "evidence_recall": 0.5,
+        "full_evidence_recall": 0.5,
+        "all_evidence_covered": 0.0
+      }
+    }
+  ],
+  "generation_status": "One durable request intent has no saved outcome; do not automatically replay it. Remaining requests not completed."
+}

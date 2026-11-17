@@ -1,0 +1,17 @@
+{
+  "version": "multidoc-query-comparison-v1",
+  "baseline_run": "20261116T080817Z-858a52ca",
+  "retrieval_run": "20261115T165227Z-1bd0349b",
+  "top_k": 5,
+  "max_chars": 7400,
+  "candidate_k_per_document": 50,
+  "max_planner_calls": 12,
+  "planner_inputs": "Original comparison question and authorized paper IDs/titles only. No evidence, reference points, original single-paper questions or answerability labels.",
+  "variants": [
+    "balanced_original",
+    "scoped_original",
+    "scoped_planned"
+  ],
+  "fallback": "Invalid/failed/unknown planner outputs and overlong subqueries use the original question for every selected paper, without retrying the model.",
+  "scope": "Exploratory development comparison. Scoped-original isolates per-paper retrieval statistics; scoped-planned additionally changes query wording. No generation answers or blind test claims."
+}

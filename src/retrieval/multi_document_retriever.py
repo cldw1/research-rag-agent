@@ -14,7 +14,10 @@ from src.storage.artifacts import fingerprint
 class MultiDocumentRetriever:
     has_verified_sections = False
 
-    def __init__(self, retrievers):
+    def __init__(self, retrievers, *, evidence_order='rrf'):
+        if evidence_order not in ('rrf','bm25_first','dense_first'):
+            raise ValueError("不支持的多文档证据顺序")
+        self._evidence_order=evidence_order
         if not 2 <= len(retrievers) <= 5:
             raise ValueError("多文档检索需要 2–5 篇已索引文档")
         self.document_retrievers = {item.paper_id: item for item in retrievers}
@@ -44,6 +47,10 @@ class MultiDocumentRetriever:
         self.paper_rows = {did: [i for i, c in enumerate(self.chunks) if c["paper_id"] == did]
                            for did in self.document_ids}
         self._check_active()
+
+    @property
+    def evidence_order(self):
+        return self._evidence_order
 
     def _check_active(self):
         for member in self.document_retrievers.values():
@@ -116,7 +123,19 @@ class MultiDocumentRetriever:
         ordered = sorted(scores, key=lambda index: (-scores[index], index))
         global_ranks = {index: rank for rank, index in enumerate(ordered, 1)}
         chosen = self._balance(ordered, top_k)
+        if method=='hybrid' and self.evidence_order!='rrf':
+            from src.retrieval.branch_heads import select_branch_heads
+            fused={did:[self.chunks[i] for i in ordered if self.chunks[i]['paper_id']==did] for did in self.document_ids}
+            heads={did:{} for did in self.document_ids}
+            for did in self.document_ids:
+                for branch,ranks in rankings.items():
+                    owned=[i for i in ranks if self.chunks[i]['paper_id']==did]
+                    heads[did][branch]=self.chunks[min(owned,key=lambda i:ranks[i])]['chunk_id'] if owned else None
+            selected=select_branch_heads(self.document_ids,fused,heads,
+                first_branch='bm25' if self.evidence_order=='bm25_first' else 'dense',top_k=top_k)
+            positions={c['chunk_id']:i for i,c in enumerate(self.chunks)}
+            chosen=[positions[c['chunk_id']] for c in selected]
         return [{**self.chunks[index], "rank": rank, "rrf_score": scores[index],
-                 "global_fusion_rank": global_ranks[index], "selection": "document_balanced",
+                 "global_fusion_rank": global_ranks[index], "selection": "document_balanced" if method!='hybrid' or self.evidence_order=='rrf' else self.evidence_order,
                  "bm25_rank": rankings.get("bm25", {}).get(index),
                  "dense_rank": rankings.get("dense", {}).get(index)} for rank, index in enumerate(chosen, 1)]

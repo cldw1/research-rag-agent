@@ -1,0 +1,3857 @@
+{
+  "scope": "Offline first-loss diagnostic on fixed development gold evidence-unit occurrences, not answer quality or causal proof.",
+  "run_id": "20261116T083006Z-fc95d497",
+  "query_run_id": "20261116T081839Z-8cc4be13",
+  "generation_api_calls": 0,
+  "question_count": 12,
+  "source_code_sha256": {
+    "scripts/audit_multidoc_stages.py": "3c8970e67265fbbd5d20afa8f4c20f2cc4f3d5181cc7afa3b5ec799b68511880",
+    "src/evaluation/evidence_stages.py": "cb7ae6df3e26cd9b6d5944e87f01fa63fe7501c395c8aeacba0a3e9881736b36",
+    "src/evaluation/pdf_benchmark.py": "67846308454ecac51fddd41a694c20b208495254840f4f03f833d62b95560c63",
+    "src/retrieval/structured_retriever.py": "d52f33d77cf30f4b38bf046ff8cdf5c35f29da34bf459b944b0467a47df87109",
+    "src/retrieval/multi_document_retriever.py": "3c4d3cb1ad94a07a10b256a88d23cf8d0113ed693b10666078b3be0568c39c40",
+    "src/generation/context_builder.py": "2a903435d5249a8acbaa0a41765b7a792681f051cf1d92e47a7a596c6dfa965d",
+    "src/generation/strict_context_builder.py": "bbf0f7091fa68bc2d887ee6ce40b17a3ce096679399beaa189428686f3f6b0bf",
+    "src/embedding.py": "644acc281bf12be55e23c6a80c1f8da6995ae456a22d6c8cd149c978048744db"
+  },
+  "comparison_sha256": "4b002e3a56af61d7a1579e30c55fcd2cfff712486221deaa8f2d69eea98ee64e",
+  "artifacts_sha256": {
+    "chunks.json": "14394253e8f15b91f17e22e18db41d2c643e4c64ff0b53cc9f328f35dcdae750",
+    "traces.json": "989f248a8b51628e73b661614cadc772e5c3b051f9d75a5b9ce76d1e626fc3ee"
+  },
+  "variants": {
+    "balanced_original": {
+      "evidence_unit_occurrences": 26,
+      "first_loss_counts": {
+        "fusion_ranking": 12,
+        "covered": 11,
+        "document_quota": 3
+      }
+    },
+    "scoped_original": {
+      "evidence_unit_occurrences": 26,
+      "first_loss_counts": {
+        "fusion_ranking": 14,
+        "covered": 10,
+        "document_quota": 2
+      }
+    },
+    "scoped_planned": {
+      "evidence_unit_occurrences": 26,
+      "first_loss_counts": {
+        "fusion_ranking": 10,
+        "covered": 12,
+        "document_quota": 4
+      }
+    }
+  },
+  "records": [
+    {
+      "question_id": "md-01",
+      "variant": "balanced_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-04",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": null,
+            "dense": 89
+          },
+          "full_coverage_within_paper_rank": 51
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 65,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-01",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-01",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 24,
+            "dense": null
+          },
+          "full_coverage_within_paper_rank": 42
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-01",
+      "variant": "scoped_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-04",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": null,
+            "dense": 26
+          },
+          "full_coverage_within_paper_rank": 48
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 65,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-01",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-01",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 7,
+            "dense": null
+          },
+          "full_coverage_within_paper_rank": 37
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 67,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-01",
+      "variant": "scoped_planned",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-04",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": null,
+            "dense": 11
+          },
+          "full_coverage_within_paper_rank": 39
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-01",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-01",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 3,
+            "dense": 49
+          },
+          "full_coverage_within_paper_rank": 14
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "balanced_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 16,
+            "dense": 51
+          },
+          "full_coverage_within_paper_rank": 10
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "scoped_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 6,
+            "dense": 26
+          },
+          "full_coverage_within_paper_rank": 11
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 69,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "scoped_planned",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-02",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 34
+          },
+          "full_coverage_within_paper_rank": 13
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 65,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "balanced_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-14",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 3,
+            "dense": 55
+          },
+          "full_coverage_within_paper_rank": 4
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 19
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e3",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 11,
+            "dense": 51
+          },
+          "full_coverage_within_paper_rank": 8
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 61,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 23,
+            "dense": 6
+          },
+          "full_coverage_within_paper_rank": 6
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "scoped_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-14",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 16
+          },
+          "full_coverage_within_paper_rank": 7
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 7,
+            "dense": 2
+          },
+          "full_coverage_within_paper_rank": 2
+        },
+        {
+          "evidence_id": "e3",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 10,
+            "dense": 14
+          },
+          "full_coverage_within_paper_rank": 11
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 22,
+            "dense": 6
+          },
+          "full_coverage_within_paper_rank": 7
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 67,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "scoped_planned",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-14",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 3,
+            "dense": 12
+          },
+          "full_coverage_within_paper_rank": 4
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 4
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e3",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 11,
+            "dense": 2
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-03",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 6,
+            "dense": 7
+          },
+          "full_coverage_within_paper_rank": 3
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 13,
+            "dense": 4
+          },
+          "full_coverage_within_paper_rank": 6
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 63,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "balanced_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 53
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-10",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 35,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 8
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 67,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "scoped_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 7
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-10",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 31,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 9
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 67,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "scoped_planned",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 3,
+            "dense": 25
+          },
+          "full_coverage_within_paper_rank": 13
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-04",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-10",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 17,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 67,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "balanced_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 5,
+            "dense": 3
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 61,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 25,
+            "dense": 14
+          },
+          "full_coverage_within_paper_rank": 4
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 70,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "scoped_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 8,
+            "dense": 3
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 65,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 12,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 4
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 70,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "scoped_planned",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-07",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 2
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 63,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-05",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 21,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 3
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 71,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "balanced_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 13
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 13
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-11",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 4,
+            "dense": 7
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 61,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "scoped_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-11",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 2,
+            "dense": 7
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "scoped_planned",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-06",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-11",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 66,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "balanced_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 65,
+            "dense": 41
+          },
+          "full_coverage_within_paper_rank": 17
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 56,
+            "dense": 4
+          },
+          "full_coverage_within_paper_rank": 6
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 25,
+            "dense": 6
+          },
+          "full_coverage_within_paper_rank": 5
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 64,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "scoped_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 20,
+            "dense": 14
+          },
+          "full_coverage_within_paper_rank": 16
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 26,
+            "dense": 2
+          },
+          "full_coverage_within_paper_rank": 10
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 20,
+            "dense": 4
+          },
+          "full_coverage_within_paper_rank": 7
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 66,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "scoped_planned",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 15,
+            "dense": 10
+          },
+          "full_coverage_within_paper_rank": 13
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 13,
+            "dense": 3
+          },
+          "full_coverage_within_paper_rank": 5
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-07",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-12",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 10,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "balanced_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 36,
+            "dense": 32
+          },
+          "full_coverage_within_paper_rank": 22
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 59,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 49,
+            "dense": null
+          },
+          "full_coverage_within_paper_rank": 42
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 105,
+            "dense": 97
+          },
+          "full_coverage_within_paper_rank": 34
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "scoped_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 27,
+            "dense": 28
+          },
+          "full_coverage_within_paper_rank": 28
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 60,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 16,
+            "dense": null
+          },
+          "full_coverage_within_paper_rank": 43
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 49,
+            "dense": 40
+          },
+          "full_coverage_within_paper_rank": 31
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 69,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "scoped_planned",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 27,
+            "dense": 22
+          },
+          "full_coverage_within_paper_rank": 24
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 59,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-08",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-13",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 20,
+            "dense": null
+          },
+          "full_coverage_within_paper_rank": 41
+        },
+        {
+          "evidence_id": "e2",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 42,
+            "dense": 13
+          },
+          "full_coverage_within_paper_rank": 19
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "balanced_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 15,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 3
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 63,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "balanced_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-08",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 67
+          },
+          "full_coverage_within_paper_rank": 8
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "scoped_original",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "document_quota",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 12,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 4
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 63,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "scoped_original",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-08",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 37
+          },
+          "full_coverage_within_paper_rank": 8
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 70,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "scoped_planned",
+      "paper_id": "rag",
+      "document_id": "doc_23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "source_question_id": "rag-06",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 11,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 2
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 88,
+        "candidates": 68,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-09",
+      "variant": "scoped_planned",
+      "paper_id": "lora",
+      "document_id": "doc_e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+      "source_question_id": "lora-08",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 9,
+            "dense": 2
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 112,
+        "candidates": 70,
+        "paper_top5": 5,
+        "selected_top5": 2,
+        "context": 2
+      }
+    },
+    {
+      "question_id": "md-11",
+      "variant": "balanced_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 25
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-11",
+      "variant": "scoped_original",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "covered",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "selected_top5": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "context": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 1
+          },
+          "full_coverage_within_paper_rank": 1
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    },
+    {
+      "question_id": "md-11",
+      "variant": "scoped_planned",
+      "paper_id": "attention",
+      "document_id": "doc_bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "source_question_id": "attention-09",
+      "units": [
+        {
+          "evidence_id": "e1",
+          "alignment_status": "mapped",
+          "first_loss": "fusion_ranking",
+          "coverage": {
+            "corpus": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "candidates": {
+              "evidence_recall": 1.0,
+              "full_evidence_recall": 1.0,
+              "all_evidence_covered": 1.0
+            },
+            "paper_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "selected_top5": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            },
+            "context": {
+              "evidence_recall": 0.0,
+              "full_evidence_recall": 0.0,
+              "all_evidence_covered": 0.0
+            }
+          },
+          "first_overlap_branch_rank": {
+            "bm25": 1,
+            "dense": 21
+          },
+          "full_coverage_within_paper_rank": 6
+        }
+      ],
+      "stage_chunk_counts": {
+        "corpus": 48,
+        "candidates": 48,
+        "paper_top5": 5,
+        "selected_top5": 3,
+        "context": 3
+      }
+    }
+  ],
+  "stage_definitions": {
+    "alignment_or_chunking": "Full corpus does not contain the aligned gold unit.",
+    "candidate_retrieval": "Branch candidate union loses full gold coverage.",
+    "fusion_ranking": "Per-paper RRF top five loses full coverage.",
+    "document_quota": "Multi-document five-anchor allocation loses full coverage.",
+    "context_budget": "7400-character rendering loses full coverage.",
+    "covered": "Gold unit remains fully present in rendered evidence."
+  },
+  "note": "Stages are nested; counts show the first full-coverage loss. Overlap ranks are not semantic relevance scores. Query correctness requires review. No production change."
+}

@@ -8,3 +8,6 @@
 .env.example text eol=lf
 .gitignore text eol=lf
 *.png binary
+# Frozen benchmark inputs and published result hashes require exact bytes.
+benchmarks/** -text
+results/** -text

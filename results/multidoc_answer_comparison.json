@@ -1,0 +1,787 @@
+{
+  "scope": "Fixed development plain RAG prompts, single turn, no Agent/tool loop or evidence retry. Candidate labels and AI review awaiting independent human verification.",
+  "run_id": "20261116T124957Z-914040f8",
+  "answer_count": 24,
+  "model_config": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0.0,
+    "max_output_tokens": 1200,
+    "context_window": 32768,
+    "safety_margin": 512,
+    "supports_tools": false,
+    "stream": false
+  },
+  "variants": {
+    "rrf": {
+      "schema_version": "pdf-answer-run-v1",
+      "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+      "manifest_sha256": "bb59dea8c4fe18d8ce3c00657809be9de91dd903d39adf9a32a3f1853234584a",
+      "question_count": 12,
+      "status_counts": {
+        "succeeded": 12
+      },
+      "generation_api_attempts": 12,
+      "sdk_max_retries": 0,
+      "known_returned_usage": {
+        "prompt_tokens": 24474,
+        "completion_tokens": 2974,
+        "total_tokens": 27448,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 24474
+      },
+      "usage_complete_for_returned_responses": true,
+      "cost_note": "Actual returned tokens only; no price assumption or account bill.",
+      "response_seconds": {
+        "n": 12,
+        "mean": 3.20402792499984,
+        "p50": 2.005368500000259,
+        "p95": 8.931136155000413
+      },
+      "answers_with_citations": 12,
+      "answers_with_invalid_citation_numbers": 0,
+      "answer_quality_metrics": null,
+      "review_status": "ai_source_audited_human_pending",
+      "cost_usd": null,
+      "ai_source_review": {
+        "reviewed_count": 12,
+        "complete": true,
+        "reviewer_type": "ai_source_audit",
+        "independent_human_review": false,
+        "metrics": {
+          "correctness": {
+            "applicable": 12,
+            "score_0": 1,
+            "score_1": 6,
+            "score_2": 5,
+            "mean_0_2": 1.3333333333333333
+          },
+          "faithfulness": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 3,
+            "score_2": 9,
+            "mean_0_2": 1.75
+          },
+          "citation_support": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 3,
+            "score_2": 9,
+            "mean_0_2": 1.75
+          },
+          "citation_coverage": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 3,
+            "score_2": 9,
+            "mean_0_2": 1.75
+          }
+        },
+        "unanswerable_reviewed": 2,
+        "unanswerable_fully_correct": 2,
+        "human_metrics": null,
+        "note": "AI source-audit scores, when present, are provisional judgments against AI-authored labels; not a human-verified answer accuracy.",
+        "paper_attribution": {
+          "applicable": 12,
+          "scores": {
+            "2": 11,
+            "1": 1
+          }
+        }
+      }
+    },
+    "bm25_first": {
+      "schema_version": "pdf-answer-run-v1",
+      "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+      "manifest_sha256": "bb59dea8c4fe18d8ce3c00657809be9de91dd903d39adf9a32a3f1853234584a",
+      "question_count": 12,
+      "status_counts": {
+        "succeeded": 12
+      },
+      "generation_api_attempts": 12,
+      "sdk_max_retries": 0,
+      "known_returned_usage": {
+        "prompt_tokens": 24157,
+        "completion_tokens": 2928,
+        "total_tokens": 27085,
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 23389
+      },
+      "usage_complete_for_returned_responses": true,
+      "cost_note": "Actual returned tokens only; no price assumption or account bill.",
+      "response_seconds": {
+        "n": 12,
+        "mean": 2.399552058333635,
+        "p50": 1.9567522000015742,
+        "p95": 5.234867160000608
+      },
+      "answers_with_citations": 12,
+      "answers_with_invalid_citation_numbers": 0,
+      "answer_quality_metrics": null,
+      "review_status": "ai_source_audited_human_pending",
+      "cost_usd": null,
+      "ai_source_review": {
+        "reviewed_count": 12,
+        "complete": true,
+        "reviewer_type": "ai_source_audit",
+        "independent_human_review": false,
+        "metrics": {
+          "correctness": {
+            "applicable": 12,
+            "score_0": 1,
+            "score_1": 4,
+            "score_2": 7,
+            "mean_0_2": 1.5
+          },
+          "faithfulness": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 0,
+            "score_2": 12,
+            "mean_0_2": 2.0
+          },
+          "citation_support": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 0,
+            "score_2": 12,
+            "mean_0_2": 2.0
+          },
+          "citation_coverage": {
+            "applicable": 12,
+            "score_0": 0,
+            "score_1": 0,
+            "score_2": 12,
+            "mean_0_2": 2.0
+          }
+        },
+        "unanswerable_reviewed": 2,
+        "unanswerable_fully_correct": 2,
+        "human_metrics": null,
+        "note": "AI source-audit scores, when present, are provisional judgments against AI-authored labels; not a human-verified answer accuracy.",
+        "paper_attribution": {
+          "applicable": 12,
+          "scores": {
+            "2": 12
+          }
+        }
+      }
+    }
+  },
+  "total_generation": {
+    "schema_version": "pdf-answer-run-v1",
+    "scope": "Development-only plain RAG generation; semantic answer scores require a separate review.",
+    "manifest_sha256": "bb59dea8c4fe18d8ce3c00657809be9de91dd903d39adf9a32a3f1853234584a",
+    "question_count": 24,
+    "status_counts": {
+      "succeeded": 24
+    },
+    "generation_api_attempts": 24,
+    "sdk_max_retries": 0,
+    "known_returned_usage": {
+      "prompt_tokens": 48631,
+      "completion_tokens": 5902,
+      "total_tokens": 54533,
+      "prompt_cache_hit_tokens": 768,
+      "prompt_cache_miss_tokens": 47863
+    },
+    "usage_complete_for_returned_responses": true,
+    "cost_note": "Actual returned tokens only; no price assumption or account bill.",
+    "response_seconds": {
+      "n": 24,
+      "mean": 2.8017899916667375,
+      "p50": 1.9567522000015742,
+      "p95": 7.778378160001544
+    },
+    "answers_with_citations": 24,
+    "answers_with_invalid_citation_numbers": 0,
+    "answer_quality_metrics": null,
+    "review_status": "pending",
+    "cost_usd": null
+  },
+  "independent_human_metrics": null,
+  "generation_source_snapshot_verified": true,
+  "thinking": "disabled",
+  "observed_response_models": [
+    "deepseek-flash"
+  ],
+  "manifest_sha256": "e016514f9b10be432e57f2de429bc999a3d8030afae0972fbda83e6187c3b21c",
+  "result_sha256": {
+    "md-01--rrf": "c01bc8fc06849e366e3fb53f70306b766f02c4c4385e4f59b7f2eafe04abe32d",
+    "md-01--bm25_first": "ef90e8bca89956301a7be91bf0718ccb462524f42e5ca469ec65b9619cd5a233",
+    "md-02--rrf": "e88e35917bceaa3e271363edb90d0b43ef12a21b05a2cbe9692534704966db60",
+    "md-02--bm25_first": "f6119db1efbf5db75a629bfb4553d058a62e46dbd68cce43e48162923e7c615b",
+    "md-03--rrf": "75f522c3f266f116dcbf56e1fe996386e18113eae2f848aca1a43ff240d05678",
+    "md-03--bm25_first": "b75d75812f03942db4427a8cf7f7bcd15cb52120a70c1be2b19a53cbb80a384d",
+    "md-04--rrf": "8189e33b1754d48e397a8270f09e8d7863c817c6d5f02d3b75abbc261040136f",
+    "md-04--bm25_first": "e674f3f34d3bf234ee2cdd6c5297dedcab6531ee3c3d74867f6fe95050c6dafe",
+    "md-05--rrf": "ae87abff95a2a73cc6512a9d1b21d24296a2731083edd13eb2dee3c15acdde9e",
+    "md-05--bm25_first": "9e1fb105dcd90f9c12c93aab9fe4786f8a30118c4ed793e85bd1291ece8dce9a",
+    "md-06--rrf": "f59b0f1b2061c9f3a170f446599bce6c041fc5d0f7a6c50328e1911d142457bf",
+    "md-06--bm25_first": "1d7219cd53d108aa81859d4b628885fc3d51ae59b2d98c12203817903e6e75c8",
+    "md-07--rrf": "2c5867183475d0b3b30494ab8cc1eeb3f9c708520bcebcd484ac7cc087486ed6",
+    "md-07--bm25_first": "c2321e9fff70c81ba80fa7dc27f4780cfd23beeabe37910d7ca0c5779a922f69",
+    "md-08--rrf": "a9c2f65e0f6f3e933edd9e9702d27a355ce480446273092c0714772d8e3ae56b",
+    "md-08--bm25_first": "79635d940d2505758f807768eff2b7a9faa5d90ddb80ae0f181b9d957e702835",
+    "md-09--rrf": "37e03e5346c801a6fe309857e4ce1175111f8e0dffe134c2d788124c5c0b3c6c",
+    "md-09--bm25_first": "0023b9cd01b6ed4f65cb829a968cdc3fdc74f99327defd33229ba3b8477c6dfa",
+    "md-10--rrf": "1648661965667b96c051c43802cde19318e0e3e8e0b301adffa13228b08b18e5",
+    "md-10--bm25_first": "f5aca1524e5dcd9507da442571fbd5adb14e0adfe177ceacda4f8b3aa77151c4",
+    "md-11--rrf": "59a539252c6bbbde8fed8e4fc0b5048dea491bea732e94437ab4e35a5b2d550e",
+    "md-11--bm25_first": "7827701c8d4215aef74a3561a5b3d02f76ffd7dfb49128e3fbfe25fc73e01c2a",
+    "md-12--rrf": "05cc0c07659f5618102fdfb65d45d92bac3b87ae21d570c5784c7f55454d3bf3",
+    "md-12--bm25_first": "2ff1b1ed93b1e33048251583d015d9f01ff14def0afa052cdbb3570528d7d176"
+  },
+  "review_records": [
+    {
+      "question_id": "md-01--rrf",
+      "answer_sha256": "051d82b81cb7f7acf42030734fac7b060dbd365543878f4eaf647685916f2ab1",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "LoRA p5:000018 支持仅适配注意力、冻结MLP及其理由，但未说明W0与A/B的训练关系；RAG所给片段缺少查询编码器训练、文档编码器和索引固定及重建成本，故仅部分完成。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第6页/块000029；[2]=lora PDF第5页/块000018；[3]=rag PDF第9页/块000043；[4]=lora PDF第5页/块000021；[5]=rag PDF第8页/块000037。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-01--bm25_first",
+      "answer_sha256": "4433a46f0ed0df4a81a10190df4a8bf51d9db26d436b34b25e51f713cd72a5e2",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "LoRA p2:000005 与p5:000018支持冻结模型、训练低秩矩阵及收益；RAG p2:000006确实说生成器与检索器联合学习，但未给具体冻结范围与原因，回答明确承认该部分缺失。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第2页/块000006；[2]=lora PDF第5页/块000018；[4]=lora PDF第2页/块000005。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-02--rrf",
+      "answer_sha256": "2d8b413e57d2c8b5df3ac33ac3dad6bc2fc4871b9f8059c4e7bb19ff2f626345",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer p5:000013支持投影、拼接及表示子空间说明。LoRA p5:000018与p10:000047只给注意力适配范围和预算，不能确定多数实验使用Wq/Wv；回答保留该部分。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第5页/块000013；[2]=lora PDF第5页/块000018；[4]=lora PDF第10页/块000047。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-02--bm25_first",
+      "answer_sha256": "ffbbc6f75210e2579b44ef3a05431ac70dd3c40dad1d4c9a3c30090ad94292ae",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer投影说明有p5:000013支持；所给LoRA片段未明确多数实验的Wq/Wv。回答将Table5标为可能进一步查看的位置，未将括号里的Wq/Wv当成已证实的答案。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第5页/块000013；[2]=lora PDF第10页/块000047；[4]=lora PDF第5页/块000018。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-03--rrf",
+      "answer_sha256": "160428c33b0533a66a6b2e57911a7691a87fe54960ecefb040f52d4eda2e8b91",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "RAG p7:000034支持测试时更换外部索引；LoRA p4:000016支持W0+BA及替换任务增量。回答明确比较由两篇描述组合而成。本题只问推理与部署，继承参考中额外的训练时固定索引要点不作为扣分项。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第7页/块000034；[2]=lora PDF第4页/块000016。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-03--bm25_first",
+      "answer_sha256": "3a9d5f18b30cc3eb62ef419d4a2b681dfd106fa9b7c83ce90df05f53e28c5c6b",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [
+        "annotation_ambiguity"
+      ],
+      "reason": "RAG p9:000043与p7:000034支持无需重训的索引热替换；LoRA p4:000016支持合并和替换权重增量。按本题实际所问评分，不强加继承参考中额外的训练时固定索引要求。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[2]=lora PDF第4页/块000016；[3]=rag PDF第9页/块000043；[5]=rag PDF第7页/块000034。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-04--rrf",
+      "answer_sha256": "1d9f0aa03ac73e35e7d35b818eeddaaab0b41c6079775e0c1f89409e28626632",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer p7:000023完整支持8 P100、两组步数与训练时长；LoRA片段没有表1的GPU与测量次数。回答没有把训练时长当推理延迟，但LoRA半题未回答。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000027；[2]=lora PDF第5页/块000018；[3]=attention PDF第7页/块000023；[4]=lora PDF第5页/块000019。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-04--bm25_first",
+      "answer_sha256": "d2d08b2f8cc0d5babbafb2731163f44c14fdd3bf6511e2bde178cffd55720e4d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "Transformer p7:000023支持8 P100、base十万步约12小时、big三十万步约3.5天；LoRA p4:000012表1支持Quadro RTX8000、100次单前向平均、毫秒单位。回答明确区分两种测量。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000027；[3]=attention PDF第7页/块000023；[4]=lora PDF第4页/块000012。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-05--rrf",
+      "answer_sha256": "f9f1d06a3cd16f78561e6db8340055fa6cd38e4d65db26b952f74aea1e548d17",
+      "correctness": 1,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context",
+        "generation_error",
+        "unsupported_claim",
+        "citation_mismatch"
+      ],
+      "reason": "RAG p4:000017与p18:000082支持四个QA集、EM及TriviaQA划分。LoRA缺少GPT-3/WikiSQL/SAMSum；p7:000035仅把SuperGLUE作为DeBERTa既有表现的背景，明确说本文在GLUE评测LoRA，回答误写成在GLUE和SuperGLUE评测。",
+      "paper_attribution": 1,
+      "paper_attribution_reason": "[1]=rag PDF第18页/块000082；[2]=lora PDF第7页/块000035；[3]=rag PDF第4页/块000017；[4]=lora PDF第18页/块000082。将DeBERTa既有SuperGLUE表现当成本论文LoRA评测范围，存在实验归属混淆。"
+    },
+    {
+      "question_id": "md-05--bm25_first",
+      "answer_sha256": "5ac982580bdd106c071341f87ed2d10bc80e59787bd6385641ffeaaa310080de",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "RAG p4:000017与p18:000082支持四个QA集、EM及TriviaQA划分；LoRA p5:000020与p7:000035支持四个模型家族、GLUE、GPT-2的NLG任务和GPT-3的WikiSQL/SAMSum，没有把SuperGLUE背景当成本论文评测。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第18页/块000082；[2]=lora PDF第7页/块000035；[4]=lora PDF第5页/块000020；[5]=rag PDF第4页/块000017。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-06--rrf",
+      "answer_sha256": "b0d0ce7195428bb8ac367751be13d2dba95571489348ea325853a760818e0106",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2
+      ],
+      "failure_categories": [],
+      "reason": "Transformer p8:000026支持EN-DE BLEU 27.3/28.4；LoRA p5:000021脚注支持GPT-3 175B每张V100的32.5/43.1 token/s。回答保留单位和任务区别，没有将吞吐量当翻译质量。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000026；[2]=lora PDF第5页/块000021。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-06--bm25_first",
+      "answer_sha256": "edd0006430aa9430389f32a576176e6715244d623a68c4d1797487bc98c97903",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer BLEU有p8:000026支持；当前LoRA来源为子空间度量与验证准确率图，不含训练吞吐量。回答拒绝补造数值，因此只完成Transformer半题。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000026；[2]=lora PDF第22页/块000097；[3]=attention PDF第8页/块000027；[4]=lora PDF第8页/块000040。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-07--rrf",
+      "answer_sha256": "356993419070ea68a04d130e9bf34be2e4eee55610fce8ee05fec1b57eff8f39",
+      "correctness": 0,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer p6:000017只有复杂度表，没有所问n<d条件；LoRA p5:000018只有注意力适配与冻结MLP，没有跨任务合并权重的批处理限制。回答忠实说明不足，但两个核心条件均未回答。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[2]=lora PDF第5页/块000018；[5]=attention PDF第6页/块000017。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-07--bm25_first",
+      "answer_sha256": "94e37367a3f43e98ddceb3128552aa3442f254161e4532ab6010cbea002ba825",
+      "correctness": 0,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "Transformer p6:000017和LoRA p4:000014、p5:000018支持回答里的复杂度与低秩背景，却没有所问n<d条件与跨任务批处理限制。两部分均不足，不能因拒答忠实就记为答对。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[2]=lora PDF第4页/块000014；[3]=attention PDF第6页/块000017；[4]=lora PDF第5页/块000018。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-08--rrf",
+      "answer_sha256": "22b50bcbeec78b8a011423e317d6b658e4872d8ed0acaf2a86c07f22fe84c8a3",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "RAG p19:000087的检索塌缩与虚假相关结果不能建立事实无偏保证；LoRA训练/低秩片段没有部署仍需基础模型的存储说明。回答承认缺失，未解释LoRA半题。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第4页/块000016；[2]=lora PDF第18页/块000083；[3]=rag PDF第19页/块000087；[4]=lora PDF第10页/块000050；[5]=rag PDF第5页/块000023。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-08--bm25_first",
+      "answer_sha256": "1b6ae0ec618a46f5544e8326f0c559d67d985bd75af402a7b2be92339513bace",
+      "correctness": 1,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context"
+      ],
+      "reason": "RAG p6:000026支持相对BART减少幻觉与NQ 11.8%的经验观察，不是无偏保证；LoRA p10:000050与p5:000020支持低秩与批处理限制，但未说明仍需基础模型及35MB只是任务增量。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=rag PDF第18页/块000080；[2]=lora PDF第10页/块000050；[3]=rag PDF第6页/块000026；[4]=lora PDF第5页/块000020；[5]=rag PDF第4页/块000016。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-09--rrf",
+      "answer_sha256": "58d2ba63cedde6e99e19eb3202871fe9c9277694e20b0a55e877d75e980f2883",
+      "correctness": 1,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [
+        "incomplete_context",
+        "generation_error",
+        "unsupported_claim",
+        "citation_mismatch"
+      ],
+      "reason": "RAG p4:000016支持2018-12、100词、21M、FAISS MIPS/HNSW；LoRA显存和checkpoint证据缺失。另外回答把GPT-3序列长度统一写成384，而p19:000087在for处跨页，实际输入的p20:000089明确为WikiSQL 384、MNLI 768、SAMSum 2048，遗漏任务条件。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[2]=lora PDF第19页/块000087；[3]=rag PDF第2页/块000006；[4]=lora PDF第20页/块000089；[5]=rag PDF第4页/块000016。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-09--bm25_first",
+      "answer_sha256": "eeedb3661df02b9a47c6d88d286bbf2075c9f8cad4fd1454446558cd534af1d4",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        2,
+        3,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "RAG p4:000016与p2:000006支持索引配置；LoRA p5:000019支持GPT-3 175B训练显存1.2TB至350GB，仅Q/V、r=4的任务checkpoint从350GB至35MB。回答区分训练显存、任务checkpoint和外部检索索引。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[2]=lora PDF第5页/块000019；[3]=rag PDF第4页/块000016；[5]=rag PDF第2页/块000006。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-10--rrf",
+      "answer_sha256": "31c8214648d7d9c5836ec7ccf247eda1655adab40c7d06b00d63ee7c328686db",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "两项具体毫秒指标均未报告；回答逐项说明Transformer batch=1推理延迟与RAG-Sequence NQ k=5平均延迟缺失。对引用中训练/BLEU和检索K实验的描述准确，没有用其他测量替代。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000026；[2]=rag PDF第8页/块000037；[3]=attention PDF第8页/块000027；[4]=rag PDF第3页/块000010。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-10--bm25_first",
+      "answer_sha256": "351707f9090a26c418e05458dcbbb012ea4ed93036d2dc13abb26ef41639c86d",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "两个所问毫秒指标均明确声明缺失；所引Transformer p8训练/质量、RAG p3/p8方法与K实验不含这些数值，没有混入别的论文测量值。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000026；[2]=rag PDF第8页/块000037；[3]=attention PDF第8页/块000027；[4]=rag PDF第3页/块000010。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-11--rrf",
+      "answer_sha256": "db40567c2d1be108e05ab51b0d63f88560077ee04ce32bde2b59e353f77529bc",
+      "correctness": 2,
+      "faithfulness": 1,
+      "citation_support": 1,
+      "citation_coverage": 1,
+      "checked_citations": [
+        1,
+        2,
+        4
+      ],
+      "failure_categories": [
+        "generation_error",
+        "unsupported_claim",
+        "citation_mismatch"
+      ],
+      "reason": "所问Transformer训练配置有p7:000023支持；LoRA焦耳/token没有给出，回答正确拒绝推算。但额外背景把GPT-3序列长度概括为384；p19:000087实际在for处截断，不能支持无任务限定的概括，384仅对应WikiSQL。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第7页/块000023；[2]=lora PDF第5页/块000019；[4]=lora PDF第19页/块000087。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-11--bm25_first",
+      "answer_sha256": "53aa9b2be0e499486dafe24fdbe4110115afa67b9509e332716027a6bf1ed5f2",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        4
+      ],
+      "failure_categories": [],
+      "reason": "Transformer p7:000023完整支持硬件、步数和时长；LoRA所给p16:000076与p8:000040不含能耗，回答明确不能确认焦耳/token，没有用其他指标换算。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第7页/块000023；[2]=lora PDF第16页/块000076；[4]=lora PDF第8页/块000040。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-12--rrf",
+      "answer_sha256": "7fc7de5cf46bac03f5091c0368dec0021a41571ee5bd805708ec72974c9a4719",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "三项具体部署指标均未报告，回答逐篇说明缺失；Transformer训练/FLOPs、RAG检索K与runtime、LoRA adapter延迟背景分别归属正确，没有数值替换、能耗换算或排名。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第8页/块000026；[3]=lora PDF第17页/块000077；[4]=attention PDF第8页/块000027；[5]=rag PDF第8页/块000037。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    },
+    {
+      "question_id": "md-12--bm25_first",
+      "answer_sha256": "67f6b8ee5a43b27940b278aac4326fba1270ba2433f4831fb6b9e8ad3d28b32a",
+      "correctness": 2,
+      "faithfulness": 2,
+      "citation_support": 2,
+      "citation_coverage": 2,
+      "checked_citations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "failure_categories": [],
+      "reason": "三项指标均明确声明缺失；所引Transformer机制/变体、RAG检索K/模型定义、LoRA p3:000010小批量adapter背景（确实提及GPT-2）与论文归属一致，没有编造部署指标或排名。",
+      "paper_attribution": 2,
+      "paper_attribution_reason": "[1]=attention PDF第4页/块000012；[2]=rag PDF第8页/块000037；[3]=lora PDF第3页/块000010；[4]=attention PDF第8页/块000028；[5]=rag PDF第3页/块000010。核查的实质陈述未发现论文归属错误；不代表证据完整或人工验证。"
+    }
+  ],
+  "review_status": "ai_source_audited_human_pending",
+  "review_provenance": {
+    "rubric_version": "multidoc-answer-source-review-v1",
+    "reviewer_type": "ai_source_audit",
+    "reviewer": "Codex AI source audit",
+    "reviewed_at": "2026-11-16T13:23:59.549741+00:00",
+    "independent_human_review": false
+  },
+  "paired_correctness": {
+    "records": [
+      {
+        "question_id": "md-01",
+        "rrf": 1,
+        "bm25_first": 1,
+        "difference": 0
+      },
+      {
+        "question_id": "md-02",
+        "rrf": 1,
+        "bm25_first": 1,
+        "difference": 0
+      },
+      {
+        "question_id": "md-03",
+        "rrf": 2,
+        "bm25_first": 2,
+        "difference": 0
+      },
+      {
+        "question_id": "md-04",
+        "rrf": 1,
+        "bm25_first": 2,
+        "difference": 1
+      },
+      {
+        "question_id": "md-05",
+        "rrf": 1,
+        "bm25_first": 2,
+        "difference": 1
+      },
+      {
+        "question_id": "md-06",
+        "rrf": 2,
+        "bm25_first": 1,
+        "difference": -1
+      },
+      {
+        "question_id": "md-07",
+        "rrf": 0,
+        "bm25_first": 0,
+        "difference": 0
+      },
+      {
+        "question_id": "md-08",
+        "rrf": 1,
+        "bm25_first": 1,
+        "difference": 0
+      },
+      {
+        "question_id": "md-09",
+        "rrf": 1,
+        "bm25_first": 2,
+        "difference": 1
+      },
+      {
+        "question_id": "md-10",
+        "rrf": 2,
+        "bm25_first": 2,
+        "difference": 0
+      },
+      {
+        "question_id": "md-11",
+        "rrf": 2,
+        "bm25_first": 2,
+        "difference": 0
+      },
+      {
+        "question_id": "md-12",
+        "rrf": 2,
+        "bm25_first": 2,
+        "difference": 0
+      }
+    ],
+    "improved": 3,
+    "unchanged": 8,
+    "regressed": 1
+  },
+  "reviews_sha256": "898569b643544620c77f3e2cc3d8e1e03ac53d18fb7c6df4546710047a71c863",
+  "rubric_sha256": "41d5a1501c28cec4b7d3fe84eb77d2962bf9483e433c155f88bd5342da798d50"
+}

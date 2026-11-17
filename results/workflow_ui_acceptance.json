@@ -1,0 +1,33 @@
+{
+  "scope": "Streamlit AppTest rendering against the real recovered acceptance library, without model calls or document encoding; not browser mouse automation",
+  "pages": [
+    {
+      "page": "app.py",
+      "rendered_without_exception": true,
+      "error_messages": 0
+    },
+    {
+      "page": "pages/1_document_workbench.py",
+      "rendered_without_exception": true,
+      "error_messages": 0
+    },
+    {
+      "page": "pages/2_research_chat.py",
+      "rendered_without_exception": true,
+      "error_messages": 0,
+      "history_messages": 4,
+      "history_browsable_without_key": true,
+      "source_filenames_and_locations": true,
+      "optional_features_default_off": true
+    }
+  ],
+  "generation_api_calls": 0,
+  "embedding_loads": 0,
+  "run_id": "run-eddsv_fs",
+  "source_sha256": {
+    "app.py": "21a359a75df4333fca6ee14aca8414713faf277e2112e45ef597291377684da7",
+    "pages/1_document_workbench.py": "89a43965d45541f6be157cced9f4ff6809821c270aadd007240a5a23d35adbbc",
+    "pages/2_research_chat.py": "36c130292f5dc3919fa958d5b6a8a1242f07346fb6226bf1b469cfe6bdb58b61",
+    "src/storage/conversations.py": "4723d21a3512e69ebb5f30a7182c043238f7fbd346d103ce6974b1d687362815"
+  }
+}

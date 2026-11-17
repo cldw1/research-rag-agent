@@ -17,6 +17,11 @@ def test_multiple_documents_can_be_selected_and_saved_without_model_loading(coll
     monkeypatch.setattr(embedding, "load_embedding_resources", loader)
     app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "pages/2_research_chat.py"), default_timeout=30).run()
     assert not app.exception and not app.error
+    selector=next(item for item in app.selectbox if item.label=='多文档证据顺序')
+    assert selector.value=='rrf' and not selector.disabled
+    selector.select('bm25_first').run()
+    assert not app.exception and not app.error
+    assert next(item for item in app.selectbox if item.label=='多文档证据顺序').value=='bm25_first'
     app.multiselect[0].set_value(r.ids).run()
     next(button for button in app.button if button.label == "新建会话").click().run()
     assert not app.exception and not app.error
